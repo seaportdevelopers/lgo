@@ -2,17 +2,13 @@
 
 @section('content')
 <div class="header">
-    <div class="textWrapper">
-        <h1>Welcome back!</h1>
-        <h2>Please login to be able to use system and its information</h2>
-    </div>
 </div>
 <div class="login">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="loginScreen">
                 <div>
-                    <h1>{{ __('Login') }}</h1>
+                    <h1 class="col-md-5">{{ __('Login') }}</h1>
                 </div>
 
                 <div>
@@ -46,7 +42,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                       {{--  <div class="form-group row">
                             <div class="col-md offset-md">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
@@ -55,7 +51,7 @@
                                     </label>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
 
                         <div class="form-group mb-0">
                             <div class="col-md offset-md">
