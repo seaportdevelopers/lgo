@@ -1,6 +1,4 @@
 
-// Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
 
 // Variables
 @import 'variables';
@@ -9,6 +7,10 @@
 @import '~bootstrap/scss/bootstrap';
 
 // Reset styles
+body{
+	font-family: 'Poppins', sans-serif;
+	font-size: 16px;
+}
 a{
 	text-decoration: none;
 	color: black;
@@ -16,6 +18,15 @@ a{
 input{
 	border: none;
 }
+
+//Headings
+h1{
+	font-size: 1.750em;
+	font-weight: 600;
+	color: $mainTextColor;
+}
+
+
 .form-control{
 	font-size: 1rem;
     line-height: 1.5;
@@ -94,7 +105,120 @@ button{
 .loginScreen label{
 	text-align: left !important;
 }
+
+
+//DASHBOARD
+//navigation (both sidebar and top naviagtion)
+#topNavigation{
+	width: calc(100% - 70px);
+	height: calc(70px - 0em);
+	padding: 1.5rem;
+	color: #4D4F5C;
+	margin-left: $sideNavigationWidth;
+	box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.15);
+    -webkit-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.15);
+    -o-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.15);
+    -ms-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: fixed;
+}
+#topNavigation input{
+	width: 60%;
+	margin-left: 0.25rem;
+	font-size: 13px;
+	color: #4D4F5C;
+}
+.icon{
+	color: #BCBCCB;
+	width: 15px;
+	height: 15px;
+	stroke: currentColor;
+	stroke-width: 2;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	fill: none;
+}
+.sideNavigation{
+	height: 100vh;
+	width: $sideNavigationWidth;
+	background-color: #43425D;
+	position: fixed;
+}
+.sideNavigation .items{
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	position: relative;
+	width: 100%;
+	height: 70vh;
+	top: 10%;
+}
+.sideNavigation .headerSidenav{
+	background-color: rgba(0,0,0,0.1);
+	margin-bottom: 2rem;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 70px;
+	color: white;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}.sideNavigation .headerSidenav h1{
+	font-size: .875rem;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	text-align: center;
+	font-weight: 500;
+}
+.sideNavigation a{
+	color: white;
+	font-size: .875rem;
+	text-decoration: none;
+	width: 100%;
+	padding: 0.75rem 1rem;
+	padding-left: 1.5rem;
+	margin-bottom: 0.5rem;
+/*	margin-left: 5%;*/
+}
+.sideNavigation a svg{
+	margin-right: 0.5rem;
+}
+
+.sideNavigation .active{
+	background-color: rgba(0,0,0,0.1);
+	border-left: 7px solid #A3A0FB;
+	border-radius: .25rem;
+}
+
+//content
+
+.content{
+	position: absolute;
+	left: calc(70px + 3%);
+	top: calc(5% + 4rem);
+}
+
+//cards
 .card{
-	box-shadow: 0 0 2rem 0 rgba(136,152,170,.15);
-	border: none;
+    margin-right: 30px;
+    margin-bottom: 30px;
+    min-width: 25%;
+    border: 0;
+    box-shadow: 0 0 2rem 0 rgba(136,152,170,.15);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    word-wrap: break-word;
+    border-radius: .375rem;
+    background-color: #fff;
+}
+.card-header{
+    margin-bottom: 0;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid rgba(0,0,0,.05);
+    background-color: #fff;
 }

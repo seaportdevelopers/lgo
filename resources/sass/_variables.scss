@@ -1,6 +1,11 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,600');
+
+
+// Layout
+$sideNavigationWidth: 70px;
 
 // Body
-$body-bg: #f8fafc;
+$body-bg: #fff;
 
 // Typography
 $font-family-sans-serif: "Nunito", sans-serif;
@@ -8,6 +13,7 @@ $font-size-base: 0.9rem;
 $line-height-base: 1.6;
 
 // Colors
+$MainColor: #30323D;
 $blue: #3490dc;
 $indigo: #6574cd;
 $purple: #9561e2;
@@ -18,3 +24,5 @@ $yellow: #ffed4a;
 $green: #38c172;
 $teal: #4dc0b5;
 $cyan: #6cb2eb;
+
+$mainTextColor: #43425D;
