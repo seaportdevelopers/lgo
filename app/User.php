@@ -27,4 +27,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function truck() {
+      return $this->hasOne(Truck::class);
+    }
+
+    public function cargo() {
+      return $this->truck->cargo;
+    }
 }

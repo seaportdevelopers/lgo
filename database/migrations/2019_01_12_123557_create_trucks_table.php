@@ -19,10 +19,10 @@ class CreateTrucksTable extends Migration
             $table->integer('status')->default(0); //0-laisva; 1-vaziuoja; 2-stovi parke; etc.
             $table->float('coordsx')->nullable(); //lokacija
             $table->float('corrdsy')->nullable(); //lokacija
-            $table->string('driver');
             $table->string("manufacturer");
             $table->string("model");
             $table->date("rlDate"); //pagaminimo data
+            $table->unsignedinteger("user_id");
             $table->timestamps();
         });
     }
