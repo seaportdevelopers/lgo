@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTrucksTable extends Migration
+class CreateCargosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,14 @@ class CreateTrucksTable extends Migration
      */
     public function up()
     {
-        Schema::create('trucks', function (Blueprint $table) {
+        Schema::create('cargos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('idno')->unique(); //ABC123
-            $table->integer('status')->default(0); //0-laisva; 1-vaziuoja; 2-stovi parke; etc.
-            $table->float('coordsx')->nullable(); //lokacija
-            $table->float('corrdsy')->nullable(); //lokacija
-            $table->string('driver');
+            $table->string("idno")->unique(); //ABC123
             $table->string("manufacturer");
             $table->string("model");
             $table->date("rlDate"); //pagaminimo data
+            $table->integer("status")->default('0'); //0-laisva; 1-vaziuoja; 2-stovi parke; etc.
+            $table->unsignedinteger("truck_id");
             $table->timestamps();
         });
     }
@@ -34,6 +32,6 @@ class CreateTrucksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('trucks');
+        Schema::dropIfExists('cargos');
     }
 }
