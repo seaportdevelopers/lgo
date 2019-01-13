@@ -9,14 +9,14 @@
                 <span>
                     Transportas
                 </span>
-            </div>   
+            </div>
         </div>
         <div class="card">
             <div class="card-header">
                 <span>
                     Transportas
                 </span>
-            </div>   
+            </div>
             <div class="card-body">
                 <table class="table table-hover">
                     <thead>
@@ -26,18 +26,12 @@
                         </tr>
                     </thead>
                     <tbody>
+                      @foreach($data as $truck)
                         <tr>
-                            <td>001</td>
-                            <td>ABC132</td>
+                          <td>{{$truck->id}}</td>
+                          <td>{{$truck->idno}}</td>
                         </tr>
-                        <tr>
-                            <td>001</td>
-                            <td>ABC132</td>
-                        </tr>
-                        <tr>
-                            <td>001</td>
-                            <td>ABC132</td>
-                        </tr>
+                      @endforeach
                     </tbody>
                 </table>
             </div>

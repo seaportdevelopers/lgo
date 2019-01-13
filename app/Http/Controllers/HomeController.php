@@ -25,4 +25,10 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    public function allTransport() {
+      $data = \App\Truck::all();
+      return view('home')->with('data', $data);
+    }
+
 }
