@@ -13,4 +13,8 @@ class Truck extends Model
     public function driver() {
       return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function expenses() {
+      return $this->hasMany(Expense::class);
+    }
 }
