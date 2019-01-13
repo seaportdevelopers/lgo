@@ -23,7 +23,7 @@
        <header id="topNavigation">
 		<form>
 			<i class="icon" data-feather="search"></i>
-			<input class="search-input" type="text" name="searchQ" placeholder="Enter query here">
+			<input class="search-input" type="text" name="searchQ" placeholder="Ieškoti transporto priemonių, žmonių, maršrutų, klientų, pavedimų ir kitos informacijos">
 		</form>
 		<span>{{ Auth::user()->name }}</span>
 	</header>

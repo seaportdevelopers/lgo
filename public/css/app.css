@@ -10493,6 +10493,7 @@ a.text-dark:focus {
 body {
   font-family: "Poppins", sans-serif;
   font-size: 16px;
+  background: #F0F0F7;
 }
 
 a {
@@ -10502,6 +10503,7 @@ a {
 
 input {
   border: none;
+  background: transparent;
 }
 
 h1 {
@@ -10598,8 +10600,7 @@ button {
 
 #topNavigation {
   width: calc(100% - 70px);
-  height: calc(70px - 0em);
-  padding: 1.5rem;
+  padding: 1.2rem 1.5rem;
   color: #4D4F5C;
   margin-left: 70px;
   box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.15);
@@ -10611,13 +10612,20 @@ button {
   flex-direction: row;
   justify-content: space-between;
   position: fixed;
+  font-size: 0.813em;
+  background-color: #fff;
 }
 
-#topNavigation input {
+#topNavigation form {
   width: 60%;
   margin-left: 0.25rem;
   font-size: 13px;
   color: #4D4F5C;
+  height: 80%;
+}
+
+#topNavigation input {
+  width: 90%;
 }
 
 .icon {
@@ -10694,12 +10702,12 @@ button {
   position: absolute;
   left: calc(70px + 3%);
   top: calc(5% + 4rem);
+  width: calc(100% - 70px);
 }
 
 .card {
   margin-right: 30px;
   margin-bottom: 30px;
-  min-width: 25%;
   border: 0;
   box-shadow: 0 0 2rem 0 rgba(136, 152, 170, 0.15);
   position: relative;
@@ -10712,8 +10720,59 @@ button {
 
 .card-header {
   margin-bottom: 0;
-  padding: 1.25rem 1.5rem;
+  padding: 1.25rem 2rem;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   background-color: #fff;
+}
+
+.card-body {
+  padding: 1.25rem 2rem;
+}
+
+.card-header h2 {
+  font-size: 1.125em;
+  color: #43425D;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+
+.card .big {
+  min-width: 25%;
+}
+
+.info .card-header {
+  border-bottom: none !important;
+  padding-bottom: 0.1rem;
+}
+
+.info .card-header h2 {
+  font-size: 1.063em;
+}
+
+.info .card-body span {
+  font-size: 0.75em;
+}
+
+.table {
+  border-collapse: collapse;
+  font-size: 0.813em;
+}
+
+.table thead {
+  border: none !important;
+  background-color: #F5F6FA;
+  color: #A3A6B4;
+}
+
+.table tbody {
+  color: #4D4F5C;
+}
+
+.text-danger {
+  color: #FF4141;
+}
+
+.text-good {
+  color: #85FFC7;
 }
 
