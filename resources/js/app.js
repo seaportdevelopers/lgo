@@ -6,11 +6,15 @@
  */
 
 require('./bootstrap');
-
+import swal from 'sweetalert';
 const feather = require('feather-icons')
 feather.replace();
 
 window.Vue = require('vue');
+
+function showSimpleAlert(){
+	swal("Here's the title!", "...and here's the text!");
+}
 
 /**
  * The following block of code may be used to automatically register your
