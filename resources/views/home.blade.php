@@ -41,15 +41,15 @@
     <div class="row">
         <div class="card info">
             <div class="card-header">
-<<<<<<< HEAD
+
                 <span>
                     Transportas
                 </span>
-=======
+
                 <h2>
                    Card title
                 </h2>
-            </div>   
+            </div>
             <div class="card-body">
                 <div>
                     <h1>000</h1>
@@ -62,7 +62,7 @@
                 <h2>
                    Card title
                 </h2>
-            </div>   
+            </div>
             <div class="card-body">
                 <div>
                     <h1>000</h1>
@@ -75,7 +75,7 @@
                 <h2>
                    Card title
                 </h2>
-            </div>   
+            </div>
             <div class="card-body">
                 <div>
                     <h1>000</h1>
@@ -88,13 +88,13 @@
                 <h2>
                    Card title
                 </h2>
-            </div>   
+            </div>
             <div class="card-body">
                 <div>
                     <h1>000</h1>
                     <span class="text-danger">Krito 13.8% lyginant su 2018</span>
                 </div>
->>>>>>> fe58c73a3e452ec08b1b402bdb83e1b855a903c2
+
             </div>
         </div>
     </div>
@@ -104,13 +104,13 @@
             <div class="card-header">
                 <h2>
                     Transportas
-<<<<<<< HEAD
+
                 </span>
             </div>
-=======
+
                 </h2>
-            </div>   
->>>>>>> fe58c73a3e452ec08b1b402bdb83e1b855a903c2
+            </div>
+
             <div class="card-body">
                 <table class="table table-hover table-borderless">
                     <thead>
@@ -127,10 +127,10 @@
                     <tbody>
                       @foreach($data as $truck)
                         <tr>
-<<<<<<< HEAD
+
                           <td>{{$truck->id}}</td>
                           <td>{{$truck->idno}}</td>
-=======
+
                             <td>001</td>
                             <td>ABC132</td>
                             <td>254</td>
@@ -156,7 +156,7 @@
                             <td>MC-612C3</td>
                             <td>2008</td>
                             <td>Aktyvys</td>
->>>>>>> fe58c73a3e452ec08b1b402bdb83e1b855a903c2
+
                         </tr>
                       @endforeach
                     </tbody>
