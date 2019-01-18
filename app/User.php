@@ -35,4 +35,12 @@ class User extends Authenticatable
     public function cargo() {
       return $this->truck->cargo;
     }
+
+    public function noted() {
+      return $this->hasMany(Repair::class, 'noter_id');
+    }
+
+    public function responsible() {
+      return $this->hasMany(Repair::class, 'responsible_id');
+    }
 }
