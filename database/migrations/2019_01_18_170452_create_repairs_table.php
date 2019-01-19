@@ -15,17 +15,17 @@ class CreateRepairsTable extends Migration
     {
         Schema::create('repairs', function (Blueprint $table) {
             $table->increments('id')->autoIncrement();
-            $table->integer('category'); // 1 - truck, 2 - cargo, 3- other
-            $table->integer('idno'); //transport serial country number
+            $table->string('category'); // 1 - truck, 2 - cargo, 3- other
+            $table->string('idno'); //transport serial country number
             $table->integer('userInformed'); //user's id, who reported about the problem
-            $table->string('description');
+            $table->text('description');
             $table->string('repairCompany'); //company that is responsible for the solution or fixment
             $table->date('repairDate'); //date that describes, when vechile have to be repaired
             $table->date('repairDateEnd'); //date that describes, when vechile has been fixed and the current problem was solved fully
             $table->integer('userResponsible'); //user's id, who is responsible for the vechile
-            $table->integer('repairsPrice'); //the price of the vechiles repair
+            $table->float('repairsPrice'); //the price of the vechiles repair
             $table->timestamps();
-            $table->softDeletes();	
+            $table->softDeletes();
         });
     }
 
