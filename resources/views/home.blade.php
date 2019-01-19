@@ -278,9 +278,34 @@
      <button type="button" class="btn btn-warning mt-3" onclick="showWarningAlert();">
         Launch warning alert
     </button>
-    <button type="button" class="btn btn-secondary mt-3" onclick="showEditAlert();">
-        Launch warning alert
+    <button type="button" class="btn btn-secondary mt-3" onclick="" data-toggle="modal" data-target="#editModal">
+        Launch form alert
     </button>
+
+    <!-- Modal -->
+   <div class="modal modal-form fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+     <div class="modal-dialog" role="document">
+       <div class="modal-content">
+         <div class="modal-header">
+           <h5 class="modal-title" id="exampleModalLabel">Edit form</h5>
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+           </button>
+         </div>
+         <div class="modal-body">
+            <form action="" method="post">
+               <label for="exampleInput1">Vardas</label>
+               <input id="exampleInput1" placeholder="Vardas" name="" class="form-control">
+            </form>
+         </div>
+         <div class="modal-footer">
+           <button type="button" class="btn btn-muted btn-small" data-dismiss="modal">Close</button>
+           <button type="button" class="btn btn-primary btn-small">Save changes</button>
+         </div>
+       </div>
+     </div>
+   </div>
+
    <script type="text/javascript">
        function showInfoAlert(){
             swal({

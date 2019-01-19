@@ -3,13 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Repair;
-<<<<<<< HEAD
-
 use App\Truck;
-
-=======
-use App\Truck;
->>>>>>> 0b5b6cced8761f120689582cddb880e0368aee5e
 use Illuminate\Http\Request;
 
 class RepairController extends Controller
