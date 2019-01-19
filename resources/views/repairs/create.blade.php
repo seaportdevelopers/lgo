@@ -7,7 +7,7 @@
 <div class="card big">
     <div class="card-header">
         <h2>
-            Pranešimo apie gedimą forma
+            Pranešimo apie gedimą forma.
         </h2>
     </div>
     <div class="card-body">
