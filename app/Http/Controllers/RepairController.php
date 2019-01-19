@@ -3,13 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Repair;
-<<<<<<< HEAD
 
 use App\Truck;
-
-=======
-use App\Truck;
->>>>>>> 0b5b6cced8761f120689582cddb880e0368aee5e
 use Illuminate\Http\Request;
 
 class RepairController extends Controller
@@ -46,7 +41,35 @@ class RepairController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $rules = array(
+          'informer'       => 'required',
+          'idno'      => 'required',
+          'desc' => 'required',
+          'repComp'      => 'required',
+          'repDate'      => 'required|date',
+          'repDateFinished'      => 'required|date',
+          'responsible'      => 'required',
+          'price'      => 'required|float'
+      );
+      $validator = Validator::make(Input::all(), $rules);
+
+      // process the login
+      if ($validator->fails()) {
+          return Redirect::to('repairs/create')
+              ->withErrors($validator)
+              ->withInput(Input::except('password'));
+      } else {
+          // store
+          $nerd = new Repair;
+          $nerd->name       = Input::get('name');
+          $nerd->email      = Input::get('email');
+          $nerd->nerd_level = Input::get('nerd_level');
+          $nerd->save();
+
+          // redirect
+          Session::flash('message', 'Successfully created nerd!');
+          return Redirect::to('nerds');
+      }
     }
 
     /**

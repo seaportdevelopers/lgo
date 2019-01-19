@@ -2,7 +2,7 @@
 @section('content')
 <div class="mt-6 mb-5">
 <h1 class="title">Gedimai ir remontai</h1>
-<a href="{{ route('repairsCreate') }}" class="btn btn-small btn-primary">Pranešti apie gedimą</a>
+<a href="{{ route('repairs.create') }}" class="btn btn-small btn-primary">Pranešti apie gedimą</a>
 </div>
 <div class="card big">
     <div class="card-header">
