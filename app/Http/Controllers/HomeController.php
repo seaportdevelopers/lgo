@@ -28,13 +28,11 @@ class HomeController extends Controller
         return view('home');
     }
 
-
     public function transport(){
       $trucks = Truck::all();
       $cargos = Cargo::all();
       return view('transport.show', compact('trucks'));
    }
-
     public function allTransport() {
       $data = \App\Truck::all();
       return view('home')->with('data', $data);
