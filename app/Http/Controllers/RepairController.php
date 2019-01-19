@@ -3,10 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Repair;
-<<<<<<< HEAD
 use App\Truck;
-=======
->>>>>>> 3478286718e31157871f828e0c4efaef095cd624
 use Illuminate\Http\Request;
 
 class RepairController extends Controller
@@ -18,11 +15,8 @@ class RepairController extends Controller
      */
     public function index()
     {
-<<<<<<< HEAD
       $repairs = Repair::all();
       return view('repairs.show', compact('repairs'));
-=======
->>>>>>> 3478286718e31157871f828e0c4efaef095cd624
         //
     }
 
@@ -33,11 +27,8 @@ class RepairController extends Controller
      */
     public function create()
     {
-<<<<<<< HEAD
       $trucks = Truck::all();
       return view('repairs.create', compact('trucks'));
-=======
->>>>>>> 3478286718e31157871f828e0c4efaef095cd624
         //
     }
 
