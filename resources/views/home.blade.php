@@ -110,10 +110,7 @@
 
                 </h2>
             </div>
-<<<<<<< HEAD
-=======
 
->>>>>>> 3478286718e31157871f828e0c4efaef095cd624
             <div class="card-body">
                 <table class="table table-hover table-borderless">
                     <thead>
