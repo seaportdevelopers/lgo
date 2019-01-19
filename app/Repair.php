@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Repair extends Model
 {
     //
-    public function noter() {
-      return $this->belongsTo(User::class, 'noter_id');
+    public function informer() {
+      return $this->belongsTo(User::class, 'userInformed');
     }
 
     public function responsible() {
-      return $this->belongsTo(User::class, 'responsible_id');
+      return $this->belongsTo(User::class, 'userResponsible');
     }
 
 }
