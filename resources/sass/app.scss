@@ -101,6 +101,10 @@ p{
     background-clip: padding-box;
     //box-shadow: 0 3px 2px rgba(233,236,239,.05);
 }
+.form-control-classic{
+	border: 1px solid #ddd;
+	width: auto;
+}
 button{
 	font-size: .675rem;
     position: relative;
@@ -118,10 +122,11 @@ button{
    -webkit-box-shadow: none;
     box-shadow: none;
     text-decoration: none;
-    
+
 }
 .btn-small{
-	padding: 0.25rem 1.5rem;
+	padding: 0.2rem 1.30rem;
+	font-size: 80%;
 }
 .btn-primary{
     color: #fff;
@@ -149,7 +154,7 @@ button{
 	color: #fff;
     border-color: #43425D;
     background-color: #43425D;
-    
+
     box-shadow: 0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
 }
 .btn-forgot{
@@ -418,4 +423,161 @@ button{
 }
 .modal-footer{
 	border-top: none;
+}
+.bg-label{
+	display: inline-block;
+	border-radius: .25em;
+	font-size: 80%;
+	font-weight: 400;
+	line-height: 1;
+	padding: .4rem .45rem;
+	text-align: center;
+	vertical-align: baseline;
+	white-space: nowrap;
+}
+.bg-label-primary{
+	background-color: #5e72e4;
+	color: #fff;
+}
+.bg-label-danger{
+	background-color: #e3342f;
+	color: #fff;
+}
+.bg-label-success{
+	background-color: #2dce89;
+	color: #fff;
+}
+.bg-label-warning{
+	background-color: #FCA311;
+	color: #fff;
+}
+.bg-label-main{
+	background-color: #30323D;
+	color: #fff;
+}
+
+//Select
+.control {
+  display: block;
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: 15px;
+  cursor: pointer;
+  font-size: 1.125rem;
+}
+.control input {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+.control__indicator {
+  position: absolute;
+  top: 2px;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background: $InputBackgroundColor;
+  border-radius: .2rem;
+}
+.control--radio .control__indicator {
+  border-radius: 50%;
+}
+.control:hover input ~ .control__indicator,
+.control input:focus ~ .control__indicator {
+  background: #ccc;
+}
+.control input:checked ~ .control__indicator {
+  background: $PrimaryColor;
+}
+.control:hover input:not([disabled]):checked ~ .control__indicator,
+.control input:checked:focus ~ .control__indicator {
+  background: #30323D;
+}
+.control input:disabled ~ .control__indicator {
+  background: #8898aa;
+  opacity: 0.6;
+  pointer-events: none;
+}
+.control__indicator:after {
+  content: '';
+  position: absolute;
+  display: none;
+}
+.control input:checked ~ .control__indicator:after {
+  display: block;
+}
+.control--checkbox .control__indicator:after {
+  left: 7.5px;
+  top: 2.5px;
+  width: 10px;
+  height: 15px;
+  border: solid #fff;
+  border-width: 0 4px 4px 0;
+  transform: rotate(45deg);
+
+}
+.control--checkbox input:disabled ~ .control__indicator:after {
+  border-color: #7b7b7b;
+}
+.control--radio .control__indicator:after {
+  left: 7px;
+  top: 7px;
+  height: 6px;
+  width: 6px;
+  border-radius: 50%;
+  background: #fff;
+}
+.control--radio input:disabled ~ .control__indicator:after {
+  background: #7b7b7b;
+}
+.select {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 15px;
+  min-width: 25%;
+  width: auto;
+}
+.select select {
+  display: inline-block;
+  width: 100%;
+  cursor: pointer;
+  padding: 10px 15px;
+  outline: 0;
+  border: 0;
+  border-radius: 0;
+  background: #e6e6e6;
+  color: #7b7b7b;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+.select select::-ms-expand {
+  display: none;
+}
+.select select:hover,
+.select select:focus {
+  color: #000;
+  background: #ccc;
+}
+.select select:disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+.select__arrow {
+  position: absolute;
+  top: 16px;
+  right: 15px;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  border-style: solid;
+  border-width: 8px 5px 0 5px;
+  border-color: #7b7b7b transparent transparent transparent;
+}
+.select select:hover ~ .select__arrow,
+.select select:focus ~ .select__arrow {
+  border-top-color: #000;
+}
+.select select:disabled ~ .select__arrow {
+  border-top-color: #ccc;
 }

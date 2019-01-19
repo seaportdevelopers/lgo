@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Truck;
+use App\Cargo;
 
 class HomeController extends Controller
 {
@@ -25,4 +27,10 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    public function transport(){
+      $trucks = Truck::all();
+      $cargos = Cargo::all();
+      return view('transport.show', compact('trucks'));
+   }
 }

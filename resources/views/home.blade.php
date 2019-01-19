@@ -44,7 +44,7 @@
                 <h2>
                    Card title
                 </h2>
-            </div>   
+            </div>
             <div class="card-body">
                 <div>
                     <h1>000</h1>
@@ -57,7 +57,7 @@
                 <h2>
                    Card title
                 </h2>
-            </div>   
+            </div>
             <div class="card-body">
                 <div>
                     <h1>000</h1>
@@ -70,7 +70,7 @@
                 <h2>
                    Card title
                 </h2>
-            </div>   
+            </div>
             <div class="card-body">
                 <div>
                     <h1>000</h1>
@@ -83,7 +83,7 @@
                 <h2>
                    Card title
                 </h2>
-            </div>   
+            </div>
             <div class="card-body">
                 <div>
                     <h1>000</h1>
@@ -99,7 +99,7 @@
                 <h2>
                     Transportas
                 </h2>
-            </div>   
+            </div>
             <div class="card-body">
                 <table class="table table-hover table-borderless">
                     <thead>
@@ -227,6 +227,25 @@
         </table>
 </div>
 <div class="container">
+   <h2 class="title mt-5 mb-3">Labels</h2>
+   <label class="bg-label bg-label-primary">Primary</label>
+   <label class="bg-label bg-label-danger">Danger</label>
+   <label class="bg-label bg-label-success">Danger</label>
+   <label class="bg-label bg-label-warning">Warning</label>
+   <label class="bg-label bg-label-main">Main</label>
+</div>
+<div class="container">
+   <h2 class="title mt-5 mb-3">Checkboxes</h2>
+   <label class="control control--checkbox">First checkbox
+      <input type="checkbox" checked="checked"/>
+      <div class="control__indicator"></div>
+   </label>
+   <label class="control control--checkbox">First checkbox
+      <input type="checkbox" checked="checked"/>
+      <div class="control__indicator"></div>
+   </label>
+</div>
+<div class="container">
     <h2 class="title mt-5">Modals</h2>
     <h5 class="sub-info mb-3">Information</h5>
     <button type="button" class="btn btn-primary" onclick="showInfoAlert();">
@@ -275,15 +294,18 @@
         }
         function showEditAlert(){
             swal({
-                  content: {
-                    element: "input",
-                    attributes: {
-                      placeholder: "Type your password",
-                      type: "password",
-                    },
-                  },
+                  title: "Form title",
+                  html: "<input type='text' class='form-control mb-4 mr-3' placeholder='Simple text'>",
+                  // content: {
+                  //   element: "input",
+                  //   attributes: {
+                  //     placeholder: "Type your password",
+                  //     type: "password",
+                  //   },
+                  // },
             });
         }
    </script>
 </div>
+
 @endsection
