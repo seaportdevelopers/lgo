@@ -13,6 +13,9 @@
 
 Auth::routes();
 
+
+Route::get('/home', 'HomeController@allTransport')->name('home');
+
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/transport', 'HomeController@transport')->name('transport');
 Route::get('/repairs', 'RepairController@index')->name('repairs');

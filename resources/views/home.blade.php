@@ -41,6 +41,11 @@
     <div class="row">
         <div class="card info">
             <div class="card-header">
+
+                <span>
+                    Transportas
+                </span>
+
                 <h2>
                    Card title
                 </h2>
@@ -89,6 +94,7 @@
                     <h1>000</h1>
                     <span class="text-danger">Krito 13.8% lyginant su 2018</span>
                 </div>
+
             </div>
         </div>
     </div>
@@ -98,8 +104,16 @@
             <div class="card-header">
                 <h2>
                     Transportas
+
+                </span>
+            </div>
+
                 </h2>
             </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3478286718e31157871f828e0c4efaef095cd624
             <div class="card-body">
                 <table class="table table-hover table-borderless">
                     <thead>
@@ -114,7 +128,12 @@
                         </tr>
                     </thead>
                     <tbody>
+                      @foreach($data as $truck)
                         <tr>
+
+                          <td>{{$truck->id}}</td>
+                          <td>{{$truck->idno}}</td>
+
                             <td>001</td>
                             <td>ABC132</td>
                             <td>254</td>
@@ -140,7 +159,9 @@
                             <td>MC-612C3</td>
                             <td>2008</td>
                             <td>Aktyvys</td>
+
                         </tr>
+                      @endforeach
                     </tbody>
                 </table>
             </div>
