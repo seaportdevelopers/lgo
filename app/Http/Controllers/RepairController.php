@@ -101,9 +101,11 @@ class RepairController extends Controller
      * @param  \App\Repair  $repair
      * @return \Illuminate\Http\Response
      */
-    public function edit(Repair $repair)
+    public function edit($idno)
     {
-        //
+        $repair = Repair::where('idno', $idno)->first();
+        if($repair == null) return redirect('repairs');
+        return view('repairs.edit', compact('repair'));
     }
 
     /**
