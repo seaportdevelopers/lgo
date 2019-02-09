@@ -6,6 +6,10 @@ use App\Repair;
 
 use App\Truck;
 use Illuminate\Http\Request;
+use Validator;
+use Illuminate\Support\Facades\Input;
+use Redirect;
+use Session;
 
 class RepairController extends Controller
 {
@@ -43,32 +47,40 @@ class RepairController extends Controller
     {
       $rules = array(
           'informer'       => 'required',
+          'category'      => 'required',
           'idno'      => 'required',
           'desc' => 'required',
           'repComp'      => 'required',
           'repDate'      => 'required|date',
           'repDateFinished'      => 'required|date',
           'responsible'      => 'required',
-          'price'      => 'required|float'
+          'price'      => 'required|numeric'
       );
       $validator = Validator::make(Input::all(), $rules);
 
       // process the login
       if ($validator->fails()) {
+        Session::flash('message', 'Error!');
           return Redirect::to('repairs/create')
               ->withErrors($validator)
               ->withInput(Input::except('password'));
       } else {
           // store
-          $nerd = new Repair;
-          $nerd->name       = Input::get('name');
-          $nerd->email      = Input::get('email');
-          $nerd->nerd_level = Input::get('nerd_level');
-          $nerd->save();
+          $rep = new Repair;
+          $rep->category =  Input::get('category');
+          $rep->idno = Input::get('idno');
+          $rep->userInformed =  Input::get('informer');
+          $rep->description =  Input::get('desc');
+          $rep->repairCompany =  Input::get('repComp');
+          $rep->repairDate =  Input::get('repDate');
+          $rep->repairDateEnd =  Input::get('repDateFinished');
+          $rep->userResponsible =  Input::get('responsible');
+          $rep->repairsPrice =  Input::get('price');
+          $rep->save();
 
           // redirect
-          Session::flash('message', 'Successfully created nerd!');
-          return Redirect::to('nerds');
+          Session::flash('message', 'Successfully created a repair!');
+          return Redirect::to('repairs');
       }
     }
 
