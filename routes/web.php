@@ -19,3 +19,4 @@ Route::get('/home', 'HomeController@allTransport')->name('home');
 Route::get('/', 'HomeController@allTransport')->name('home');
 Route::get('/transport', 'HomeController@transport')->name('transport');
 Route::resource('repairs', 'RepairController');
+Route::get('/repairs/{idno}/edit', 'RepairController@edit');

@@ -42,7 +42,7 @@
                     <td>{{$repair->repairDateEnd}}</td>
                   <td>{{$repair->repairsPrice}}</td>
                   <td>
-                       <button class="btn btn-small btn-primary">Redaguoti</button>
+                      <a href="repairs/{{$repair->idno}}/edit"> <button class="btn btn-small btn-primary">Redaguoti</button></a>
                   </td>
                 </tr>
                @endforeach
