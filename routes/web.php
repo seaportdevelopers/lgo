@@ -21,3 +21,6 @@ Route::get('/transport', 'HomeController@transport')->name('transport');
 Route::resource('repairs', 'RepairController', [
    'as' => 'r'
 ]);
+Route::resource('repairs', 'RepairController');
+Route::get('/repairs/{idno}/edit', 'RepairController@edit');
+
