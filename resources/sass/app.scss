@@ -418,6 +418,12 @@ button{
 	border-radius: .255em;
 	border:none;
 }
+.modal-dialog-form{
+	min-width: 800px;
+}
+.modal-form .modal-body{
+	background-color: $BackgroundColor;
+}
 .modal-header{
 	border-bottom: none !important;
 }
