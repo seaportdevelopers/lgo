@@ -294,9 +294,72 @@
          </div>
          <div class="modal-body">
             <form action="" method="post">
-               <div class="form-group">
-                  <label for="exampleInput1">Vardas</label>
-                  <input id="exampleInput1" placeholder="Vardas" name="" class="form-control">
+               <div class="container">
+                  <div class="row">
+                     <div class="col">
+                        <div class="row mb-3">
+                              <div class="col">
+                                 <label for="exampleFormControlSelect1">Atsakingas asmuo</label>
+                                 <select style="width: 100%;" class="form-control" id="exampleFormControlSelect1">
+                                    <option>Vardenis Pavardenis</option>
+                                    <option>Vardenis Pavardenis</option>
+                                    <option>Vardenis Pavardenis</option>
+                                    <option>Vardenis Pavardenis</option>
+                                    <option>Vardenis Pavardenis</option>
+                                    <option>Vardenis Pavardenis</option>
+                                    <option>Vardenis Pavardenis</option>
+                                    <option>Vardenis Pavardenis</option>
+                                    <option>Vardenis Pavardenis</option>
+                                    <option>Vardenis Pavardenis</option>
+                                 </select>
+                              </div>
+                        </div>
+                        <div class="row mb-3">
+                           <div class="col">
+                              <label for="exampleInput1">Pranešėjas</label>
+                              <input id="exampleInput1" placeholder="Vardas" name="" class="form-control">
+                           </div>
+                           <div class="col">
+                              <label for="exampleFormControlSelect1">Transp. priemonė</label>
+                              <select style="width: 100%;" class="form-control" id="exampleFormControlSelect1">
+                                 <option>ABC123</option>
+                                 <option>ABC123</option>
+                                 <option>ABC123</option>
+                                 <option>ABC123</option>
+                                 <option>ABC123</option>
+                                 <option>ABC123</option>
+                                 <option>ABC123</option>
+                              </select>
+                           </div>
+                        </div>
+                        <div class="row mb-3">
+                              <div class="col">
+                                 <label for="exampleInput1">Num. remonto data</label>
+                                 <input type="date" id="exampleInput1" placeholder="XXXX-XX-XX" name="" class="form-control">
+                              </div>
+                              <div class="col">
+                                 <label for="exampleInput1">Remonto pabaigos data</label>
+                                 <input type="date" id="exampleInput1" placeholder="XXXX-XX-XX" name="" class="form-control">
+                              </div>
+                        </div>
+                        <div class="row mb-3">
+                           <div class="col">
+                              <label for="exampleFormControlSelect1">Remonto vieta</label>
+                              <select style="width: 100%;" class="form-control" id="exampleFormControlSelect1">
+                                 <option>Skuba</option>
+                                 <option>Skuba</option>
+                                 <option>Skuba</option>
+                                 <option>Skuba</option>
+                              </select>
+                           </div>
+                        </div>
+                        <div class="form-group mt-3" style="width: 100%;">
+                           <label for="exampleFormControlSelect1">Gedimo aprašymas</label>
+                           <textarea style="width: 100%;" class="form-control" placeholder="Aprašymas">
+                           </textarea>
+                        </div>
+                     </div>
+                  </div>
                </div>
             </form>
          </div>
