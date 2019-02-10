@@ -19,7 +19,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body>	
+<body>
        <header id="topNavigation">
 		<form>
 			<i class="icon" data-feather="search"></i>
@@ -29,16 +29,16 @@
 	</header>
 	<div class="sideNavigation">
 		<div class="items">
-			<a href="#home" class="active">
+			<a href="{{ route('home') }}" class=" @if (Route::currentRouteName() == "home") active @endif ">
 				<span class="icon" data-feather="home"></span>
 			</a>
-			<a href="#home">
+			<a href="{{ route('r.repairs.index') }}" class=" @if (Route::currentRouteName() == "r.repairs.index") active @endif ">
 				<span class="icon" data-feather="activity"></span>
 			</a>
-			<a href="#home">
+			<a href="#">
 				<span class="icon" data-feather="stop-circle"></span>
 			</a>
-			<a href="#home">
+			<a href="{{ route('transport') }}" class=" @if (Route::currentRouteName() == "transport") active @endif ">
 				<span class="icon" data-feather="truck"></span>
 			</a>
 		</div>
