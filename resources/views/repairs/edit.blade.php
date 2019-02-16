@@ -75,7 +75,7 @@
         </div>
      </div>
      <div class="modal-footer">
-       <button type="button" class="btn btn-muted btn-small" data-dismiss="modal">Uždaryti</button>
+       <a href="/repairs"><button type="button" class="btn btn-muted btn-small">Atšaukti</button></a>
        <button type="submit" class="btn btn-primary btn-small">Išsaugoti</button>
      </div>
   </form>

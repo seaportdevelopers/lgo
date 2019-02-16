@@ -16,13 +16,14 @@ class CreateTrucksTable extends Migration
         Schema::create('trucks', function (Blueprint $table) {
             $table->increments('id');
             $table->string('idno')->unique(); //ABC123
+            $table->integer('category')->default(1);
             $table->integer('status')->default(0); //0-laisva; 1-vaziuoja; 2-stovi parke; etc.
             $table->float('coordsx')->nullable(); //lokacija
             $table->float('corrdsy')->nullable(); //lokacija
             $table->string("manufacturer");
             $table->string("model");
-            $table->date("rlDate"); //pagaminimo data
-            $table->unsignedinteger("user_id");
+            $table->integer("rlYear"); //pagaminimo metai
+            $table->unsignedinteger("user_id")->nullable();
             $table->timestamps();
         });
     }
