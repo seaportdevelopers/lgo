@@ -13,10 +13,15 @@
 
 Auth::routes();
 
-
+//HOME
 Route::get('/home', 'HomeController@allTransport')->name('home');
-
 Route::get('/', 'HomeController@allTransport')->name('home');
+
+//TRANSPORT
 Route::get('/transport', 'HomeController@transport')->name('transport');
+
+
+//REPAIRS
 Route::resource('repairs', 'RepairController');
-Route::get('/repairs/{idno}/edit', 'RepairController@edit');
+Route::get('/repairs/{hash}/edit','RepairController@edit');
+Route::put('/repairs/{hash}', 'RepairController@update');

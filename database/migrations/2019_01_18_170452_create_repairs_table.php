@@ -15,7 +15,7 @@ class CreateRepairsTable extends Migration
     {
         Schema::create('repairs', function (Blueprint $table) {
             $table->increments('id')->autoIncrement();
-            $table->string('category'); // 1 - truck, 2 - cargo, 3- other
+            $table->string('status'); // State 
             $table->string('idno'); //transport serial country number
             $table->integer('userInformed'); //user's id, who reported about the problem
             $table->text('description');
