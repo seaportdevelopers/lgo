@@ -35,8 +35,6 @@ class RepairController extends Controller
      */
     public function create()
     {
-      $trucks = Truck::all();
-      return view('repairs.create', compact('trucks'));
         //
     }
 

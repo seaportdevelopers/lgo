@@ -82,7 +82,7 @@
 			<a href="#">
 				<span class="icon" data-feather="stop-circle"></span>
 			</a>
-			<a href="{{ route('transport') }}" class=" @if (Route::currentRouteName() == "transport") active @endif ">
+			<a href="{{ route('transport.index') }}" class=" @if (Route::currentRouteName() == "transport") active @endif ">
 				<span class="icon" data-feather="truck"></span>
 			</a>
 		</div>

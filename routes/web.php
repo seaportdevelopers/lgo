@@ -18,7 +18,10 @@ Route::get('/home', 'HomeController@allTransport')->name('home');
 Route::get('/', 'HomeController@allTransport')->name('home');
 
 //TRANSPORT
-Route::get('/transport', 'HomeController@transport')->name('transport');
+Route::resource('/transport', 'TruckController');
+Route::get('/transport/{hash}/edit', 'TruckController@edit');
+Route::put('/transport/{hash}', 'TruckController@update');
+Route::delete('/transport/{hash}', 'TruckController@destroy');
 
 
 //REPAIRS

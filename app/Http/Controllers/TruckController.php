@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Truck;
 use Illuminate\Http\Request;
+use Validator;
+use Illuminate\Support\Facades\Input;
+use Redirect;
+use Session;
+use \App\User;
 
 class TruckController extends Controller
 {
@@ -14,7 +19,8 @@ class TruckController extends Controller
      */
     public function index()
     {
-        //
+        $trucks = Truck::all();
+        return view('transport.show', compact('trucks'));
     }
 
     /**
@@ -35,7 +41,37 @@ class TruckController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $rules = array(
+          'idno'       => 'required',
+          'category'      => 'numeric',
+          'status'      => 'numeric',
+          'manufacturer' => 'required',
+          'model'      => 'required',
+          'rlYear'      => 'required|numeric'
+      );
+      $validator = Validator::make(Input::all(), $rules);
+
+      // process the login
+      if ($validator->fails()) {
+        Session::flash('message', 'Error!');
+          return Redirect::to('transport')
+              ->withErrors($validator)
+              ->withInput(Input::except('password'));
+      } else {
+          // store
+          $rep = new Truck;
+          $rep->idno = Input::get('idno');
+          $rep->category = Input::get('category');
+          $rep->manufacturer = Input::get('manufacturer');
+          $rep->model = Input::get('model');
+          $rep->rlYear = Input::get('rlYear');
+          $rep->status = -1;
+          $rep->save();
+
+          // redirect
+          Session::flash('suc', '1');
+          return Redirect::to('transport');
+      }
     }
 
     /**
@@ -55,9 +91,10 @@ class TruckController extends Controller
      * @param  \App\Truck  $truck
      * @return \Illuminate\Http\Response
      */
-    public function edit(Truck $truck)
+    public function edit($hash)
     {
-        //
+        $truck = Truck::where('id', decrypt($hash))->first();
+        return view('transport.edit', compact('truck'));
     }
 
     /**
@@ -67,9 +104,39 @@ class TruckController extends Controller
      * @param  \App\Truck  $truck
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Truck $truck)
+    public function update(Request $request, $hash)
     {
-        //
+      $rep = Truck::where('id', decrypt($hash))->first();
+      $rules = array(
+        'idno'       => 'required',
+        'category'      => 'numeric',
+        'status'      => 'numeric',
+        'manufacturer' => 'required',
+        'model'      => 'required',
+        'rlYear'      => 'required|numeric'
+      );
+      $validator = Validator::make(Input::all(), $rules);
+
+      // process the login
+      if ($validator->fails()) {
+        Session::flash('message', 'Error!');
+          return redirect()->back()
+              ->withErrors($validator)
+              ->withInput(Input::except('password'));
+      } else {
+          // store
+          $rep->idno = Input::get('idno');
+          $rep->category = Input::get('category');
+          $rep->manufacturer = Input::get('manufacturer');
+          $rep->model = Input::get('model');
+          $rep->rlYear = Input::get('rlYear');
+          $rep->update();
+
+
+          // redirect
+          Session::flash('suc', '1');
+          return Redirect::to('transport');
+      }
     }
 
     /**
@@ -78,8 +145,10 @@ class TruckController extends Controller
      * @param  \App\Truck  $truck
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Truck $truck)
+    public function destroy($hash)
     {
-        //
+      $tr = Truck::where('id', decrypt($hash));
+      $tr->delete();
+      return Redirect::To('transport');
     }
 }
