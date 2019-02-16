@@ -10,6 +10,7 @@ use Validator;
 use Illuminate\Support\Facades\Input;
 use Redirect;
 use Session;
+use \App\User;
 
 class RepairController extends Controller
 {
@@ -21,7 +22,9 @@ class RepairController extends Controller
     public function index()
     {
       $repairs = Repair::all();
-      return view('repairs.show', compact('repairs'));
+      $trucks = Truck::all();
+      $users = User::all();
+      return view('repairs.show', compact('repairs', 'users', 'trucks'));
         //
     }
 
@@ -47,7 +50,7 @@ class RepairController extends Controller
     {
       $rules = array(
           'informer'       => 'required',
-          'category'      => 'required',
+          'status'      => 'required',
           'idno'      => 'required',
           'desc' => 'required',
           'repComp'      => 'required',
@@ -61,25 +64,25 @@ class RepairController extends Controller
       // process the login
       if ($validator->fails()) {
         Session::flash('message', 'Error!');
-          return Redirect::to('repairs/create')
+          return Redirect::to('repairs')
               ->withErrors($validator)
               ->withInput(Input::except('password'));
       } else {
           // store
           $rep = new Repair;
-          $rep->category =  Input::get('category');
+          $rep->status =  Input::get('status');
           $rep->idno = Input::get('idno');
-          $rep->userInformed =  Input::get('informer');
+          $rep->userInformed = Input::get("informer");
           $rep->description =  Input::get('desc');
           $rep->repairCompany =  Input::get('repComp');
           $rep->repairDate =  Input::get('repDate');
           $rep->repairDateEnd =  Input::get('repDateFinished');
-          $rep->userResponsible =  Input::get('responsible');
+          $rep->userResponsible = Input::get("responsible");
           $rep->repairsPrice =  Input::get('price');
           $rep->save();
 
           // redirect
-          Session::flash('message', 'Successfully created a repair!');
+          Session::flash('suc', '1');
           return Redirect::to('repairs');
       }
     }
@@ -92,7 +95,7 @@ class RepairController extends Controller
      */
     public function show(Repair $repair)
     {
-        //
+
     }
 
     /**
@@ -101,11 +104,13 @@ class RepairController extends Controller
      * @param  \App\Repair  $repair
      * @return \Illuminate\Http\Response
      */
-    public function edit($idno)
+    public function edit($hash)
     {
-        $repair = Repair::where('idno', $idno)->first();
-        if($repair == null) return redirect('repairs');
-        return view('repairs.edit', compact('repair'));
+        $id = decrypt($hash);
+        $repair = Repair::where('id', $id)->first();
+        $users = User::all();
+        $trucks = Truck::all();
+        return view('repairs.edit', compact('repair', 'users', 'trucks'));
     }
 
     /**
@@ -115,9 +120,45 @@ class RepairController extends Controller
      * @param  \App\Repair  $repair
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Repair $repair)
+    public function update(Request $request, $hash)
     {
-        //
+        $rep = Repair::where('id', decrypt($hash))->first();
+        $rules = array(
+            'informer'       => 'required',
+            'status'      => 'required',
+            'idno'      => 'required',
+            'desc' => 'required',
+            'repComp'      => 'required',
+            'repDate'      => 'required|date',
+            'repDateFinished'      => 'required|date',
+            'responsible'      => 'required',
+            'price'      => 'required|numeric'
+        );
+        $validator = Validator::make(Input::all(), $rules);
+
+        // process the login
+        if ($validator->fails()) {
+          Session::flash('message', 'Error!');
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput(Input::except('password'));
+        } else {
+            // store
+            $rep->status =  Input::get('status');
+            $rep->idno = Input::get('idno');
+            $rep->userInformed = Input::get("informer");
+            $rep->description =  Input::get('desc');
+            $rep->repairCompany =  Input::get('repComp');
+            $rep->repairDate =  Input::get('repDate');
+            $rep->repairDateEnd =  Input::get('repDateFinished');
+            $rep->userResponsible = Input::get("responsible");
+            $rep->repairsPrice =  Input::get('price');
+            $rep->save();
+
+            // redirect
+            Session::flash('suc', '1');
+            return Redirect::to('repairs');
+        }
     }
 
     /**
@@ -128,6 +169,7 @@ class RepairController extends Controller
      */
     public function destroy(Repair $repair)
     {
-        //
+        $repair->delete();
+        return Redirect::To('repairs');
     }
 }
