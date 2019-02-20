@@ -587,3 +587,7 @@ button{
 .select select:disabled ~ .select__arrow {
   border-top-color: #ccc;
 }
+
+.hidden {
+	display: none;
+}
