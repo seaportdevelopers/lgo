@@ -10646,6 +10646,12 @@ input {
   background: transparent;
 }
 
+.flex-inline {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 color {
   padding: 1rem;
   border-radius: 25px;
@@ -10739,6 +10745,10 @@ p {
   width: auto;
 }
 
+.inputLabel {
+  font-size: 0.75em;
+}
+
 button {
   font-size: 0.675rem;
   position: relative;
@@ -10749,7 +10759,7 @@ button {
 }
 
 .btn {
-  padding: 0.5rem 2.5rem;
+  padding: 0.5rem 2rem;
   background-color: #43425D;
   color: #fff;
 }
@@ -10759,15 +10769,35 @@ button {
   text-decoration: none;
 }
 
+.wrapperLink {
+  position: relative;
+  left: 10%;
+  color: rgba(255, 255, 255, 0.5);
+}
+
 .btn-small {
   padding: 0.2rem 1.3rem;
   font-size: 80%;
+}
+
+.btn-table {
+  padding: 0.2rem 1.3rem;
+  font-size: 80%;
+  border-radius: 20px;
+  display: inline;
 }
 
 .btn-primary {
   color: #fff;
   border-color: #5e72e4;
   background-color: #5e72e4;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.btn-white {
+  color: #5e72e4;
+  border-color: #5e72e4;
+  background-color: #ffffff;
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
@@ -10804,6 +10834,33 @@ button {
   background-color: transparent;
   padding: 0.5rem 2rem;
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.viewHeader {
+  position: absolute;
+  width: 100%;
+  height: 50vh;
+  background-color: #5e72e4;
+  color: #ffffff;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.viewHeader .textWrapper {
+  position: relative;
+  left: 10%;
+  color: #ffffff;
+}
+
+.viewHeader h1 {
+  color: #ffffff;
+}
+
+.viewHeader h3 {
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: capitalize;
 }
 
 .header {
@@ -10886,6 +10943,10 @@ button {
   fill: none;
 }
 
+.icon-white {
+  color: #ffffff;
+}
+
 .sideNavigation {
   height: 100vh;
   width: 70px;
@@ -10948,7 +11009,7 @@ button {
 .content {
   position: absolute;
   left: calc(70px + 3%);
-  top: calc(5% + 4rem);
+  top: calc(35% + 4rem);
   width: calc(100% - 70px - 3%);
 }
 
@@ -10985,6 +11046,17 @@ button {
 
 .card .big {
   min-width: 25%;
+}
+
+.card-form {
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+.card-form .actionButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 .info .card-header {
@@ -11100,7 +11172,8 @@ th {
   min-width: 800px;
 }
 
-.modal-form .modal-body {
+.modal-form .modal-body,
+.card-form .card-body {
   background-color: #F0F0F7;
 }
 
@@ -11293,9 +11366,5 @@ th {
 
 .select select:disabled ~ .select__arrow {
   border-top-color: #ccc;
-}
-
-.hidden {
-  display: none;
 }
 

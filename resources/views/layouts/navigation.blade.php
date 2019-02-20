@@ -7,19 +7,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.29.2/sweetalert2.all.js"></script>
 
     <script type="text/javascript">
-      function checkHidden() {
-        @if(isset($repairs))
-          var check = document.getElementById('hidden').checked
-          @foreach ($repairs as $repair)
-            var el = document.getElementById({{$repair->id}});
-            @if($repair->deleted_at != NULL)
-            if(check) el.classList.remove("hidden");
-            else el.classList.add("hidden");
-            @endif
-          @endforeach
-        @endif
-      }
-
       function showWarningAlert() {
         swal({
           icon: "warning",
@@ -40,6 +27,41 @@
               closeModal: true
             }
         });
+      }
+      function changeTransportStatus(tpid) {
+        swal({
+          title: tpid + "statuso keitimas",
+          text: "",
+          icon: "info",
+          buttons: true,
+          dangerMode: false,
+        })
+        .then((willDelete) => {
+           if (willDelete){
+             // swal("Record, You requested to delete has been destroyed!", {
+             //    icon: 'success',
+             // });
+
+          }
+       });
+      }
+
+      function showConfirmationAlert() {
+        swal({
+          title: "Are You sure?",
+          text: "Once deleted, you will not be able to recover this imaginary record!",
+          icon: "warning",
+          buttons: true,
+          dangerMode: true,
+        })
+        .then((willDelete) => {
+           if (willDelete){
+             // swal("Record, You requested to delete has been destroyed!", {
+             //    icon: 'success',
+             // });
+
+          }
+       });
       }
 
       function showErrorAlert() {
@@ -77,7 +99,8 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-       <header id="topNavigation">
+      @include('layouts.viewHeader', ['title' => $ViewHeaderTitle, 'subtitle' => $ViewHeaderSubtitle, 'viewName' => $viewName])
+      <header id="topNavigation">
 		<form>
 			<i class="icon" data-feather="search"></i>
 			<input class="search-input" type="text" name="searchQ" placeholder="Ieškoti transporto priemonių, žmonių, maršrutų, klientų, pavedimų ir kitos informacijos">
