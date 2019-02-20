@@ -52,7 +52,7 @@
                     <form onsubmit="showWarningAlert(); return true;" action="repairs/{{$repair->id}}" method="post">
                       {{csrf_field()}}
                       <input type="hidden" name="_method" value="DELETE">
-                      <input type="submit" class="btn btn-small btn-danger" style="margin-top: 2px;" value="Pasalinti gedima">
+                      <input type="submit" class="btn btn-small btn-danger" style="margin-top: 2px;" value="Pašalinti gedimą">
                   </td>
                 @else
                   <td>

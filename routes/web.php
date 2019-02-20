@@ -28,3 +28,6 @@ Route::delete('/transport/{hash}', 'TruckController@destroy');
 Route::resource('repairs', 'RepairController');
 Route::get('/repairs/{hash}/edit','RepairController@edit');
 Route::put('/repairs/{hash}', 'RepairController@update');
+
+//SEARCH
+Route::any('/search', "SearchController@searchAll");
