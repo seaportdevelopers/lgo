@@ -1,8 +1,8 @@
-@extends('layouts.navigation')
+@extends('layouts.navigation', ['ViewHeaderTitle' => 'Dokumentacija ', 'ViewHeaderSubtitle' => 'Seaport Developers', 'viewName' => 'documentation'])
 @section('content')
 
+
 <div class="container">
-    <h1 class="mt-6 mb-5">LGO system component styles</h1>
     <h2 class="title">Color sheme</h2>
             <div class="row mb-5">
                     <color style="background-color: white;">White (#ffffff)</color>
@@ -278,6 +278,9 @@
      <button type="button" class="btn btn-warning mt-3" onclick="showWarningAlert();">
         Launch warning alert
     </button>
+    <button type="button" class="btn btn-primary mt-3" onclick="showConfirmationAlert();">
+      Launch confirmation alert
+     </button>
     <button type="button" class="btn btn-secondary mt-3" onclick="" data-toggle="modal" data-target="#editModal">
         Launch form alert
     </button>

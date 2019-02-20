@@ -22,7 +22,11 @@ input{
 	border: none;
 	background: transparent;
 }
-
+.flex-inline{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
 
 color{
 	padding: 1rem;
@@ -105,6 +109,9 @@ p{
 	border: 1px solid #ddd;
 	width: auto;
 }
+.inputLabel{
+	font-size: 0.75em;
+}
 button{
 	font-size: .675rem;
     position: relative;
@@ -114,7 +121,7 @@ button{
     will-change: transform;
 }
 .btn{
-	padding: 0.5rem 2.5rem;
+	padding: 0.5rem 2rem;
 	background-color: #43425D;
 	color: #fff;
 }
@@ -124,14 +131,31 @@ button{
     text-decoration: none;
 
 }
+.wrapperLink{
+	position: relative;
+	left: 10%;
+	color: $whiteMuted;
+}
 .btn-small{
 	padding: 0.2rem 1.30rem;
 	font-size: 80%;
+}
+.btn-table{
+	padding: 0.2rem 1.30rem;
+	font-size: 80%;
+	border-radius: 20px;
+	display: inline;
 }
 .btn-primary{
     color: #fff;
     border-color: #5e72e4;
     background-color: #5e72e4;
+    box-shadow: 0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+}
+.btn-white{
+    color: $PrimaryColor;
+    border-color: $PrimaryColor;
+    background-color: $white;
     box-shadow: 0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
 }
 .btn-danger{
@@ -163,6 +187,27 @@ button{
     background-color: transparent;
     padding: 0.5rem 2rem;
     box-shadow: 0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+}
+.viewHeader{
+	position: absolute;
+	width: 100%;
+	height: 50vh;
+	background-color: $PrimaryColor;
+	color: $white;
+	margin-bottom: 2rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+.viewHeader .textWrapper{
+	position: relative;
+	left: 10%;
+	color: $white;
+}
+.viewHeader h1{color: $white;}
+.viewHeader h3{
+	color: $whiteMuted;
+	text-transform: capitalize;
 }
 .header{
 	width: 55%;
@@ -240,6 +285,9 @@ button{
 	stroke-linejoin: round;
 	fill: none;
 }
+.icon-white{
+	color: $white;
+}
 .sideNavigation{
 	height: 100vh;
 	width: $sideNavigationWidth;
@@ -298,7 +346,7 @@ button{
 .content{
 	position: absolute;
 	left: calc(70px + 3%);
-	top: calc(5% + 4rem);
+	top: calc(35% + 4rem);
 	width: calc(100% - 70px - 3%);
 }
 
@@ -332,6 +380,15 @@ button{
 }
 .card .big{
 	min-width: 25%;
+}
+.card-form{
+	max-width: 80%;
+	margin: 0 auto;
+}
+.card-form .actionButtons{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
 }
 .info .card-header{
 	border-bottom: none !important;
@@ -421,7 +478,7 @@ button{
 .modal-dialog-form{
 	min-width: 800px;
 }
-.modal-form .modal-body{
+.modal-form .modal-body, .card-form .card-body{
 	background-color: $BackgroundColor;
 }
 .modal-header{
@@ -586,8 +643,4 @@ button{
 }
 .select select:disabled ~ .select__arrow {
   border-top-color: #ccc;
-}
-
-.hidden {
-	display: none;
 }
