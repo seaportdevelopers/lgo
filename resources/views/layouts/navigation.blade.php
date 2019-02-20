@@ -7,6 +7,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.29.2/sweetalert2.all.js"></script>
 
     <script type="text/javascript">
+      function checkHidden() {
+        @if(isset($repairs))
+          var check = document.getElementById('hidden').checked
+          @foreach ($repairs as $repair)
+            var el = document.getElementById({{$repair->id}});
+            @if($repair->deleted_at != NULL)
+            if(check) el.classList.remove("hidden");
+            else el.classList.add("hidden");
+            @endif
+          @endforeach
+        @endif
+      }
+
       function showWarningAlert() {
         swal({
           icon: "warning",
@@ -82,7 +95,7 @@
 			<a href="#">
 				<span class="icon" data-feather="stop-circle"></span>
 			</a>
-			<a href="{{ route('transport.index') }}" class=" @if (Route::currentRouteName() == "transport") active @endif ">
+			<a href="{{ route('transport.index') }}" class=" @if (Route::currentRouteName() == "transport.index") active @endif ">
 				<span class="icon" data-feather="truck"></span>
 			</a>
 		</div>

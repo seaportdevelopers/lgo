@@ -167,7 +167,8 @@ class RepairController extends Controller
      */
     public function destroy(Repair $repair)
     {
-        $repair->delete();
+        $repair->deleted_at = now();
+        $repair->save();
         return Redirect::To('repairs');
     }
 }
