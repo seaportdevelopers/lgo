@@ -1,8 +1,5 @@
-@extends('layouts.navigation')
+@extends('layouts.navigation', ['ViewHeaderTitle' => 'Transportas', 'ViewHeaderSubtitle' => '', 'viewName' => 'transport.index'])
 @section('content')
-<h1 class="mt-6 title">Transportas</h1>
-<button class="btn btn-small btn-primary mb-4" data-toggle="modal" data-target="#AddTransport">Pridėti transportą</button>
-<h5 class="sub-info mb-3 mt-2">Visa informacija</h5>
 <div class="card big">
     <div class="card-header">
         <h2>
@@ -34,19 +31,17 @@
                     <td>{{$truck->manufacturer}} {{$truck->model}}</td>
                     <td>
                        @if($truck->status == 0)
-                       <label class="bg-label bg-label-success">Stovi parke</label>
+                       <label class="bg-label bg-label-success" onclick="changeTransportStatus({{$truck->id}})">Stovi parke</label>
                        @elseif($truck->status == 1)
-                       <label class="bg-label bg-label-primary">Kelyje</label>
-                     @elseif($truck->status == -1)
-                        <label class="bg-label bg-label-muted">?</label>
+                       <label class="bg-label bg-label-primary" onclick="changeTransportStatus({{$truck->id}})">Kelyje</label>
                        @elseif($truck->status == 2)
-                       <label class="bg-label bg-label-warning">Vyksta išsikrovimas</label>
+                       <label class="bg-label bg-label-warning" onclick="changeTransportStatus({{$truck->id}})">Vyksta išsikrovimas</label>
                        @else
-                       <label class="bg-label bg-label-danger">Gedimas</label>
+                       <label class="bg-label bg-label-danger" onclick="changeTransportStatus({{$truck->id}})">Gedimas</label>
                        @endif
                     </td>
                     <td>
-                       <a href="/transport/{{encrypt($truck->id)}}/edit"><button class="btn btn-primary btn-small">Redaguoti</button>
+                       <a href="/transport/{{encrypt($truck->id)}}/edit"><button class="btn btn-primary btn-table"><span class="icon icon-white" data-feather="edit"></span> Redaguoti</button>
                     </td>
                 </tr>
                @endforeach

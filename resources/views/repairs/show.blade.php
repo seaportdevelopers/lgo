@@ -1,18 +1,10 @@
-@extends('layouts.navigation')
+@extends('layouts.navigation', ['ViewHeaderTitle' => 'Gedimai ir remontai', 'ViewHeaderSubtitle' => '', 'viewName' => 'repairs.index'])
 @section('content')
-<div class="mt-6 mb-5">
-<h1 class="title">Gedimai ir remontai</h1>
-<button class="btn btn-small btn-primary" data-toggle="modal" data-target="#create">Pranešti apie gedimą</button>
-</div>
 <div class="card big">
     <div class="card-header">
-        <h2 style="display: inline;">
+        <h2>
             Užfiksuoti gedimai
         </h2>
-        <label style="display: inline; float: right;" class="control control--checkbox">Rodyti pašalintus gedimus
-           <input type="checkbox" id="hidden" onchange="checkHidden()"/>
-           <div class="control__indicator"></div>
-        </label>
     </div>
     <div class="card-body">
         <table class="table table-hover table-borderless">
@@ -30,7 +22,7 @@
             </thead>
             <tbody>
                @foreach($repairs as $repair)
-                <tr @if($repair->deleted_at != NULL)style="background-color: #d8d8d8;" class="hidden" @endif id={{$repair->id}}>
+                <tr>
                     <td>{{$repair->idno}}</td>
                     <td>
                       {{$repair->description}}
@@ -40,11 +32,8 @@
                     <td>{{$repair->repairDateEnd}}</td>
                   <td>{{$repair->repairsPrice}}</td>
                   <td>
-                      @if($repair->deleted_at != NULL)
-                        <label class="bg-label bg-label-success">Fixed</label>
-                      @else
+
                        <label class="bg-label bg-label-main">Pranešta</label>
-                     @endif
                   </td>
                   @if($repair->deleted_at == NULL)
                   <td>
@@ -52,15 +41,14 @@
                     <form onsubmit="showWarningAlert(); return true;" action="repairs/{{$repair->id}}" method="post">
                       {{csrf_field()}}
                       <input type="hidden" name="_method" value="DELETE">
-                      <input type="submit" class="btn btn-small btn-danger" style="margin-top: 2px;" value="Pasalinti gedima">
+                      <input type="submit" class="btn btn-small btn-danger" style="margin-top: 2px;" value="Pašalinti gedimą">
                   </td>
                 @else
                   <td>
                     <b>Patvirtinta</b>: <br/>{{$repair->deleted_at}}
                   </td>
-                @endif
-                </form>
                 </tr>
+              @endif
                @endforeach
             </tbody>
         </table>
