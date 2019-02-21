@@ -11368,3 +11368,7 @@ th {
   border-top-color: #ccc;
 }
 
+.hidden {
+  display: none;
+}
+

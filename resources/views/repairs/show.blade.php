@@ -2,9 +2,13 @@
 @section('content')
 <div class="card big">
     <div class="card-header">
-        <h2>
+        <h2 style="display:inline">
             Užfiksuoti gedimai
         </h2>
+        <label class="control control--checkbox" style="display:inline; float: right;">Rodyti pašalintus gedimus
+           <input type="checkbox" id="hide" onchange="hide()"  />
+           <div class="control__indicator"></div>
+        </label>
     </div>
     <div class="card-body">
         <table class="table table-hover table-borderless">
@@ -22,7 +26,7 @@
             </thead>
             <tbody>
                @foreach($repairs as $repair)
-                <tr>
+                <tr id={{$repair->id}} @if($repair->deleted_at != NULL) style="background-color: #cccccc;" class="hidden" @endif>
                     <td>{{$repair->idno}}</td>
                     <td>
                       {{$repair->description}}
@@ -32,8 +36,11 @@
                     <td>{{$repair->repairDateEnd}}</td>
                   <td>{{$repair->repairsPrice}}</td>
                   <td>
-
+                    @if($repair->deleted_at != NULL)
+                      <label class="bg-label bg-label-success">Gedimas<br/>pašalintas</label>
+                    @else
                        <label class="bg-label bg-label-main">Pranešta</label>
+                    @endif
                   </td>
                   @if($repair->deleted_at == NULL)
                   <td>

@@ -7,6 +7,20 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.29.2/sweetalert2.all.js"></script>
 
     <script type="text/javascript">
+
+      function hide() {
+        var check = document.getElementById("hide").checked;
+        @if(isset($repairs))
+        @foreach($repairs as $repair)
+        @if($repair->deleted_at != NULL)
+        el = document.getElementById({{$repair->id}});
+        if(check) el.classList.remove("hidden");
+        else el.classList.add("hidden");
+        @endif
+        @endforeach
+        @endif
+      }
+
       function showWarningAlert() {
         swal({
           icon: "warning",
