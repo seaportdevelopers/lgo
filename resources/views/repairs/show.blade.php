@@ -11,7 +11,6 @@
             <thead>
                 <tr>
                     <th>Transp. priem. valst. numeris</th>
-                    <th>Aprašymas</th>
                     <th>Remonto vieta</th>
                     <th>Remonto data</th>
                     <th>Remonto pabaigos data</th>
@@ -24,24 +23,20 @@
                @foreach($repairs as $repair)
                 <tr>
                     <td>{{$repair->idno}}</td>
-                    <td>
-                      {{$repair->description}}
-                    </td>
                     <td>{{$repair->repairCompany}}</td>
                     <td>{{$repair->repairDate}}</td>
                     <td>{{$repair->repairDateEnd}}</td>
                   <td>{{$repair->repairsPrice}}</td>
                   <td>
-
-                       <label class="bg-label bg-label-main">Pranešta</label>
+                       <label class="bg-label bg-label-main StatusPopOver">Pranešta</label>
                   </td>
                   @if($repair->deleted_at == NULL)
                   <td>
-                     <a href="/repairs/{{encrypt($repair->id)}}/edit"><button class="btn btn-primary btn-small">Redaguoti</button>
+                     <a href="/repairs/{{encrypt($repair->id)}}/edit"><button class="btn btn-primary btn-table">Redaguoti</button>
                     <form onsubmit="showWarningAlert(); return true;" action="repairs/{{$repair->id}}" method="post">
                       {{csrf_field()}}
                       <input type="hidden" name="_method" value="DELETE">
-                      <input type="submit" class="btn btn-small btn-danger" style="margin-top: 2px;" value="Pašalinti gedimą">
+                      <input type="submit" class="btn btn-table btn-danger" style="margin-top: 2px;" value="Pašalinti gedimą">
                   </td>
                 @else
                   <td>

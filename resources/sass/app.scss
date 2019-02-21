@@ -285,15 +285,35 @@ button{
 	stroke-linejoin: round;
 	fill: none;
 }
+.iconHamburger{
+	width: 25px;
+	height: 25px;
+	color: $white;
+}
 .icon-white{
 	color: $white;
 }
 .sideNavigation{
 	height: 100vh;
-	width: $sideNavigationWidth;
-	background-color: #43425D;
+	width: 70px;
+	// background-color: #43425D;
+	background: rgb(67,66,93);
+	background: -webkit-linear-gradient(42deg, rgba(67,66,93,1) 43%, rgba(94,114,228,1) 100%);
+	background: -o-linear-gradient(42deg, rgba(67,66,93,1) 43%, rgba(94,114,228,1) 100%);
+	background: linear-gradient(132deg, rgba(67,66,93,1) 43%, rgba(94,114,228,1) 100%);
 	position: fixed;
+	z-index: 1000;
 }
+#NavExpandTriggerBox{
+	color: white;
+	font-size: .875rem;
+	text-decoration: none;
+	width: 100%;
+	padding: 1.2rem 1.5rem;
+	padding-left: 1.5rem;
+	margin-bottom: 0.5rem;
+}
+
 .sideNavigation .items{
 	display: flex;
 	flex-direction: column;
@@ -321,26 +341,35 @@ button{
 	text-align: center;
 	font-weight: 500;
 }
-.sideNavigation a{
+.sideNavigation .items a{
 	color: white;
-	font-size: .875rem;
+	font-size: .775rem;
 	text-decoration: none;
 	width: 100%;
 	padding: 0.75rem 1rem;
 	padding-left: 1.5rem;
 	margin-bottom: 0.5rem;
 /*	margin-left: 5%;*/
+	&:hover{
+		background-color: rgba(0,0,0,0.3);
+
+	}
 }
 .sideNavigation a svg{
 	margin-right: 0.5rem;
 }
 
 .sideNavigation .active{
-	background-color: rgba(0,0,0,0.1);
-	border-left: 7px solid #A3A0FB;
-	border-radius: .25rem;
+	// background-color: $PrimaryColor;
+	border-left: 9px solid rgba(163, 160, 251, 80%);
+	// border-radius: .25rem;
 }
-
+//Expandable navigation styles
+.ExpandableItem{
+	text-align: right;
+	display: none;
+}
+// END OF Expandable navigation styles
 //content
 
 .content{
@@ -644,3 +673,16 @@ button{
 .select select:disabled ~ .select__arrow {
   border-top-color: #ccc;
 }
+//POPOVERS
+
+.popover{
+	border: none;
+	box-shadow: 0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+}
+.popover-header{
+	border: none;
+	background-color: transparent;
+
+}
+
+//END OF POPOVERS
