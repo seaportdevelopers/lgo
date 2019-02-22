@@ -71,11 +71,16 @@ $(document).ready(function(){
 	$(".StatusPopOver").popover({
 		placement: 'top',
 		html: true,
-		content: '<label class="bg-label bg-label-danger">SKUBU</label> <label class="bg-label bg-label-success">Sutvarkyta</label> <label class="bg-label bg-label-warning">Tvarkoma</label> <label class="bg-label bg-label-main">Pranešta</label>'
-	});
+    content: function() {
+      var id = $(this).attr('id');
+      var cc = '<label class="bg-label bg-label-danger" onpress="checker('+id+', red)">SKUBU</label> <label class="bg-label bg-label-success">Sutvarkyta</label> <label class="bg-label bg-label-warning">Tvarkoma</label> <label class="bg-label bg-label-main">Pranešta</label>'
+      return id;
+    }
+  });
+
+  function checker() {
+
+  }
 	//--------------------------------------------------//
 	//END OF STATUS POPOVER
 });
-
-
-

@@ -20,20 +20,7 @@
           data: {_token: CSRF_TOKEN, message:$("input[name=searchQ]").val()},
           dataType: 'JSON',
           success: function(data) {
-            console.log(data);
-                if(data.status == "error") {
-                  $("input[name=searchQ]").popover('hide');
-                  return;
-                }
-                var msg = $('');
-                msg.innerHTML="";
-                if(data.message.users.length != 0) msg.innerHTML += "<h1>"+data.message.users[0].name+"</h1>" + " " + data.message.users[0].surname+"; ";
-                if(data.message.trucks.length != 0) msg.innerHTML += data.message.trucks[0].idno + " " + data.message.trucks[0].model+"; ";
-                if(data.message.repairs.length != 0) msg.innerHTML += data.message.repairs[0].idno + " " + data.message.repairs[0].desc+"; ";
-
-
-                $("input[name=searchQ]").attr('data-content', msg.innerHTML);
-                $("input[name=searchQ]").popover('show');
+              console.log(data);
               }
             });
           }
