@@ -5,8 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {{-- SWEET ALERT --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.29.2/sweetalert2.all.js"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript">
+      $(document).ready(function(){
+        $("#hide2").click(function(){
+          //alert("clicked");
+          @if(isset($repairs))
+          @foreach($repairs as $repair)
+          @if($repair->deleted_at != NULL)
+          el = document.getElementById({{$repair->id}});
+          if($("#{{$repair->id}}").hasClass("hidden")) el.classList.remove("hidden");
+          else el.classList.add("hidden");
+          @endif
+          @endforeach
+          @endif
+        });
+      });
+      // function hide() {
+      //   var check = document.getElementById("hide").checked;
+      //   @if(isset($repairs))
+      //   @foreach($repairs as $repair)
+      //   @if($repair->deleted_at != NULL)
+      //   el = document.getElementById({{$repair->id}});
+      //   if(check) el.classList.remove("hidden");
+      //   else el.classList.add("hidden");
+      //   @endif
+      //   @endforeach
+      //   @endif
+      // }
+
       function showWarningAlert() {
         swal({
           icon: "warning",
@@ -86,7 +113,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'LGO development') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>

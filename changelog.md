@@ -20,5 +20,4 @@
 15. SERVICES
 	15.1 migration [id, name, phone, email, website, paid, support]
 	15.2 views
-16. Users
-	16.1
+16. pagination
