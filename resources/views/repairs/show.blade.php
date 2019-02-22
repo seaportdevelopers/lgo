@@ -46,12 +46,10 @@
                   </td>
                   @if($repair->deleted_at == NULL)
                   <td style="display: flex; flex-direction: row; justify-content: space-between;">
-                     <a class="btn btn-primary btn-table" href="/repairs/{{encrypt($repair->id)}}/edit">Redaguoti</a>
-                    <form onsubmit="showWarningAlert(); return true;" action="repairs/{{$repair->id}}" method="post">
-                      {{csrf_field()}}
-                      <input type="hidden" name="_method" value="DELETE">
-                      <input type="submit" class="btn btn-table btn-danger" style="margin-top: 2px;" value="Pašalinti gedimą">
-                    </form>
+                     <a class="btn btn-primary btn-table" href="/repairs/{{encrypt($repair->id)}}/edit"><span class="icon icon-white" data-feather="edit"></span> Redaguoti</a>
+                      <button onclick="showConfirmationAlert({{$repair->id}});" type="submit" class="btn btn-table btn-danger" style="margin-top: 2px;" value="Pašalinti gedimą">
+                        <span class="icon icon-white" data-feather="trash"></span>
+                      </button>
                   </td>
                 @else
                   <td>

@@ -169,6 +169,6 @@ class RepairController extends Controller
     {
         $repair->deleted_at = now();
         $repair->save();
-        return Redirect::To('repairs');
+        return "successed";
     }
 }

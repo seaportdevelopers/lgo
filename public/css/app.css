@@ -10764,6 +10764,10 @@ button {
   color: #fff;
 }
 
+.btn:hover {
+  color: #ffffff;
+}
+
 .btn-link {
   box-shadow: none;
   text-decoration: none;
@@ -10799,6 +10803,12 @@ button {
   border-color: #5e72e4;
   background-color: #ffffff;
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.btn-white:hover {
+  background-color: #564154;
+  border: #564154;
+  color: #ffffff;
 }
 
 .btn-danger {
@@ -11155,6 +11165,12 @@ th {
   color: #fff;
 }
 
+.form-control-success:focus {
+  background-color: #564154;
+  border: #564154;
+  color: #ffffff;
+}
+
 .form-control-success::-webkit-input-placeholder,
 .form-control-error::-webkit-input-placeholder {
   color: #fff;
@@ -11178,6 +11194,12 @@ th {
 .form-control-error {
   background-color: #e3342f;
   color: #fff;
+}
+
+.form-control-error:focus {
+  background-color: #564154;
+  border: #564154;
+  color: #ffffff;
 }
 
 .form-control-login {

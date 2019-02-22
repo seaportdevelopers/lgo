@@ -21,6 +21,7 @@
           dataType: 'JSON',
           success: function(data) {
             console.log(data);
+            return;
                 if(data.status == "error") {
                   $("input[name=searchQ]").popover('hide');
                   return;
@@ -106,22 +107,29 @@
        });
       }
 
-      function showConfirmationAlert() {
+      function showConfirmationAlert(itemID) {
         swal({
-          title: "Are You sure?",
-          text: "Once deleted, you will not be able to recover this imaginary record!",
+          title: "Gedimo pašalinimo patvirtinimas",
+          text: "Ištrynus gedimą jis nebus pašalintas iš sistemos. Jį visvien galėsite matyti Jūs ir/ar kiti vartotojai. Ar tikrai norite tęsti?",
           icon: "warning",
           buttons: true,
           dangerMode: true,
         })
         .then((willDelete) => {
            if (willDelete){
-             // swal("Record, You requested to delete has been destroyed!", {
-             //    icon: 'success',
-             // });
-
-          }
-       });
+              //alert(itemID);
+              $.ajax({
+                url: "/repairs/${itemID}",
+                method: "DELETE",
+                data: {
+                  _token: CSRF_TOKEN,
+                },
+                success:function(response){
+                  alert("URA BLT!")
+                }
+              });
+            }
+          });
       }
 
       function showErrorAlert() {

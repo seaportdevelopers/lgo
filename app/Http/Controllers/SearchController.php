@@ -16,7 +16,5 @@ class SearchController extends Controller
       $trucks = Truck::where('idno', 'LIKE', '%'.$q.'%')->orwhere('model', 'LIKE', '%'.$q.'%')->orwhere('manufacturer', 'LIKE', '%'.$q.'%')->orwhere('rlYear', 'LIKE', '%'.$q.'%')->get();
       $repairs = Repair::where('idno', 'LIKE', '%'.$q.'%')->orwhere('description', 'LIKE', '%'.$q.'%')->orwhere('repairCompany', 'LIKE', '%'.$q.'%')->orwhere('repairDate', 'LIKE', '%'.$q.'%')->get();
 
-
-    
     }
 }
