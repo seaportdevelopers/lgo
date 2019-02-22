@@ -16,7 +16,21 @@ class SearchController extends Controller
       $trucks = Truck::where('idno', 'LIKE', '%'.$q.'%')->orwhere('model', 'LIKE', '%'.$q.'%')->orwhere('manufacturer', 'LIKE', '%'.$q.'%')->orwhere('rlYear', 'LIKE', '%'.$q.'%')->get();
       $repairs = Repair::where('idno', 'LIKE', '%'.$q.'%')->orwhere('description', 'LIKE', '%'.$q.'%')->orwhere('repairCompany', 'LIKE', '%'.$q.'%')->orwhere('repairDate', 'LIKE', '%'.$q.'%')->get();
 
+      $msg = "";
+      foreach($users as $user) {
+        $msg .= "<h1>".$user->name."</h1> ".$user->surname."<br/>";
+        break;
+      }
 
-    
+      foreach($trucks as $truck) {
+        $msg .= "<h1>".$truck->idno."</h1> ".$truck->model."<br/>";
+        break;
+      }
+      foreach($repairs as $repair) {
+        $msg .= "<h1>".$repair->idno."</h1> ".$repair->description."<br/>";
+        break;
+      }
+      if(count($users)==0 && count($trucks)==0 && count($repairs) == 0) return response()->json(['status' => 'error', 'message' => 'null']);
+      return response()->json(['status' => 'success', 'message' => $msg]);
     }
 }
