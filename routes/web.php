@@ -18,16 +18,16 @@ Route::get('/home', 'HomeController@allTransport')->name('home');
 Route::get('/', 'HomeController@allTransport')->name('home');
 
 //TRANSPORT
-Route::resource('/transport', 'TruckController');
 Route::get('/transport/{hash}/edit', 'TruckController@edit');
 Route::put('/transport/{hash}', 'TruckController@update');
 Route::delete('/transport/{hash}', 'TruckController@destroy');
+Route::resource('/transport', 'TruckController');
 
 
 //REPAIRS
-Route::resource('repairs', 'RepairController');
-Route::get('/repairs/{hash}/edit','RepairController@edit');
-Route::put('/repairs/{hash}', 'RepairController@update');
+Route::resource('repairs', 'RepairController', ['except' => ['edit', 'update']]);
+Route::get('repairs/{hash}/edit','RepairController@edit');
+Route::put('repairs/{hash}', 'RepairController@update');
 
 //SEARCH
-Route::any('/search', "SearchController@searchAll");
+Route::any('/search', "SearchController@searchAll")->middleware('ajax');
