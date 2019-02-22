@@ -39,9 +39,9 @@
                   <td>{{$repair->repairsPrice}}</td>
                   <td>
                     @if($repair->deleted_at != NULL)
-                      <label class="bg-label bg-label-success StatusPopOver">Gedimas<br/>pašalintas</label>
+                      <label class="bg-label bg-label-success">Gedimas<br/>pašalintas</label>
                     @else
-                       <label class="bg-label bg-label-main StatusPopOver">Pranešta</label>
+                       <label id="status{{$repair->id}}" class="bg-label bg-label-main StatusPopOver">Pranešta</label>
                     @endif
                   </td>
                   @if($repair->deleted_at == NULL)

@@ -35,7 +35,7 @@
 
                 $("input[name=searchQ]").attr('data-content', msg.innerHTML);
                 $("input[name=searchQ]").popover('show');
-              }
+              console.log(data);              }
             });
           }
 
