@@ -57,7 +57,7 @@
                        </div>
                     </div>
                     <div class="col">
-                       <div class="mt-0">
+                       <div class="mt-4">
                           <label class="inputLabel" for="exampleInput1">Remonto pradzia</label>
                           <input type="date" id="exampleInput1" placeholder="XXXX-XX-XX" name="repDate" class="form-control" value={{$repair->repairDate}}>
                        </div>
@@ -66,18 +66,23 @@
                            <input type="date" id="exampleInput1" placeholder="XXXX-XX-XX" name="repDateFinished" class="form-control" value={{$repair->repairDateEnd}}>
                        </div>
                     </div>
+                      <div class="mt-3" style="width: 100%;">
+                         <label for="exampleFormControlSelect1">Gedimo aprašymas</label>
+                         <textarea style="width: 100%;" name="desc" placeholder="Aprašymas">{{$repair->description}}</textarea>
+                         <small class="ml-3">Detalus gedimo aprašymas. Jame turįtų būti paminėti šie dalykai:</small>
+                    </div>
                  </div>
                  <div class="actionButtons">
                     <input type="submit" class="btn btn-primary" value="Išsaugoti" />
-                    <form action="./" maethod="post">
+                  </form>
+                    <form action="./" method="post">
                       {{csrf_field()}}
                       <input type="hidden" name="_method" value="delete">
                       <input class="btn btn-danger" type="submit" value="Ištrinti">
                     </form>
-                    <a href="/transport"><button type="button" class="btn btn-muted" >Uždaryti</button></a>
-                 </div>
-              </div>
-        </div>
-    </form>
+                    <a href="/repairs"><button type="button" class="btn btn-muted" >Uždaryti</button></a>
+                  </div>
+               </div>
+         </div>
    </div>
 @endsection

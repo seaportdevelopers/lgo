@@ -7,32 +7,50 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.29.2/sweetalert2.all.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript">
-      $(document).ready(function(){
-        $("#hide2").click(function(){
-          //alert("clicked");
-          @if(isset($repairs))
-          @foreach($repairs as $repair)
-          @if($repair->deleted_at != NULL)
-          el = document.getElementById({{$repair->id}});
-          if($("#{{$repair->id}}").hasClass("hidden")) el.classList.remove("hidden");
-          else el.classList.add("hidden");
-          @endif
-          @endforeach
-          @endif
-        });
-      });
-      // function hide() {
-      //   var check = document.getElementById("hide").checked;
-      //   @if(isset($repairs))
-      //   @foreach($repairs as $repair)
-      //   @if($repair->deleted_at != NULL)
-      //   el = document.getElementById({{$repair->id}});
-      //   if(check) el.classList.remove("hidden");
-      //   else el.classList.add("hidden");
-      //   @endif
-      //   @endforeach
-      //   @endif
-      // }
+
+      function ajaxSearch() {
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        if($("input[name=searchQ]").val() == ""){
+          $("input[name=searchQ]").popover('hide');
+          return;
+         }
+        $.ajax({
+          url: "/search",
+          type: 'POST',
+          data: {_token: CSRF_TOKEN, message:$("input[name=searchQ]").val()},
+          dataType: 'JSON',
+          success: function(data) {
+            console.log(data);
+                if(data.status == "error") {
+                  $("input[name=searchQ]").popover('hide');
+                  return;
+                }
+                var msg = $('');
+                msg.innerHTML="";
+                if(data.message.users.length != 0) msg.innerHTML += "<h1>"+data.message.users[0].name+"</h1>" + " " + data.message.users[0].surname+"; ";
+                if(data.message.trucks.length != 0) msg.innerHTML += data.message.trucks[0].idno + " " + data.message.trucks[0].model+"; ";
+                if(data.message.repairs.length != 0) msg.innerHTML += data.message.repairs[0].idno + " " + data.message.repairs[0].desc+"; ";
+
+
+                $("input[name=searchQ]").attr('data-content', msg.innerHTML);
+                $("input[name=searchQ]").popover('show');
+              }
+            });
+          }
+
+      function hide() {
+        var check = document.getElementById("hide").checked;
+        @if(isset($repairs))
+        @foreach($repairs as $repair)
+        @if($repair->deleted_at != NULL)
+        el = document.getElementById({{$repair->id}});
+        if(check) el.classList.remove("hidden");
+        else el.classList.add("hidden");
+        @endif
+        @endforeach
+        @endif
+      }
+
 
       function showWarningAlert() {
         swal({
@@ -130,7 +148,7 @@
       <header id="topNavigation">
 		<form>
 			<i class="icon" data-feather="search"></i>
-			<input class="search-input" type="text" name="searchQ" placeholder="Ieškoti transporto priemonių, žmonių, maršrutų, klientų, pavedimų ir kitos informacijos">
+			<input autocomplete="off" data-toggle="popover" data-placement="bottom" onkeyup="ajaxSearch()" class="search-input" type="text" name="searchQ" placeholder="Ieškoti transporto priemonių, žmonių, maršrutų, klientų, pavedimų ir kitos informacijos">
 		</form>
 		<span>{{ Auth::user()->name }}</span>
 	</header>

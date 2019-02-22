@@ -33,9 +33,8 @@ class RepairController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($hash)
     {
-        //
     }
 
     /**
@@ -136,6 +135,7 @@ class RepairController extends Controller
 
         // process the login
         if ($validator->fails()) {
+          dd($validator);
           Session::flash('message', 'Error!');
             return redirect()->back()
                 ->withErrors($validator)
