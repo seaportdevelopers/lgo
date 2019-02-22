@@ -5,17 +5,22 @@
         <h2 style="display:inline">
             Užfiksuoti gedimai
         </h2>
-        <label class="control control--checkbox" style="display:inline; float: right;">Rodyti pašalintus gedimus
+      {{--   <label class="control control--checkbox" style="display:inline; float: right;">Rodyti pašalintus gedimus
            <input type="checkbox" id="hide" onchange="hide()"  />
            <div class="control__indicator"></div>
-        </label>
+        </label> --}}
+        <div style="display:inline; float: right;">
+          <button id="hide2" type="button" class="btn btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
+          <div class="handle"></div>
+          </button>
+          <span class="toggleBtnText">Rodyti pašalintus gedimus</span>
+        </div>
     </div>
     <div class="card-body">
         <table class="table table-hover table-borderless">
             <thead>
                 <tr>
                     <th>Transp. priem. valst. numeris</th>
-                    <th>Aprašymas</th>
                     <th>Remonto vieta</th>
                     <th>Remonto data</th>
                     <th>Remonto pabaigos data</th>
@@ -28,27 +33,25 @@
                @foreach($repairs as $repair)
                 <tr id={{$repair->id}} @if($repair->deleted_at != NULL) style="background-color: #cccccc;" class="hidden" @endif>
                     <td>{{$repair->idno}}</td>
-                    <td>
-                      {{$repair->description}}
-                    </td>
                     <td>{{$repair->repairCompany}}</td>
                     <td>{{$repair->repairDate}}</td>
                     <td>{{$repair->repairDateEnd}}</td>
                   <td>{{$repair->repairsPrice}}</td>
                   <td>
                     @if($repair->deleted_at != NULL)
-                      <label class="bg-label bg-label-success">Gedimas<br/>pašalintas</label>
+                      <label class="bg-label bg-label-success StatusPopOver">Gedimas<br/>pašalintas</label>
                     @else
-                       <label class="bg-label bg-label-main">Pranešta</label>
+                       <label class="bg-label bg-label-main StatusPopOver">Pranešta</label>
                     @endif
                   </td>
                   @if($repair->deleted_at == NULL)
-                  <td>
-                     <a href="/repairs/{{encrypt($repair->id)}}/edit"><button class="btn btn-primary btn-small">Redaguoti</button>
+                  <td style="display: flex; flex-direction: row; justify-content: space-between;">
+                     <a class="btn btn-primary btn-table" href="/repairs/{{encrypt($repair->id)}}/edit">Redaguoti</a>
                     <form onsubmit="showWarningAlert(); return true;" action="repairs/{{$repair->id}}" method="post">
                       {{csrf_field()}}
                       <input type="hidden" name="_method" value="DELETE">
-                      <input type="submit" class="btn btn-small btn-danger" style="margin-top: 2px;" value="Pašalinti gedimą">
+                      <input type="submit" class="btn btn-table btn-danger" style="margin-top: 2px;" value="Pašalinti gedimą">
+                    </form>
                   </td>
                 @else
                   <td>

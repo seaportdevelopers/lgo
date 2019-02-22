@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {{-- SWEET ALERT --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.29.2/sweetalert2.all.js"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript">
 
       function ajaxSearch() {
@@ -50,6 +50,7 @@
         @endforeach
         @endif
       }
+
 
       function showWarningAlert() {
         swal({
@@ -130,7 +131,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'LGO development') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -152,18 +153,23 @@
 		<span>{{ Auth::user()->name }}</span>
 	</header>
 	<div class="sideNavigation">
+    <div id="NavExpandTriggerBox">
+      <h5 href="#" id="NavExpandTrigger" class="ExpandableItem">
+        MMB Seaport Developers
+      </h5>
+    </div>
 		<div class="items">
 			<a href="{{ route('home') }}" class=" @if (Route::currentRouteName() == "home") active @endif ">
-				<span class="icon" data-feather="home"></span>
+				<span class="icon" data-feather="home"></span> <span class="ExpandableItem">Dokumentacija</span>
 			</a>
 			<a href="{{ route('repairs.index') }}" class=" @if (Route::currentRouteName() == "repairs.index") active @endif ">
-				<span class="icon" data-feather="activity"></span>
+				<span class="icon" data-feather="activity"></span> <span class="ExpandableItem">Gedimai</span>
 			</a>
 			<a href="#">
-				<span class="icon" data-feather="stop-circle"></span>
+				<span class="icon" data-feather="stop-circle"></span> <span class="ExpandableItem">-</span>
 			</a>
 			<a href="{{ route('transport.index') }}" class=" @if (Route::currentRouteName() == "transport.index") active @endif ">
-				<span class="icon" data-feather="truck"></span>
+				<span class="icon" data-feather="truck"></span> <span class="ExpandableItem">Transportas</span>
 			</a>
 		</div>
 	</div>

@@ -9,8 +9,8 @@ $factory->define(App\Repair::class, function (Faker $faker){
       'userInformed' => '0',
       'description' => '---',
       'repairCompany' => 'ivec customers supprot',
-      'repairDate' => $faker->unixTime($max = 'now'),
-      'repairDateEnd' => $faker->unixTime($max = 'now'),
+      'repairDate' => now(),
+      'repairDateEnd' => now(),
       'userResponsible' => '0',
       'repairsPrice' => $faker->numberBetween($min = 1000, $max = 9000),
    ];
