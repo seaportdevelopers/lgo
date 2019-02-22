@@ -38,18 +38,33 @@
             });
           }
 
-      function hide() {
-        var check = document.getElementById("hide").checked;
-        @if(isset($repairs))
-        @foreach($repairs as $repair)
-        @if($repair->deleted_at != NULL)
-        el = document.getElementById({{$repair->id}});
-        if(check) el.classList.remove("hidden");
-        else el.classList.add("hidden");
-        @endif
-        @endforeach
-        @endif
-      }
+      // function hide() {
+      //   var check = document.getElementById("hide").checked;
+      //   @if(isset($repairs))
+      //   @foreach($repairs as $repair)
+      //   @if($repair->deleted_at != NULL)
+      //   el = document.getElementById({{$repair->id}});
+      //   if(check) el.classList.remove("hidden");
+      //   else el.classList.add("hidden");
+      //   @endif
+      //   @endforeach
+      //   @endif
+      // }
+
+      $(document).ready(function(){
+        $("#hide2").click(function(){
+          //alert("clicked");
+          @if(isset($repairs))
+          @foreach($repairs as $repair)
+          @if($repair->deleted_at != NULL)
+          el = document.getElementById({{$repair->id}});
+          if($("#{{$repair->id}}").hasClass("hidden")) el.classList.remove("hidden");
+          else el.classList.add("hidden");
+          @endif
+          @endforeach
+          @endif
+        });
+      });
 
 
       function showWarningAlert() {
