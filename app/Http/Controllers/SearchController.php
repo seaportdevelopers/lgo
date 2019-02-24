@@ -33,4 +33,14 @@ class SearchController extends Controller
       if(count($users)==0 && count($trucks)==0 && count($repairs) == 0) return response()->json(['status' => 'error', 'message' => 'null']);
       return response()->json(['status' => 'success', 'message' => $msg]);
     }
+
+    public function changeStatus(Request $req) {
+      $id = explode("status", $req->id);
+      $id = $id[1];
+      $status = $req->status;
+      $rep = Repair::where('id', $id)->first();
+      $rep->status = $status;
+      $rep->save();
+      return response()->json(['status' => 'success', 'id' => $id]);
+    }
 }

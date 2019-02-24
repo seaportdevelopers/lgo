@@ -8,6 +8,23 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript">
 
+    function checker(id, status) {
+      id = $(id).attr('id');
+      var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+      $.ajax({
+        url: '/search/status',
+        type: 'POST',
+        data: {_token: CSRF_TOKEN, id: id, status: status},
+        dataType: 'JSON',
+        success: function(data) {
+          if(data.status != "success") return;
+          $("#"+id).popover("hide");
+          $("#"+id).parent().load(document.URL + " #"+id);
+          location.reload();                              //CAN BE OPTIMIZED IF NEEDED
+        }
+      });
+    }
+
       function ajaxSearch() {
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         if($("input[name=searchQ]").val() == ""){

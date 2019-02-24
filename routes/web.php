@@ -35,3 +35,4 @@ Route::any('insurance/create', 'InsuranceController@create');
 
 //SEARCH
 Route::any('/search', "SearchController@searchAll")->middleware('ajax');
+Route::post('/search/status', "SearchController@changeStatus")->middleware('ajax');
