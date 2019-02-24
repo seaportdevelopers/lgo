@@ -41,7 +41,20 @@
                     @if($repair->deleted_at != NULL)
                       <label class="bg-label bg-label-success">Gedimas<br/>pašalintas</label>
                     @else
+                      @switch($repair->status)
+                        @case("Pranešta")
                        <label id="status{{$repair->id}}" class="bg-label bg-label-main StatusPopOver">Pranešta</label>
+                       @break
+                       @case("SKUBU")
+                      <label id="status{{$repair->id}}" class="bg-label bg-label-danger StatusPopOver">SKUBU</label>
+                      @break
+                      @case("Tvarkoma")
+                     <label id="status{{$repair->id}}" class="bg-label bg-label-warning StatusPopOver">Tvarkoma</label>
+                     @break
+                     @default
+                     <label class="bg-label bg-label-danger">SISTEMOS<br/>KLAIDA</label>
+                     @break
+                   @endswitch
                     @endif
                   </td>
                   @if($repair->deleted_at == NULL)

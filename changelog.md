@@ -21,3 +21,4 @@
 	15.1 migration [id, name, phone, email, website, paid, support]
 	15.2 views
 16. pagination
+L1. Make a route of deletion middleware with ajax;

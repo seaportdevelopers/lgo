@@ -31,3 +31,4 @@ Route::put('repairs/{hash}', 'RepairController@update');
 
 //SEARCH
 Route::any('/search', "SearchController@searchAll")->middleware('ajax');
+Route::post('/search/status', "SearchController@changeStatus")->middleware('ajax');
