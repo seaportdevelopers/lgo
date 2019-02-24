@@ -26,16 +26,10 @@
                   $("input[name=searchQ]").popover('hide');
                   return;
                 }
-                var msg = $('');
-                msg.innerHTML="";
-                if(data.message.users.length != 0) msg.innerHTML += "<h1>"+data.message.users[0].name+"</h1>" + " " + data.message.users[0].surname+"; ";
-                if(data.message.trucks.length != 0) msg.innerHTML += data.message.trucks[0].idno + " " + data.message.trucks[0].model+"; ";
-                if(data.message.repairs.length != 0) msg.innerHTML += data.message.repairs[0].idno + " " + data.message.repairs[0].desc+"; ";
 
 
-                $("input[name=searchQ]").attr('data-content', msg.innerHTML);
-                $("input[name=searchQ]").popover('show');
-              console.log(data);              }
+
+              }
             });
           }
 
@@ -107,30 +101,7 @@
        });
       }
 
-      function showConfirmationAlert(itemID) {
-        swal({
-          title: "Gedimo pašalinimo patvirtinimas",
-          text: "Ištrynus gedimą jis nebus pašalintas iš sistemos. Jį visvien galėsite matyti Jūs ir/ar kiti vartotojai. Ar tikrai norite tęsti?",
-          icon: "warning",
-          buttons: true,
-          dangerMode: true,
-        })
-        .then((willDelete) => {
-           if (willDelete){
-              //alert(itemID);
-              $.ajax({
-                url: "/repairs/${itemID}",
-                method: "DELETE",
-                data: {
-                  _token: CSRF_TOKEN,
-                },
-                success:function(response){
-                  alert("URA BLT!")
-                }
-              });
-            }
-          });
-      }
+
 
       function showErrorAlert() {
         swal({
@@ -188,8 +159,8 @@
 			<a href="{{ route('repairs.index') }}" class=" @if (Route::currentRouteName() == "repairs.index") active @endif ">
 				<span class="icon" data-feather="activity"></span> <span class="ExpandableItem">Gedimai</span>
 			</a>
-			<a href="#">
-				<span class="icon" data-feather="stop-circle"></span> <span class="ExpandableItem">-</span>
+			<a href="{{ route('insurance.index') }}">
+				<span class="icon" data-feather="briefcase"></span> <span class="ExpandableItem">Draudimas</span>
 			</a>
 			<a href="{{ route('transport.index') }}" class=" @if (Route::currentRouteName() == "transport.index") active @endif ">
 				<span class="icon" data-feather="truck"></span> <span class="ExpandableItem">Transportas</span>

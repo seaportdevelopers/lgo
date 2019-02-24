@@ -80,7 +80,7 @@
                       <input type="hidden" name="_method" value="delete">
                       <input class="btn btn-danger" type="submit" value="Ištrinti">
                     </form>
-                    <a href="/repairs"><button type="button" class="btn btn-muted" >Uždaryti</button></a>
+
                   </div>
                </div>
          </div>

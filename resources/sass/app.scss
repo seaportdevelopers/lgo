@@ -1079,6 +1079,26 @@ button{
 }
 //END OF SWITCH BUTTON
 //---------------------------------------------------
+
+//TABLE SORTING
+//---------------------------------------------------
+th.sorted.ascending:after {
+	content: "  \2191";
+}
+th.sorted.descending:after {
+	content: " \2193";
+}
+//END OF TABLE SORTING
+//---------------------------------------------------
+.searchContainer{
+	width: 70%;
+	background-color: $white;
+	padding: 1rem;
+	height: 10vh;
+	position: fixed;
+	left: 90px;
+	top: 4rem;
+}
 .hidden {
 	display: none;
 }

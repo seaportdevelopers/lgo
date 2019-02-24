@@ -20,6 +20,10 @@ class CreateCargosTable extends Migration
             $table->string("model");
             $table->date("rlDate"); //pagaminimo data
             $table->integer("status")->default('0'); //0-laisva; 1-vaziuoja; 2-stovi parke; etc.
+            $table->string("VIN")->nullable();
+            $table->string("tchExpirationDate")->nullable(); //technines apziuros galiojimo pabaigos data
+            $table->string("serfiticateType")->default("n"); //serfitikato tipas [nera, ATP, FTP]
+            $table->string("serfiticateExpirationDate")->nullable(); //serfitikato galiojimo pabaigos data
             $table->unsignedinteger("truck_id");
             $table->timestamps();
         });

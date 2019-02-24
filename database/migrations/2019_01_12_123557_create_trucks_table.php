@@ -23,6 +23,8 @@ class CreateTrucksTable extends Migration
             $table->string("manufacturer");
             $table->string("model");
             $table->integer("rlYear"); //pagaminimo metai
+            $table->string("VIN")->nullable();
+            $table->string("tchExpirationDate")->nullable(); //technines apziuros galiojimo pabaigos data
             $table->unsignedinteger("user_id")->nullable();
             $table->timestamps();
         });

@@ -8,7 +8,8 @@ use Validator;
 use Illuminate\Support\Facades\Input;
 use Redirect;
 use Session;
-use \App\User;
+use App\User;
+use App\Insurance;
 
 class TruckController extends Controller
 {
@@ -48,6 +49,7 @@ class TruckController extends Controller
           'manufacturer' => 'required',
           'model'      => 'required',
           'rlYear'      => 'required|numeric'
+          // 'tchExpirationDate'      => 'date',
       );
       $validator = Validator::make(Input::all(), $rules);
 
@@ -65,6 +67,8 @@ class TruckController extends Controller
           $rep->manufacturer = Input::get('manufacturer');
           $rep->model = Input::get('model');
           $rep->rlYear = Input::get('rlYear');
+          // $rep->VIN = Input::get('VIN');
+          // $rep->tchExpirationDate = Input::get('tchExpirationDate');
           $rep->status = -1;
           $rep->save();
 
@@ -93,8 +97,11 @@ class TruckController extends Controller
      */
     public function edit($hash)
     {
+
         $truck = Truck::where('id', decrypt($hash))->first();
-        return view('transport.edit', compact('truck'));
+        $insure = Insurance::where('idnoid', $truck->idno)->first();
+        // dd($insure);
+        return view('transport.edit', compact('truck', 'insure'));
     }
 
     /**
@@ -109,7 +116,7 @@ class TruckController extends Controller
       $rep = Truck::where('id', decrypt($hash))->first();
       $rules = array(
         'idno'       => 'required',
-        'category'      => 'numeric',
+        // 'category'      => 'numeric',
         'status'      => 'numeric',
         'manufacturer' => 'required',
         'model'      => 'required',
@@ -126,10 +133,12 @@ class TruckController extends Controller
       } else {
           // store
           $rep->idno = Input::get('idno');
-          $rep->category = Input::get('category');
+          // $rep->category = Input::get('category');
           $rep->manufacturer = Input::get('manufacturer');
           $rep->model = Input::get('model');
           $rep->rlYear = Input::get('rlYear');
+          $rep->VIN = Input::get('VIN');
+          $rep->tchExpirationDate = Input::get('tchExpirationDate');
           $rep->update();
 
 

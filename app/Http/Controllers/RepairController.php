@@ -21,7 +21,7 @@ class RepairController extends Controller
      */
     public function index()
     {
-      $repairs = Repair::all();
+      $repairs = Repair::orderBy('deleted_at')->paginate(15);
       $trucks = Truck::all();
       $users = User::all();
       return view('repairs.show', compact('repairs', 'users', 'trucks'));
@@ -165,10 +165,20 @@ class RepairController extends Controller
      * @param  \App\Repair  $repair
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Repair $repair)
+    public function destroy(Request $request)
     {
+        $repair = Repair::where('id', Input::get('id'))->get();
         $repair->deleted_at = now();
         $repair->save();
-        return "successed";
+        return response()->json(['status' => 'success']);
+    }
+
+    public function delete(Request $request){
+      $id = Input::get("id");
+      $repair = new Repair;
+      $repair = Repair::find($id);
+      $repair->deleted_at = now();
+      $repair->save();
+      return response()->json(['status' => 'success']);
     }
 }

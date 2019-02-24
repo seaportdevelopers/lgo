@@ -6,6 +6,7 @@
  */
 
 require('./bootstrap');
+require('jquery-tablesort');
 import swal from 'sweetalert';
 const feather = require('feather-icons')
 feather.replace();
@@ -83,4 +84,5 @@ $(document).ready(function(){
   }
 	//--------------------------------------------------//
 	//END OF STATUS POPOVER
+	$('table').tablesort();
 });

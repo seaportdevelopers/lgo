@@ -11,7 +11,6 @@
         <table class="table table-hover table-borderless">
             <thead>
                 <tr>
-                    <th>Pasirinkti</th>
                     <th>Valstybinis numeris</th>
                     <th>Gamintojas ir modelis</th>
                     <th>Būsena</th>
@@ -21,12 +20,6 @@
             <tbody>
                @foreach($trucks as $truck)
                 <tr>
-                    <td>
-                       <label class="control control--checkbox">
-                          <input type="checkbox"/>
-                          <div class="control__indicator"></div>
-                       </label>
-                    </td>
                     <td>{{$truck->idno}}</td>
                     <td>{{$truck->manufacturer}} {{$truck->model}}</td>
                     <td>
@@ -50,7 +43,7 @@
     </div>
 </div>
 
-<h5 class="sub-info mb-3 mt-4">Pagal būseną</h5>
+{{-- <h5 class="sub-info mb-3 mt-4">Pagal būseną</h5>
 <div class="row">
    @foreach($trucks as $truck)
    <div class="card" style="
@@ -90,7 +83,7 @@
        </div>
    </div>
    @endforeach
-</div>
+</div> --}}
 
 @include("transport.create")
 @yield("create")

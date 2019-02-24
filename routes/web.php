@@ -23,11 +23,15 @@ Route::put('/transport/{hash}', 'TruckController@update');
 Route::delete('/transport/{hash}', 'TruckController@destroy');
 Route::resource('/transport', 'TruckController');
 
-
 //REPAIRS
 Route::resource('repairs', 'RepairController', ['except' => ['edit', 'update']]);
 Route::get('repairs/{hash}/edit','RepairController@edit');
+Route::any('repair/delete', 'RepairController@delete');
 Route::put('repairs/{hash}', 'RepairController@update');
+
+//INSURANCE
+Route::resource('insurance', 'InsuranceController', ['except' => ['create']]);
+Route::any('insurance/create', 'InsuranceController@create');
 
 //SEARCH
 Route::any('/search', "SearchController@searchAll")->middleware('ajax');

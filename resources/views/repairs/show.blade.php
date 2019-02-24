@@ -60,9 +60,55 @@
                @endforeach
             </tbody>
         </table>
+        {{$repairs->links()}}
     </div>
 </div>
 
+
+<script>
+  function showConfirmationAlert(itemID) {
+        swal({
+          title: "Gedimo pašalinimo patvirtinimas",
+          text: "Ištrynus gedimą jis nebus pašalintas iš sistemos. Jį visvien galėsite matyti Jūs ir/ar kiti vartotojai. Ar tikrai norite tęsti?",
+          icon: "warning",
+          buttons: true,
+          dangerMode: true,
+        })
+        .then((willDelete) => {
+           if (willDelete){
+              //alert(itemID);
+              $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+              });
+              $.ajax({
+                url: "/repair/delete",
+                type: "POST",
+                dataType: 'JSON',
+                data: {
+                  id: itemID,
+                },
+                success:function(response){
+                  swal("Gedimas buvo sėkmingai pažymėtas kaip pašalintas", {
+                    icon: "success",
+                  });
+                  setTimeout(function(){
+                    location.reload();
+                  }, 2000);
+                },
+                error:function(xhr){
+                  swal({
+                    icon: "error",
+                    title: "Įvyko klaida ištrinant gedimą",
+                    text: xhr.responseText,
+                  });
+                },
+              });
+            }
+          });
+      }
+</script>
 @include("repairs/create")
 @yield("create")
 
