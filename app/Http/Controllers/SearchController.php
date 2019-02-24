@@ -39,6 +39,7 @@ class SearchController extends Controller
       $id = $id[1];
       $status = $req->status;
       $rep = Repair::where('id', $id)->first();
+      if($status == "Sutvarkyta") $rep->deleted_at = now();
       $rep->status = $status;
       $rep->save();
       return response()->json(['status' => 'success', 'id' => $id]);
