@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Input;
 use Redirect;
 use Session;
 use \App\User;
+use \App\Provider;
 
 class RepairController extends Controller
 {
@@ -24,7 +25,8 @@ class RepairController extends Controller
       $repairs = Repair::orderBy('deleted_at')->paginate(15);
       $trucks = Truck::all();
       $users = User::all();
-      return view('repairs.show', compact('repairs', 'users', 'trucks'));
+      $providers = Provider::all();
+      return view('repairs.show', compact('repairs', 'users', 'trucks', 'providers'));
         //
     }
 
@@ -107,7 +109,8 @@ class RepairController extends Controller
         $repair = Repair::where('id', $id)->first();
         $users = User::all();
         $trucks = Truck::all();
-        return view('repairs.edit', compact('repair', 'users', 'trucks'));
+        $providers = Provider::all();
+        return view('repairs.edit', compact('repair', 'users', 'trucks', 'providers'));
     }
 
     /**

@@ -24,7 +24,9 @@
                        <div class="mt-4">
                           <label class="inputLabel" for="exampleInput1">Remonto vieta</label>
                           <select style="width: 100%;" name="repComp" class="form-control" id="exampleFormControlSelect1">
-                            <option value="Sample">Sample</option>
+                            @foreach($providers as $provider)
+                              <option>{{$provider->name}}</option>
+                            @endforeach
                          </select>
                        </div>
                     </div>
