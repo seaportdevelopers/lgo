@@ -18,7 +18,7 @@
 	14.1 Make clients migration [id, name, phone, email, website, dealer, description]
 	14.2 Make client views (show, edit, delete)
 15. SERVICES
-	15.1 migration [id, name, phone, email, website, paid, support]
+	15.1 migration [id, name, phone, email, website, paid, support] //DONE
 	15.2 views
 16. pagination //DONE
 17. Fix side navigation hover on desktops
