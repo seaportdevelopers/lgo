@@ -173,6 +173,9 @@
 			<a href="{{ route('home') }}" class=" @if (Route::currentRouteName() == "home") active @endif ">
 				<span class="icon" data-feather="home"></span> <span class="ExpandableItem">Dokumentacija</span>
 			</a>
+      <a href="{{ route('drivers.index') }}" class=" @if (Route::currentRouteName() == "drivers.index") active @endif ">
+        <span class="icon" data-feather="users"></span> <span class="ExpandableItem">Vairuotojai</span>
+      </a>
 			<a href="{{ route('repairs.index') }}" class=" @if (Route::currentRouteName() == "repairs.index") active @endif ">
 				<span class="icon" data-feather="activity"></span> <span class="ExpandableItem">Gedimai</span>
 			</a>

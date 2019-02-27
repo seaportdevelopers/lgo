@@ -33,6 +33,10 @@ Route::put('repairs/{hash}', 'RepairController@update');
 Route::resource('insurance', 'InsuranceController', ['except' => ['create']]);
 Route::any('insurance/create', 'InsuranceController@create');
 
+//DRIVERS
+Route::resource('drivers', 'DriversController', ['except' => ['create']]);
+Route::any('drivers/create', 'DriversController@create');
+
 //SEARCH
 Route::any('/search', "SearchController@searchAll")->middleware('ajax');
 Route::post('/search/status', "SearchController@changeStatus")->middleware('ajax');
