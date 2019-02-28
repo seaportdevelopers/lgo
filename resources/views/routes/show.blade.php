@@ -1,9 +1,9 @@
-@extends('layouts.navigation', ['ViewHeaderTitle' => 'Vairuotojai', 'ViewHeaderSubtitle' => '', 'viewName' => 'drivers.index'])
+@extends('layouts.navigation', ['ViewHeaderTitle' => 'Maršrutai', 'ViewHeaderSubtitle' => '', 'viewName' => 'routes.index'])
 @section('content')
 <div class="card big">
     <div class="card-header">
         <h2>
-            Varuotojai
+            Naujausi maršrutai
         </h2>
 
     </div>
@@ -11,32 +11,37 @@
         <table class="table table-hover table-borderless">
             <thead>
                 <tr>
-                    <th>Vardas</th>
-                    <th>Pavardė</th>
-                    <th>Priskirtas vilkikas</th>
-                    <th>Priskirta puspriekabė</th>
-                    <th>Dabartinis maršrutas</th>
-                    <th>Būsena</th>
+                    <th>Krovinio tipas</th>
+                    <th>Vežama iš</th>
+                    <th>Vežama į</th>
+                    <th>Klientas</th>
+                    <th>Vairuotojas</th>
+                    <th>Vilkikas</th>
+                    <th>Puspriekabė</th>
+                    <th>Statusas</th>
                     <th>Veiksmai</th>
                 </tr>
             </thead>
             <tbody>
-               @foreach($drivers as $driver)
+               @foreach($routes as $driver)
                 <tr>
-                    <td>{{$driver->Fname}}</td>
-                    <td>{{$driver->Lname}}</td>
-                    <td>{{$driver->truck}}</td>
-                    <td>{{$driver->cargo}}</td>
-                    <td>{{$driver->routeN}}</td>
+                    <td>{{$driver->userCreated}}</td>
+                    <td>{{$driver->type}}</td>
+                    <td>{{$driver->POINT_A}}</td>
+                    <td>{{$driver->POINT_B}}</td>
+                    <td>{{$driver->client}}</td>
+                    <td>{{$driver->driverID}}</td>
+                    <td>{{$driver->TruckID}}</td>
+                    <td>{{$driver->CargoID}}</td>
                     <td>
                         @if($driver->status == 0)
-                        <label class="bg-label bg-label-primary">Neseniai sukurtas</label>
+                        <label class="bg-label bg-label-success">SĖKMINGAI IŠKRAUTAS {{$driver->DriverOut}}</label>
                         @elseif($driver->status == 1)
                         <label class="bg-label bg-label-main">Kelyje</label>
                         @elseif($driver->status == 2)
                         <label class="bg-label bg-label-danger">Vyksta iškrovimas</label>
                         @elseif($driver->status == 3)
-                        <label class="bg-label bg-label-error">GEDIMAS</label>
+                        <label class="bg-label bg-label-error">NESKALNDUMAI</label>
                         @else
                         <label class="bg-label bg-label-error">KLAIDA</label>
                         @endif
@@ -51,7 +56,7 @@
     </div>
 </div>
 
-@include("drivers.create")
+@include("routes.create")
 @yield("create")
 
 @endsection

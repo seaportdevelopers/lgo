@@ -176,6 +176,9 @@
       <a href="{{ route('drivers.index') }}" class=" @if (Route::currentRouteName() == "drivers.index") active @endif ">
         <span class="icon" data-feather="users"></span> <span class="ExpandableItem">Vairuotojai</span>
       </a>
+      <a href="{{ route('routes.index') }}" class=" @if (Route::currentRouteName() == "routes.index") active @endif ">
+        <span class="icon" data-feather="map"></span> <span class="ExpandableItem">Maršrutai</span>
+      </a>
 			<a href="{{ route('repairs.index') }}" class=" @if (Route::currentRouteName() == "repairs.index") active @endif ">
 				<span class="icon" data-feather="activity"></span> <span class="ExpandableItem">Gedimai</span>
 			</a>

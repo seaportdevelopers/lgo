@@ -8,6 +8,10 @@
          <button class="btn btn-small btn-white" data-toggle="modal" data-target="#create">Pranešti apie gedimą</button>
       @elseif($viewName == "insurance.index")
         <button class="btn btn-small btn-white" data-toggle="modal" data-target="#newInsurance">Pridėti draudimo sutartį</button>
+      @elseif($viewName == "drivers.index")
+      <button class="btn btn-small btn-white" data-toggle="modal" data-target="#newInsurance">Pridėti naują vairuotoją</button>
+      @elseif($viewName == "routes.index")
+      <button class="btn btn-small btn-white" data-toggle="modal" data-target="#newRoute">Sukurti naują maršrutą</button>
       @endif
    </div>
    @if ($viewName == "transport.edit")

@@ -37,6 +37,10 @@ Route::any('insurance/create', 'InsuranceController@create');
 Route::resource('drivers', 'DriversController', ['except' => ['create']]);
 Route::any('drivers/create', 'DriversController@create');
 
+//ROUTES
+Route::resource('routes', 'RoutesController', ['except' => ['create']]);
+Route::any('routes/create', 'RoutesController@create');
+
 //SEARCH
 Route::any('/search', "SearchController@searchAll")->middleware('ajax');
 Route::post('/search/status', "SearchController@changeStatus")->middleware('ajax');
