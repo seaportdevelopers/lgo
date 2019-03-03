@@ -9,7 +9,7 @@
         </button>
       </div>
       <div class="modal-body">
-         <form action="{{action('InsuranceController@create')}}" method="post">
+         <form action="{{action('DriversController@create')}}" method="post">
            {{csrf_field()}}
             <div class="container">
                <div class="row">

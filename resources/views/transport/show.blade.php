@@ -12,7 +12,7 @@
             <thead>
                 <tr>
                     <th>Valstybinis numeris</th>
-                    <th>Gamintojas ir modelis</th>
+                    <th class="AdvancedData">Gamintojas ir modelis</th>
                     <th>Būsena</th>
                     <th>Veiksmai</th>
                 </tr>
@@ -21,7 +21,7 @@
                @foreach($trucks as $truck)
                 <tr>
                     <td>{{$truck->idno}}</td>
-                    <td>{{$truck->manufacturer}} {{$truck->model}}</td>
+                    <td class="AdvancedData">{{$truck->manufacturer}} {{$truck->model}}</td>
                     <td>
                        @if($truck->status == 0)
                        <label class="bg-label bg-label-success" onclick="changeTransportStatus({{$truck->id}})">Stovi parke</label>
@@ -34,7 +34,7 @@
                        @endif
                     </td>
                     <td>
-                       <a href="/transport/{{encrypt($truck->id)}}/edit"><button class="btn btn-primary btn-table"><span class="icon icon-white" data-feather="edit"></span> Redaguoti</button>
+                       <a href="/transport/{{encrypt($truck->id)}}/edit"><button class="btn btn-primary btn-table"><span class="icon icon-white" data-feather="edit"></span> <span class="AdvancedData">Redaguoti</span></button>
                     </td>
                 </tr>
                @endforeach

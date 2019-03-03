@@ -3,7 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Routes;
+use App\Truck;
+use App\Drivers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Validator;
+use Illuminate\Support\Facades\Input;
+use Redirect;
+use Session;
 
 class RoutesController extends Controller
 {
@@ -15,7 +22,10 @@ class RoutesController extends Controller
     public function index()
     {
         $routes = Routes::all();
-        return view('routes.show', compact('routes'));
+        $drivers = Drivers::all();
+        $cargos = Truck::where('category', '2')->get();
+        $trucks = Truck::where('category', '1')->get();
+        return view('routes.show', compact('routes', 'cargos', 'trucks', 'drivers'));
         //
     }
 
@@ -26,8 +36,22 @@ class RoutesController extends Controller
      */
     public function create()
     {
-         $rules = array(
-          'idnoid'       => 'required',
+      $routes = Routes::all();
+      $drivers = Drivers::all();
+      $cargos = Truck::where('category', '2')->get();
+      $trucks = Truck::where('category', '1')->get();
+      return view('routes.create', compact('routes', 'cargos', 'trucks', 'drivers'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $rules = array(
           'CARGO'      => 'required',
           'FROM'      => 'required',
           'TO' => 'required',
@@ -45,9 +69,9 @@ class RoutesController extends Controller
               ->withInput(Input::except('password'));
       } else {
           // store
-          $rep = new Route;
-          $rep->idnoid = Input::get('idnoid');
-          $rep->userCreated = Auth::name();
+          $rep = new Routes;
+          //$rep->idnoid = Input::get('idnoid');
+          $rep->userCreated = Auth::user()->id;
           $rep->POINT_A = Input::get('FROM');
           $rep->POINT_B = Input::get('TO');
           $rep->type = Input::get('TYPE');
@@ -61,17 +85,6 @@ class RoutesController extends Controller
           Session::flash('suc', '1');
           return back();
       }
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
         //
     }
 

@@ -1,4 +1,3 @@
-
 @import 'components/buttons';
 
 // Variables
@@ -26,6 +25,9 @@ input{
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
+}
+.width-full{
+	width: 100% !important;
 }
 
 color{
@@ -214,7 +216,8 @@ button{
 }
 .viewHeader .textWrapper{
 	position: relative;
-	left: 10%;
+	left: calc(70px + 5%);
+	max-width: 50%;
 	color: $white;
 }
 .viewHeader h1{color: $white;}
@@ -287,6 +290,9 @@ button{
 }
 #topNavigation input{
 	width: 90%;
+}
+#mobileTopNavigation{
+	display: none;
 }
 .icon{
 	color: #BCBCCB;
@@ -422,6 +428,9 @@ button{
 }
 .card .big{
 	min-width: 25%;
+}
+.background{
+	background-color: $BackgroundColor;
 }
 .card-form{
 	max-width: 80%;
@@ -1102,3 +1111,35 @@ th.sorted.descending:after {
 .hidden {
 	display: none;
 }
+#map{
+	width: 100%;
+	height: 50vh;
+}
+
+@media only screen and (max-width: 600px) {
+	.sideNavigation{
+		display: none;
+	}
+	#topNavigation{
+		display: none;
+	}
+	.AdvancedData{
+		display: none;
+	}
+	#mobileTopNavigation{
+		z-index: 10000;
+		position: fixed;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		width: 100%;
+		padding: 1rem;
+		background-color: $mainTextColor;
+		color: $white;
+	}
+	.content{
+		margin: 0 auto;
+		left: 3%;
+		width: calc(100% - 3%);
+	}
+} 

@@ -11,7 +11,7 @@
       @elseif($viewName == "drivers.index")
       <button class="btn btn-small btn-white" data-toggle="modal" data-target="#newInsurance">Pridėti naują vairuotoją</button>
       @elseif($viewName == "routes.index")
-      <button class="btn btn-small btn-white" data-toggle="modal" data-target="#newRoute">Sukurti naują maršrutą</button>
+      <a href="{{route('routes.create')}}" class="btn btn-small btn-white">Sukurti naują maršrutą</a>
       @endif
    </div>
    @if ($viewName == "transport.edit")

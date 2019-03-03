@@ -38,9 +38,19 @@ Route::resource('drivers', 'DriversController', ['except' => ['create']]);
 Route::any('drivers/create', 'DriversController@create');
 
 //ROUTES
-Route::resource('routes', 'RoutesController', ['except' => ['create']]);
-Route::any('routes/create', 'RoutesController@create');
+Route::resource('routes', 'RoutesController', ['except' => ['store']]);
+Route::any('routes/store', 'RoutesController@store');
 
 //SEARCH
 Route::any('/search', "SearchController@searchAll")->middleware('ajax');
 Route::post('/search/status', "SearchController@changeStatus")->middleware('ajax');
+
+//Example map route is here
+Route::get('/examples/map', function(){
+	$config = array();
+	$config['center'] = 'Clifton, Karachi';
+	GMaps::initialize($config);
+	$map = GMaps::create_map();
+	echo $map['js'];
+	echo $map['html'];
+});

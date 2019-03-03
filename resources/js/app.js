@@ -4,6 +4,14 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
+// var GoogleMapsLoader = require('google-maps');
+// GoogleMapsLoader.KEY = 'AIzaSyASn0Aq5_3lrH-dDZCWZjObFbkNnaoIi_M';
+// GoogleMapsLoader.VERSION = '3.34';
+
+// GoogleMapsLoader.load(function(google) {
+// 	var uluru = {lat: -25.344, lng: 131.036};
+// 	new google.maps.Map(document.querySelector('#routeChooseMap', {zoom: 4, center: uluru}))
+// });
 
 require('./bootstrap');
 require('jquery-tablesort');
@@ -13,9 +21,8 @@ feather.replace();
 
 window.Vue = require('vue');
 
-function showSimpleAlert(){
-	swal("Here's the title!", "...and here's the text!");
-}
+
+
 
 /**
  * The following block of code may be used to automatically register your
@@ -24,21 +31,14 @@ function showSimpleAlert(){
  *
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
-
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+// Vue.component('verify-route-destination', require('./components/VerifyRouteDestination.vue').default);
 
-const app = new Vue({
-    el: '#app'
-});
+
 
 
 
@@ -85,3 +85,141 @@ $(document).ready(function(){
 	//END OF STATUS POPOVER
 	$('table').tablesort();
 });
+
+
+window.onload = () => {
+	RouteConfiguratorApp.createMap();
+}
+// // Initialize and add the map
+// function initMap() {
+//   // The location of Uluru
+//   var uluru = {lat: -25.344, lng: 131.036};
+//   // The map, centered at Uluru
+//   var map = new google.maps.Map(document.getElementById('map'), {zoom: 4, center: {lat: -25.344, lng: 131.036}});
+//   // The marker, positioned at Uluru
+//   var marker = new google.maps.Marker({position: uluru, map: map});
+// }
+var map;
+var directionsService = new google.maps.DirectionsService();
+var directionsDisplay = new google.maps.DirectionsRenderer();
+var DistanceBetweenPoints;
+var MatrixResponse;
+const RouteConfiguratorApp = new Vue({
+	el: '#RouteConfiguratorApp',
+	data: {
+		POINT_A_address : '',
+		POINT_B_address : '',
+		POINT_last : '',
+		DisplayDistanceValue: '',
+		Route_btn_TEXT: 'Sudaryti maršrutą',
+		btnClassRouteSuccess: 'hidden',
+		btnClassRouteCheck: 'btn-success',
+		btnDisabledRouteCheck: false,
+
+		selectedType: '',
+		selectedTruck: '',
+		selectedCargo: '',
+		CurrentTransportChoice: '',
+	},
+	methods: {
+		createMap: function() {
+			map = new google.maps.Map(document.querySelector("#map"), {
+				center: {lat: 35, lng: -85},
+				zoom: 12
+			});
+		},
+		makeRoute: function() {
+			var geocoder = new google.maps.Geocoder();
+			var vm = this;
+			geocoder.geocode({ address: this.POINT_A_address }, function(results, status){
+				if (status === google.maps.GeocoderStatus.OK){
+					map.setCenter(results[0].geometry.location);
+					map.zoom = 12;
+					var marker = new google.maps.Marker({position: results[0].geometry.location, map: map});
+				}
+			});
+			geocoder.geocode({ address: this.POINT_B_address }, function(results, status){
+				if (status === google.maps.GeocoderStatus.OK){
+					map.setCenter(results[0].geometry.location);
+					map.zoom = 12;
+					var marker = new google.maps.Marker({position: results[0].geometry.location, map: map});
+				}
+			});
+
+			this.POINT_last = this.POINT_A_address;
+			var point_FROM = this.POINT_A_address;
+			var point_TO = this.POINT_B_address;
+			var LOOPindex = 0;
+
+			var service = new google.maps.DistanceMatrixService();
+			service.getDistanceMatrix(
+			{
+				origins: [point_FROM],
+				destinations: [point_TO],
+				travelMode: 'DRIVING',
+				// drivingOptions: DrivingOptions,
+				unitSystem: google.maps.UnitSystem.METRIC,
+				avoidHighways: false,
+				avoidTolls: false,
+			}, function(response, status){
+				if (status === "OK"){
+					MatrixResponse = response;
+					// this.DisplayDistanceValue = response.rows[0].elements[0].distance.text;
+					// console.log(response);
+				}
+			});
+
+			console.log(MatrixResponse);
+			var distance = MatrixResponse.rows[0].elements[0].distance.value;
+			this.DisplayDistanceValue = distance/1000;
+			this.Route_btn_TEXT = 'Sudaryti maršrutą';
+			this.RouteBtnActive = false;
+			this.btnClassRouteSuccess = 'btn-success',
+			this.btnClassRouteCheck = 'btn-muted',
+			this.btnDisabledRouteCheck = true,
+
+			directionsService.route({
+	          origin: point_FROM,
+	          destination: point_TO,
+	          travelMode: 'DRIVING'
+       		 }, function(response, status) {
+		          if (status === 'OK') {
+		            directionsDisplay.setDirections(response);
+		            directionsDisplay.setMap(map);
+		            var onChangeHandler = function() {
+          				calculateAndDisplayRoute(directionsService, directionsDisplay);
+        			};
+		          } else {
+		            window.alert('Directions request failed due to ' + status);
+		          }
+        	});
+		},
+		makeTransportChoice: function() {
+
+		},
+	}
+});
+//EXAMPLES of using google maps services
+var origin1 = new google.maps.LatLng(55.930385, -3.118425);
+var origin2 = 'Greenwich, England';
+var destinationA = 'Stockholm, Sweden';
+var destinationB = new google.maps.LatLng(50.087692, 14.421150);
+
+var service = new google.maps.DistanceMatrixService();
+service.getDistanceMatrix(
+  {
+    origins: [origin1, origin2],
+    destinations: [destinationA, destinationB],
+    travelMode: 'DRIVING',
+    transitOptions: TransitOptions,
+    drivingOptions: DrivingOptions,
+    unitSystem: UnitSystem,
+    avoidHighways: Boolean,
+    avoidTolls: Boolean,
+  }, callback);
+
+function callback(response, status) {
+	console.log(status, response);
+  // See Parsing the Results for
+  // the basics of a callback function.
+}

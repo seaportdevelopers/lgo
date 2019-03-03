@@ -25,17 +25,33 @@
             <tbody>
                @foreach($routes as $driver)
                 <tr>
-                    <td>{{$driver->userCreated}}</td>
                     <td>{{$driver->type}}</td>
                     <td>{{$driver->POINT_A}}</td>
                     <td>{{$driver->POINT_B}}</td>
                     <td>{{$driver->client}}</td>
-                    <td>{{$driver->driverID}}</td>
-                    <td>{{$driver->TruckID}}</td>
-                    <td>{{$driver->CargoID}}</td>
+                    <td>
+
+                        @foreach($driver->driver as $d)
+                            <span class="icon mr-1" data-feather="user"></span> 
+                            {{$d->Fname}} {{$d->Lname}}
+                        @endforeach
+                    </td>
+                    <td>
+                        @foreach($driver->truck as $truck)
+                            <span class="icon mr-1" data-feather="truck"></span> 
+                            {{ $truck->idno}}
+                        @endforeach
+                    </td>
+                    <td>
+                        @foreach($driver->cargo as $truck)
+                            <span class="icon mr-1" data-feather="truck"></span> 
+                            {{ $truck->idno}}
+                        @endforeach
+                    </td>
                     <td>
                         @if($driver->status == 0)
-                        <label class="bg-label bg-label-success">SĖKMINGAI IŠKRAUTAS {{$driver->DriverOut}}</label>
+                        <label class="bg-label bg-label-success">
+                        <span class="icon-white mr-1" data-feather="check"></span>  SĖKMINGAI IŠKRAUTAS {{$driver->DriverOut}}</label>
                         @elseif($driver->status == 1)
                         <label class="bg-label bg-label-main">Kelyje</label>
                         @elseif($driver->status == 2)
@@ -56,7 +72,7 @@
     </div>
 </div>
 
-@include("routes.create")
-@yield("create")
+{{-- @include("routes.create", ['trucks' => $trucks, 'cargos' => $cargos])
+@yield("create") --}}
 
 @endsection
