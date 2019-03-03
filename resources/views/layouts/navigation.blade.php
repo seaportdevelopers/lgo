@@ -70,8 +70,14 @@
           @foreach($repairs as $repair)
           @if($repair->deleted_at != NULL)
           el = document.getElementById({{$repair->id}});
-          if($("#{{$repair->id}}").hasClass("hidden")) el.classList.remove("hidden");
-          else el.classList.add("hidden");
+          if($("#{{$repair->id}}").hasClass("hidden")) {
+             el.classList.remove("hidden");
+             {{session(['showFixed' => true])}}
+          }
+          else {
+            {{session(['showFixed' => false])}}
+            el.classList.add("hidden");
+          }
           @endif
           @endforeach
           @endif
