@@ -1754,39 +1754,6 @@ module.exports = {
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&":
-/*!***************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js& ***!
-  \***************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-    console.log('Component mounted.');
-  }
-});
-
-/***/ }),
-
 /***/ "./node_modules/bootstrap/dist/js/bootstrap.js":
 /*!*****************************************************!*\
   !*** ./node_modules/bootstrap/dist/js/bootstrap.js ***!
@@ -38524,160 +38491,6 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&":
-/*!*******************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e& ***!
-  \*******************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card card-default" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Example Component")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    I'm an example component.\n                "
-              )
-            ])
-          ])
-        ])
-      ])
-    ])
-  }
-]
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js":
-/*!********************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/runtime/componentNormalizer.js ***!
-  \********************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return normalizeComponent; });
-/* globals __VUE_SSR_CONTEXT__ */
-
-// IMPORTANT: Do NOT use ES2015 features in this file (except for modules).
-// This module is a runtime utility for cleaner component module output and will
-// be included in the final webpack user bundle.
-
-function normalizeComponent (
-  scriptExports,
-  render,
-  staticRenderFns,
-  functionalTemplate,
-  injectStyles,
-  scopeId,
-  moduleIdentifier, /* server only */
-  shadowMode /* vue-cli only */
-) {
-  // Vue.extend constructor export interop
-  var options = typeof scriptExports === 'function'
-    ? scriptExports.options
-    : scriptExports
-
-  // render functions
-  if (render) {
-    options.render = render
-    options.staticRenderFns = staticRenderFns
-    options._compiled = true
-  }
-
-  // functional template
-  if (functionalTemplate) {
-    options.functional = true
-  }
-
-  // scopedId
-  if (scopeId) {
-    options._scopeId = 'data-v-' + scopeId
-  }
-
-  var hook
-  if (moduleIdentifier) { // server build
-    hook = function (context) {
-      // 2.3 injection
-      context =
-        context || // cached call
-        (this.$vnode && this.$vnode.ssrContext) || // stateful
-        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
-      // 2.2 with runInNewContext: true
-      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
-        context = __VUE_SSR_CONTEXT__
-      }
-      // inject component styles
-      if (injectStyles) {
-        injectStyles.call(this, context)
-      }
-      // register component module identifier for async chunk inferrence
-      if (context && context._registeredComponents) {
-        context._registeredComponents.add(moduleIdentifier)
-      }
-    }
-    // used by ssr in case component is cached and beforeCreate
-    // never gets called
-    options._ssrRegister = hook
-  } else if (injectStyles) {
-    hook = shadowMode
-      ? function () { injectStyles.call(this, this.$root.$options.shadowRoot) }
-      : injectStyles
-  }
-
-  if (hook) {
-    if (options.functional) {
-      // for template-only hot-reload because in that case the render fn doesn't
-      // go through the normalizer
-      options._injectStyles = hook
-      // register for functioal component in vue file
-      var originalRender = options.render
-      options.render = function renderWithStyleInjection (h, context) {
-        hook.call(context)
-        return originalRender(h, context)
-      }
-    } else {
-      // inject component registration as beforeCreate hook
-      var existing = options.beforeCreate
-      options.beforeCreate = existing
-        ? [].concat(existing, hook)
-        : [hook]
-    }
-  }
-
-  return {
-    exports: scriptExports,
-    options: options
-  }
-}
-
-
-/***/ }),
-
 /***/ "./node_modules/vue/dist/vue.common.js":
 /*!*********************************************!*\
   !*** ./node_modules/vue/dist/vue.common.js ***!
@@ -49842,6 +49655,13 @@ __webpack_require__.r(__webpack_exports__);
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
+// var GoogleMapsLoader = require('google-maps');
+// GoogleMapsLoader.KEY = 'AIzaSyASn0Aq5_3lrH-dDZCWZjObFbkNnaoIi_M';
+// GoogleMapsLoader.VERSION = '3.34';
+// GoogleMapsLoader.load(function(google) {
+// 	var uluru = {lat: -25.344, lng: 131.036};
+// 	new google.maps.Map(document.querySelector('#routeChooseMap', {zoom: 4, center: uluru}))
+// });
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! jquery-tablesort */ "./node_modules/jquery-tablesort/jquery.tablesort.js");
@@ -49852,10 +49672,6 @@ var feather = __webpack_require__(/*! feather-icons */ "./node_modules/feather-i
 
 feather.replace();
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-
-function showSimpleAlert() {
-  sweetalert__WEBPACK_IMPORTED_MODULE_0___default()("Here's the title!", "...and here's the text!");
-}
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -49865,18 +49681,9 @@ function showSimpleAlert() {
  */
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+// Vue.component('verify-route-destination', require('./components/VerifyRouteDestination.vue').default);
 
-
-Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue").default);
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
-var app = new Vue({
-  el: '#app'
-});
 $(document).ready(function () {
   //EXPANDABLE NAVIGATION SETTINGS
   //-------------------------------------------------//
@@ -49922,6 +49729,143 @@ $(document).ready(function () {
 
   $('table').tablesort();
 });
+
+window.onload = function () {
+  RouteConfiguratorApp.createMap();
+}; // // Initialize and add the map
+// function initMap() {
+//   // The location of Uluru
+//   var uluru = {lat: -25.344, lng: 131.036};
+//   // The map, centered at Uluru
+//   var map = new google.maps.Map(document.getElementById('map'), {zoom: 4, center: {lat: -25.344, lng: 131.036}});
+//   // The marker, positioned at Uluru
+//   var marker = new google.maps.Marker({position: uluru, map: map});
+// }
+
+
+var map;
+var directionsService = new google.maps.DirectionsService();
+var directionsDisplay = new google.maps.DirectionsRenderer();
+var DistanceBetweenPoints;
+var MatrixResponse;
+var RouteConfiguratorApp = new Vue({
+  el: '#RouteConfiguratorApp',
+  data: {
+    POINT_A_address: '',
+    POINT_B_address: '',
+    POINT_last: '',
+    DisplayDistanceValue: '',
+    Route_btn_TEXT: 'Sudaryti maršrutą',
+    btnClassRouteSuccess: 'hidden',
+    btnClassRouteCheck: 'btn-success',
+    btnDisabledRouteCheck: false,
+    selectedType: '',
+    selectedTruck: '',
+    selectedCargo: '',
+    CurrentTransportChoice: ''
+  },
+  methods: {
+    createMap: function createMap() {
+      map = new google.maps.Map(document.querySelector("#map"), {
+        center: {
+          lat: 35,
+          lng: -85
+        },
+        zoom: 12
+      });
+    },
+    makeRoute: function makeRoute() {
+      var geocoder = new google.maps.Geocoder();
+      var vm = this;
+      geocoder.geocode({
+        address: this.POINT_A_address
+      }, function (results, status) {
+        if (status === google.maps.GeocoderStatus.OK) {
+          map.setCenter(results[0].geometry.location);
+          map.zoom = 12;
+          var marker = new google.maps.Marker({
+            position: results[0].geometry.location,
+            map: map
+          });
+        }
+      });
+      geocoder.geocode({
+        address: this.POINT_B_address
+      }, function (results, status) {
+        if (status === google.maps.GeocoderStatus.OK) {
+          map.setCenter(results[0].geometry.location);
+          map.zoom = 12;
+          var marker = new google.maps.Marker({
+            position: results[0].geometry.location,
+            map: map
+          });
+        }
+      });
+      this.POINT_last = this.POINT_A_address;
+      var point_FROM = this.POINT_A_address;
+      var point_TO = this.POINT_B_address;
+      var LOOPindex = 0;
+      var service = new google.maps.DistanceMatrixService();
+      service.getDistanceMatrix({
+        origins: [point_FROM],
+        destinations: [point_TO],
+        travelMode: 'DRIVING',
+        // drivingOptions: DrivingOptions,
+        unitSystem: google.maps.UnitSystem.METRIC,
+        avoidHighways: false,
+        avoidTolls: false
+      }, function (response, status) {
+        if (status === "OK") {
+          MatrixResponse = response; // this.DisplayDistanceValue = response.rows[0].elements[0].distance.text;
+          // console.log(response);
+        }
+      });
+      console.log(MatrixResponse);
+      var distance = MatrixResponse.rows[0].elements[0].distance.value;
+      this.DisplayDistanceValue = distance / 1000;
+      this.Route_btn_TEXT = 'Sudaryti maršrutą';
+      this.RouteBtnActive = false;
+      this.btnClassRouteSuccess = 'btn-success', this.btnClassRouteCheck = 'btn-muted', this.btnDisabledRouteCheck = true, directionsService.route({
+        origin: point_FROM,
+        destination: point_TO,
+        travelMode: 'DRIVING'
+      }, function (response, status) {
+        if (status === 'OK') {
+          directionsDisplay.setDirections(response);
+          directionsDisplay.setMap(map);
+
+          var onChangeHandler = function onChangeHandler() {
+            calculateAndDisplayRoute(directionsService, directionsDisplay);
+          };
+        } else {
+          window.alert('Directions request failed due to ' + status);
+        }
+      });
+    },
+    makeTransportChoice: function makeTransportChoice() {}
+  }
+}); //EXAMPLES of using google maps services
+
+var origin1 = new google.maps.LatLng(55.930385, -3.118425);
+var origin2 = 'Greenwich, England';
+var destinationA = 'Stockholm, Sweden';
+var destinationB = new google.maps.LatLng(50.087692, 14.421150);
+var service = new google.maps.DistanceMatrixService();
+service.getDistanceMatrix({
+  origins: [origin1, origin2],
+  destinations: [destinationA, destinationB],
+  travelMode: 'DRIVING',
+  transitOptions: TransitOptions,
+  drivingOptions: DrivingOptions,
+  unitSystem: UnitSystem,
+  avoidHighways: Boolean,
+  avoidTolls: Boolean
+}, callback);
+
+function callback(response, status) {
+  console.log(status, response); // See Parsing the Results for
+  // the basics of a callback function.
+}
 
 /***/ }),
 
@@ -49980,75 +49924,6 @@ if (token) {
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
-
-/***/ }),
-
-/***/ "./resources/js/components/ExampleComponent.vue":
-/*!******************************************************!*\
-  !*** ./resources/js/components/ExampleComponent.vue ***!
-  \******************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ExampleComponent.vue?vue&type=template&id=299e239e& */ "./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&");
-/* harmony import */ var _ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ExampleComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/ExampleComponent.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************!*\
-  !*** ./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./ExampleComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&":
-/*!*************************************************************************************!*\
-  !*** ./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e& ***!
-  \*************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./ExampleComponent.vue?vue&type=template&id=299e239e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
 
 /***/ }),
 

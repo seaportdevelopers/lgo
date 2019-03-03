@@ -10652,6 +10652,10 @@ input {
   justify-content: space-between;
 }
 
+.width-full {
+  width: 100% !important;
+}
+
 color {
   padding: 1rem;
   border-radius: 25px;
@@ -10860,7 +10864,8 @@ button {
 
 .viewHeader .textWrapper {
   position: relative;
-  left: 10%;
+  left: calc(70px + 5%);
+  max-width: 50%;
   color: #ffffff;
 }
 
@@ -10940,6 +10945,10 @@ button {
 
 #topNavigation input {
   width: 90%;
+}
+
+#mobileTopNavigation {
+  display: none;
 }
 
 .icon {
@@ -11081,6 +11090,10 @@ button {
 
 .card .big {
   min-width: 25%;
+}
+
+.background {
+  background-color: #F0F0F7;
 }
 
 .card-form {
@@ -11944,5 +11957,42 @@ th.sorted.descending:after {
 
 .hidden {
   display: none;
+}
+
+#map {
+  width: 100%;
+  height: 50vh;
+}
+
+@media only screen and (max-width: 600px) {
+  .sideNavigation {
+    display: none;
+  }
+
+  #topNavigation {
+    display: none;
+  }
+
+  .AdvancedData {
+    display: none;
+  }
+
+  #mobileTopNavigation {
+    z-index: 10000;
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1rem;
+    background-color: #43425D;
+    color: #ffffff;
+  }
+
+  .content {
+    margin: 0 auto;
+    left: 3%;
+    width: calc(100% - 3%);
+  }
 }
 

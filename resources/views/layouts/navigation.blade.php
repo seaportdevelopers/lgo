@@ -150,8 +150,7 @@
 
     <title>{{ config('app.name', 'LGO development') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -162,13 +161,25 @@
 </head>
 <body>
       @include('layouts.viewHeader', ['title' => $ViewHeaderTitle, 'subtitle' => $ViewHeaderSubtitle, 'viewName' => $viewName])
-      <header id="topNavigation">
+<header id="mobileTopNavigation">
+  <a href="#" id="openMobileMenu">
+    <span class="icon" data-feather="menu"></span>
+  </a>
+  <a href="{{ route('home') }}">
+    <h5 style="color: #fff; text-decoration: none;">LGO</h5>
+  </a>
+  <a href="#" id="openSearchBtn">
+    <span class="icon" data-feather="search"></span>
+  </a>
+
+</header>
+<header id="topNavigation">
 		<form>
 			<i class="icon" data-feather="search"></i>
 			<input autocomplete="off" data-toggle="popover" data-placement="bottom" onkeyup="ajaxSearch()" class="search-input" type="text" name="searchQ" placeholder="Ieškoti transporto priemonių, žmonių, maršrutų, klientų, pavedimų ir kitos informacijos">
 		</form>
 		<span>{{ Auth::user()->name }}</span>
-	</header>
+</header>
 	<div class="sideNavigation">
     <div id="NavExpandTriggerBox">
       <h5 href="#" id="NavExpandTrigger" class="ExpandableItem">
@@ -179,6 +190,12 @@
 			<a href="{{ route('home') }}" class=" @if (Route::currentRouteName() == "home") active @endif ">
 				<span class="icon" data-feather="home"></span> <span class="ExpandableItem">Dokumentacija</span>
 			</a>
+      <a href="{{ route('drivers.index') }}" class=" @if (Route::currentRouteName() == "drivers.index") active @endif ">
+        <span class="icon" data-feather="users"></span> <span class="ExpandableItem">Vairuotojai</span>
+      </a>
+      <a href="{{ route('routes.index') }}" class=" @if (Route::currentRouteName() == "routes.index") active @endif ">
+        <span class="icon" data-feather="map"></span> <span class="ExpandableItem">Maršrutai</span>
+      </a>
 			<a href="{{ route('repairs.index') }}" class=" @if (Route::currentRouteName() == "repairs.index") active @endif ">
 				<span class="icon" data-feather="activity"></span> <span class="ExpandableItem">Gedimai</span>
 			</a>
@@ -194,6 +211,31 @@
             @yield('content')
         </main>
 </body>
+
+ <script>
+// Initialize and add the map
+// function initMap() {
+//   // The location of Uluru
+//   var uluru = {lat: -25.344, lng: 131.036};
+//   // The map, centered at Uluru
+//   var map = new google.maps.Map(
+//       document.getElementById('routeChooseMap'), {zoom: 4, center: uluru});
+//   // The marker, positioned at Uluru
+//   var marker = new google.maps.Marker({position: uluru, map: map});
+// }
+    </script>
+    <!--Load the API from the specified URL
+    * The async attribute allows the browser to render the page while the API loads
+    * The key parameter will contain your own API key (which is not needed for this tutorial)
+    * The callback parameter executes the initMap() function
+    -->
+    <!-- Scripts -->
+
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASn0Aq5_3lrH-dDZCWZjObFbkNnaoIi_M&callback=RouteConfiguratorApp.createMap">
+    </script>
+
 <script type="text/javascript">
 @if($errors->any())
       showErrorAlert();
