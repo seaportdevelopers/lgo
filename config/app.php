@@ -161,7 +161,6 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        FarhanWazir\GoogleMaps\GMapsServiceProvider::class,
         /*
          * Package Service Providers...
          */
