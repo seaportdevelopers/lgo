@@ -12,7 +12,7 @@
 	25.2 Filtering by select box in the table card header
 26. repairs.create
 	26.1 Let user enter service provider by him/her self. //CHANGE DISCARDED
-	26.2 Add euro sign to price
+	26.2 Add euro sign to price //CHANGE COMPLETED
 27. drivers.show
 	27.1 get status from his/her current route
 	27.2 assign cuurent truck, cargo and route by his/her current route
