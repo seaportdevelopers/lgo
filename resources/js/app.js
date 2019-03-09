@@ -43,26 +43,36 @@ window.Vue = require('vue');
 
 
 $(document).ready(function(){
+	$("#btnForward1").click(function(){
+		$("#firstStep").fadeOut();
+		$("#secondStep").fadeIn();
+	});
 	//EXPANDABLE NAVIGATION SETTINGS
 	//-------------------------------------------------//
-	$(".sideNavigation").hover(function(){
-		//alert("clicked!");
-		if ($(".ExpandableItem").css("display") == "none"){ //checks if side navigation is extended
+	$(".sideNavigation")
+		.mouseenter(function(){
 			$(".ExpandableItem").css("display", "inline"); //shows sidenavigation text
 			$(".sideNavigation").css("width", "240px"); //makes sidenavigation width to 240px
 			$(".content").css("left", "calc(240px + 3%)"); //moves all system content from 70px left to 240px + 3% to left
 			$("#topNavigation").css("width", "calc(100% - 240px)"); //sets top navigation width from 100% - 70px to 100% - 240px
 			$("#topNavigation").css("margin-left", "240px"); //moves top navigation 240px to left
 			$(".viewHeader").css("margin-left", "240px"); //moves view header 240 px to left
-		}else{ //settings when not extended
+		}).delay(500)
+		.mouseleave(function() {
 			$(".ExpandableItem").css("display", "none");
 			$(".sideNavigation").css("width", "70px");
 			$(".content").css("left", "calc(70px + 3%)");
 			$("#topNavigation").css("width", "calc(100% - 70px)");
 			$("#topNavigation").css("margin-left", "70px");
 			$(".viewHeader").css("margin-left", "70px");
-		}
+		}).delay(500);
+	$(".sideNavigation").hover(function(){
+		//alert("clicked!");
+		if ($(".ExpandableItem").css("display") == "none"){ //checks if side navigation is extended
 
+		}else{ //settings when not extended
+
+		}
 	});
 	//--------------------------------------------------//
 	//END OF EXPANDABLE NAVIGATION SETTINGS
@@ -108,17 +118,26 @@ const RouteConfiguratorApp = new Vue({
 	el: '#RouteConfiguratorApp',
 	data: {
 		POINT_A_address : '',
+		POINT_A_coords : '',
 		POINT_B_address : '',
+		POINT_B_coords: '',
+		P_A_confirmed: 'nera duomenu',
+		P_B_confirmed: 'nera duomenu',
 		POINT_last : '',
 		DisplayDistanceValue: '',
 		Route_btn_TEXT: 'Sudaryti maršrutą',
 		btnClassRouteSuccess: 'hidden',
-		btnClassRouteCheck: 'btn-success',
+		btnClassRouteCheck: 'btn-error',
 		btnDisabledRouteCheck: false,
 
 		selectedType: '',
 		selectedTruck: '',
 		selectedCargo: '',
+		selectedDriver: '',
+		selectedTruckError: false,
+		selectedCargoError: false,
+		selectedDriverError: false,
+		errorsDetected: false,
 		CurrentTransportChoice: '',
 	},
 	methods: {
@@ -129,70 +148,88 @@ const RouteConfiguratorApp = new Vue({
 			});
 		},
 		makeRoute: function() {
-			var geocoder = new google.maps.Geocoder();
-			var vm = this;
-			geocoder.geocode({ address: this.POINT_A_address }, function(results, status){
-				if (status === google.maps.GeocoderStatus.OK){
-					map.setCenter(results[0].geometry.location);
-					map.zoom = 12;
-					var marker = new google.maps.Marker({position: results[0].geometry.location, map: map});
-				}
-			});
-			geocoder.geocode({ address: this.POINT_B_address }, function(results, status){
-				if (status === google.maps.GeocoderStatus.OK){
-					map.setCenter(results[0].geometry.location);
-					map.zoom = 12;
-					var marker = new google.maps.Marker({position: results[0].geometry.location, map: map});
-				}
-			});
+			if (this.selectedTruck === '' || this.selectedCargo === '' || this.selectedDriver === ''){
+				this.selectedTruckError = true;
+				this.selectedCargoError = true;
+				this.selectedDriverError = true;
+				this.errorsDetected = true;
+			}else{
+				this.selectedTruckError = false;
+				this.selectedCargoError = false;
+				this.selectedDriverError = false;
+				this.errorsDetected = false;
+			}
+			if (this.errorsDetected === false){
+				var geocoder = new google.maps.Geocoder();
+				var vm = this;
+				geocoder.geocode({ address: this.POINT_A_address }, function(results, status){
+					if (status === google.maps.GeocoderStatus.OK){
+						map.setCenter(results[0].geometry.location);
+						this.POINT_A_coords = results[0].geometry.location;
+						map.zoom = 12;
+						var marker = new google.maps.Marker({position: results[0].geometry.location, map: map});
+					}
+				});
+				geocoder.geocode({ address: this.POINT_B_address }, function(results, status){
+					if (status === google.maps.GeocoderStatus.OK){
+						map.setCenter(results[0].geometry.location);
+						this.POINT_B_coords = results[0].geometry.location;
+						map.zoom = 12;
+						var marker = new google.maps.Marker({position: results[0].geometry.location, map: map});
+					}
+				});
 
-			this.POINT_last = this.POINT_A_address;
-			var point_FROM = this.POINT_A_address;
-			var point_TO = this.POINT_B_address;
-			var LOOPindex = 0;
+				this.POINT_last = this.POINT_A_address;
+				var point_FROM = this.POINT_A_address;
+				var point_TO = this.POINT_B_address;
 
-			var service = new google.maps.DistanceMatrixService();
-			service.getDistanceMatrix(
-			{
-				origins: [point_FROM],
-				destinations: [point_TO],
-				travelMode: 'DRIVING',
-				// drivingOptions: DrivingOptions,
-				unitSystem: google.maps.UnitSystem.METRIC,
-				avoidHighways: false,
-				avoidTolls: false,
-			}, function(response, status){
-				if (status === "OK"){
-					MatrixResponse = response;
-					// this.DisplayDistanceValue = response.rows[0].elements[0].distance.text;
-					// console.log(response);
-				}
-			});
+				this.P_A_confirmed = this.POINT_A_address;
+				this.P_B_confirmed = this.POINT_B_address;
 
-			console.log(MatrixResponse);
-			var distance = MatrixResponse.rows[0].elements[0].distance.value;
-			this.DisplayDistanceValue = distance/1000;
-			this.Route_btn_TEXT = 'Sudaryti maršrutą';
-			this.RouteBtnActive = false;
-			this.btnClassRouteSuccess = 'btn-success',
-			this.btnClassRouteCheck = 'btn-muted',
-			this.btnDisabledRouteCheck = true,
 
-			directionsService.route({
-	          origin: point_FROM,
-	          destination: point_TO,
-	          travelMode: 'DRIVING'
-       		 }, function(response, status) {
-		          if (status === 'OK') {
-		            directionsDisplay.setDirections(response);
-		            directionsDisplay.setMap(map);
-		            var onChangeHandler = function() {
-          				calculateAndDisplayRoute(directionsService, directionsDisplay);
-        			};
-		          } else {
-		            window.alert('Directions request failed due to ' + status);
-		          }
-        	});
+				var service = new google.maps.DistanceMatrixService();
+				service.getDistanceMatrix(
+				{
+					origins: [point_FROM],
+					destinations: [point_TO],
+					travelMode: 'DRIVING',
+					// drivingOptions: DrivingOptions,
+					unitSystem: google.maps.UnitSystem.METRIC,
+					avoidHighways: false,
+					avoidTolls: false,
+				}, function(response, status){
+					if (status === "OK"){
+						MatrixResponse = response;
+						// this.DisplayDistanceValue = response.rows[0].elements[0].distance.text;
+						// console.log(response);
+					}
+				});
+
+				console.log(MatrixResponse);
+				var distance = MatrixResponse.rows[0].elements[0].distance.value;
+				this.DisplayDistanceValue = distance/1000;
+				this.Route_btn_TEXT = 'Sudaryti maršrutą';
+				this.RouteBtnActive = false;
+				this.btnClassRouteSuccess = 'btn-success',
+				this.btnClassRouteCheck = 'btn-muted',
+				this.btnDisabledRouteCheck = true,
+
+				directionsService.route({
+		          origin: point_FROM,
+		          destination: point_TO,
+		          travelMode: 'DRIVING'
+	       		 }, function(response, status) {
+			          if (status === 'OK') {
+			            directionsDisplay.setDirections(response);
+			            directionsDisplay.setMap(map);
+			            var onChangeHandler = function() {
+	          				calculateAndDisplayRoute(directionsService, directionsDisplay);
+	        			};
+			          } else {
+			            window.alert('Directions request failed due to ' + status);
+			          }
+	        	});
+			}
 		},
 		makeTransportChoice: function() {
 

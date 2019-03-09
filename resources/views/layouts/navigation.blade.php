@@ -172,7 +172,7 @@
 			<i class="icon" data-feather="search"></i>
 			<input autocomplete="off" data-toggle="popover" data-placement="bottom" onkeyup="ajaxSearch()" class="search-input" type="text" name="searchQ" placeholder="Ieškoti transporto priemonių, žmonių, maršrutų, klientų, pavedimų ir kitos informacijos">
 		</form>
-		<span>{{ Auth::user()->name }}</span>
+		<span style="color: #fff;">{{ Auth::user()->name }}</span>
 </header>
 	<div class="sideNavigation">
     <div id="NavExpandTriggerBox">

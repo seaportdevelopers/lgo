@@ -39,7 +39,7 @@ Route::any('drivers/create', 'DriversController@create');
 
 //ROUTES
 Route::resource('routes', 'RoutesController', ['except' => ['store']]);
-Route::any('routes/store', 'RoutesController@store');
+Route::any('routes/store', 'RoutesController@store')->name('routes.store');
 
 //SEARCH
 Route::any('/search', "SearchController@searchAll")->middleware('ajax');

@@ -9,7 +9,7 @@
       @elseif($viewName == "insurance.index")
         <button class="btn btn-small btn-white" data-toggle="modal" data-target="#newInsurance">Pridėti draudimo sutartį</button>
       @elseif($viewName == "drivers.index")
-      <button class="btn btn-small btn-white" data-toggle="modal" data-target="#newInsurance">Pridėti naują vairuotoją</button>
+      <button class="btn btn-small btn-white" data-toggle="modal" data-target="#newDriver">Pridėti naują vairuotoją</button>
       @elseif($viewName == "routes.index")
       <a href="{{route('routes.create')}}" class="btn btn-small btn-white">Sukurti naują maršrutą</a>
       @endif

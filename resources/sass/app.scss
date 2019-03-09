@@ -26,6 +26,9 @@ input{
 	flex-direction: row;
 	justify-content: space-between;
 }
+.centeredH{
+	margin: 0 auto;
+}
 .width-full{
 	width: 100% !important;
 }
@@ -47,12 +50,12 @@ h1{
 	color: $mainTextColor;
 }
 h2{
-	font-size: 1.755em;
+	font-size: 1.25em;
 	font-weight: 400;
 	color: $mainTextColor;
 }
 h3{
-	font-size: 1.555em;
+	font-size: 1.05em;
 	letter-spacing: 1px;
 	color: $mainTextColor;
 }
@@ -106,6 +109,9 @@ p{
     background-color: transparent;
     background-clip: padding-box;
     //box-shadow: 0 3px 2px rgba(233,236,239,.05);
+}
+select{
+	width: 100%;
 }
 .form-control-classic{
 	border: 1px solid #ddd;
@@ -268,28 +274,31 @@ button{
 	padding: 1.2rem 1.5rem;
 	color: #4D4F5C;
 	margin-left: $sideNavigationWidth;
-	box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.15);
-    -moz-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.15);
-    -webkit-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.15);
-    -o-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.15);
-    -ms-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.15);
+	// box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.15);
+ //    -moz-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.15);
+ //    -webkit-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.15);
+ //    -o-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.15);
+ //    -ms-box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.15);
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    position: fixed;
+    position: absolute;
     font-size: 0.813em;
-    background-color: #fff;
+    background-color: transparent;
     z-index: 1000;
 }
 #topNavigation form{
 	width: 60%;
 	margin-left: 0.25rem;
 	font-size: 13px;
-	color: #4D4F5C;
+	color: $white;
 	height: 80%;
 }
 #topNavigation input{
 	width: 90%;
+}
+#topNavigation input::placeholder{
+	color: $white;
 }
 #mobileTopNavigation{
 	display: none;
@@ -316,12 +325,16 @@ button{
 	height: 100vh;
 	width: 70px;
 	// background-color: #43425D;
-	background: rgb(67,66,93);
-	background: -webkit-linear-gradient(42deg, rgba(67,66,93,1) 43%, rgba(94,114,228,1) 100%);
-	background: -o-linear-gradient(42deg, rgba(67,66,93,1) 43%, rgba(94,114,228,1) 100%);
-	background: linear-gradient(132deg, rgba(67,66,93,1) 43%, rgba(94,114,228,1) 100%);
+	background: $white;
+	// background: -webkit-linear-gradient(42deg, rgba(67,66,93,1) 43%, rgba(94,114,228,1) 100%);
+	// background: -o-linear-gradient(42deg, rgba(67,66,93,1) 43%, rgba(94,114,228,1) 100%);
+	// background: linear-gradient(132deg, rgba(67,66,93,1) 43%, rgba(94,114,228,1) 100%);
 	position: fixed;
 	z-index: 1000;
+	transition: 0s;
+	&:hover{
+		width: 240px;
+	}
 }
 #NavExpandTriggerBox{
 	color: white;
@@ -336,7 +349,7 @@ button{
 .sideNavigation .items{
 	display: flex;
 	flex-direction: column;
-	justify-content: flex-start;
+	justify-content: center;
 	position: relative;
 	width: 100%;
 	height: 70vh;
@@ -446,7 +459,8 @@ button{
 	padding-bottom: 0.1rem;
 }
 .info .card-header h2{
-	font-size: 1.063em;
+	font-size: 0.8em;
+	// color: $MutedColor;
 }
 .info .card-body span{
 	font-size: 0.750em;
@@ -1112,7 +1126,7 @@ th.sorted.descending:after {
 	display: none;
 }
 #map{
-	width: 100%;
+	width: auto;
 	height: 50vh;
 }
 
@@ -1142,4 +1156,4 @@ th.sorted.descending:after {
 		left: 3%;
 		width: calc(100% - 3%);
 	}
-} 
+}

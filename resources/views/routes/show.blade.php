@@ -32,30 +32,32 @@
                     <td>
 
                         @foreach($driver->driver as $d)
-                            <span class="icon mr-1" data-feather="user"></span> 
+                            <span class="icon mr-1" data-feather="user"></span>
                             {{$d->Fname}} {{$d->Lname}}
                         @endforeach
                     </td>
                     <td>
                         @foreach($driver->truck as $truck)
-                            <span class="icon mr-1" data-feather="truck"></span> 
+                            <span class="icon mr-1" data-feather="truck"></span>
                             {{ $truck->idno}}
                         @endforeach
                     </td>
                     <td>
                         @foreach($driver->cargo as $truck)
-                            <span class="icon mr-1" data-feather="truck"></span> 
+                            <span class="icon mr-1" data-feather="truck"></span>
                             {{ $truck->idno}}
                         @endforeach
                     </td>
                     <td>
-                        @if($driver->status == 0)
+                        @if($driver->statys == 0)
+                        <label class="bg-label bg-label-primary">Neseniai sukurtas</label>
+                        @elseif($driver->status == 4)
                         <label class="bg-label bg-label-success">
                         <span class="icon-white mr-1" data-feather="check"></span>  SĖKMINGAI IŠKRAUTAS {{$driver->DriverOut}}</label>
                         @elseif($driver->status == 1)
                         <label class="bg-label bg-label-main">Kelyje</label>
                         @elseif($driver->status == 2)
-                        <label class="bg-label bg-label-danger">Vyksta iškrovimas</label>
+                        <label class="bg-label bg-label-danger">Laukiantis eileje</label>
                         @elseif($driver->status == 3)
                         <label class="bg-label bg-label-error">NESKALNDUMAI</label>
                         @else

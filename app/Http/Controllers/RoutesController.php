@@ -51,11 +51,11 @@ class RoutesController extends Controller
      */
     public function store(Request $request)
     {
+
         $rules = array(
           'CARGO'      => 'required',
           'FROM'      => 'required',
           'TO' => 'required',
-          'CLIENT'      => 'required',
           'DRIVER'      => 'required',
           'TRUCK'      => 'required',
       );
@@ -68,22 +68,35 @@ class RoutesController extends Controller
               ->withErrors($validator)
               ->withInput(Input::except('password'));
       } else {
+          $FullDriversName = explode(' ', Input::get('DRIVER'));
+          $driverArray = Drivers::where('Fname', $FullDriversName[0])->where('Lname', $FullDriversName[1])->get();
+          foreach ($driverArray as $D) {
+            $driver = $D->id;
+          }
+          $cargoArray = Truck::select('id')->where('category', '2')->where('idno', Input::get('CARGO'))->get();
+          foreach ($cargoArray as $C) {
+            $cargo = $C->id;
+          }
+          $truckArray = Truck::select('id')->where('category', '1')->where('idno', Input::get('TRUCK'))->get();
+          foreach ($truckArray as $T) {
+            $truck = $T->id;
+          }
           // store
           $rep = new Routes;
           //$rep->idnoid = Input::get('idnoid');
           $rep->userCreated = Auth::user()->id;
           $rep->POINT_A = Input::get('FROM');
           $rep->POINT_B = Input::get('TO');
-          $rep->type = Input::get('TYPE');
-          $rep->client = Input::get('CLIENT');
-          $rep->driverID = Input::get('DRIVER');
-          $rep->TruckID = Input::get('TRUCK');
-          $rep->CargoID = Input::get('CARGO');
+          $rep->type = 1;
+          $rep->client = 'nenurodyta';
+          $rep->driverID = $driver;
+          $rep->TruckID = $truck;
+          $rep->CargoID = $cargo;
           $rep->save();
 
           // redirect
           Session::flash('suc', '1');
-          return back();
+          return redirect('routes');
       }
         //
     }
