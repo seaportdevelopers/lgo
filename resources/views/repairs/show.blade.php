@@ -31,7 +31,7 @@
             </thead>
             <tbody>
                @foreach($repairs as $repair)
-                <tr id={{$repair->id}} @if($repair->deleted_at != NULL) style="background-color: #cccccc;" class="hidden" @endif>
+                <tr id={{$repair->id}} @if($repair->deleted_at != NULL) style="background-color: #cccccc;" @if(!Session::get('showFixed')) class="hidden" @endif @endif>
                     <td>{{$repair->idno}}</td>
                     <td>{{$repair->repairCompany}}</td>
                     <td>{{$repair->repairDate}}</td>
