@@ -49695,27 +49695,23 @@ $(document).ready(function () {
     $(".ExpandableItem").css("display", "inline"); //shows sidenavigation text
 
     $(".sideNavigation").css("width", "240px"); //makes sidenavigation width to 240px
-
-    $(".content").css("left", "calc(240px + 3%)"); //moves all system content from 70px left to 240px + 3% to left
+    // $(".content").css("left", "calc(240px + 3%)"); //moves all system content from 70px left to 240px + 3% to left
 
     $("#topNavigation").css("width", "calc(100% - 240px)"); //sets top navigation width from 100% - 70px to 100% - 240px
 
     $("#topNavigation").css("margin-left", "240px"); //moves top navigation 240px to left
-
-    $(".viewHeader").css("margin-left", "240px"); //moves view header 240 px to left
+    // $(".viewHeader").css("margin-left", "240px"); //moves view header 240 px to left
   }).delay(500).mouseleave(function () {
     $(".ExpandableItem").css("display", "none");
-    $(".sideNavigation").css("width", "70px");
-    $(".content").css("left", "calc(70px + 3%)");
+    $(".sideNavigation").css("width", "70px"); // $(".content").css("left", "calc(70px + 3%)");
+
     $("#topNavigation").css("width", "calc(100% - 70px)");
-    $("#topNavigation").css("margin-left", "70px");
-    $(".viewHeader").css("margin-left", "70px");
+    $("#topNavigation").css("margin-left", "70px"); // $(".viewHeader").css("margin-left", "70px");
   }).delay(500);
-  $(".sideNavigation").hover(function () {
-    //alert("clicked!");
-    if ($(".ExpandableItem").css("display") == "none") {//checks if side navigation is extended
-    } else {//settings when not extended
-      }
+  $(".items a").mouseenter(function () {
+    $("#navIcon").css("color", "#fff");
+  }).mouseleave(function () {
+    $("#navIcon").css("color", "#8898aa");
   }); //--------------------------------------------------//
   //END OF EXPANDABLE NAVIGATION SETTINGS
   //STATUS POPOVER

@@ -31,14 +31,14 @@
 <--->	FRONT-END ISSUES	</--->
 33. Side navigation
 	33.1 Hover isn' working properly and it's not stable //FIXED, but U.N.S.T.A.B.L.E
-	33.2 Change background into white and colorize the items
-	33.3 When extended - don't move the content
+	33.2 Change background into white and colorize the items //DONE
+	33.3 When extended - don't move the content //DONE
 	33.4 Make it responsive
 		33.4.1 When menu icon clicked show fullscreen navigation with labels
 		33.4.1 When search icon clicked redirect to search page
 34. SEARCH page
 35. Top navigation
- 35.1 Add user icon near username and add href to user edit
+ 35.1 Add user icon near username and add href to user edit //DONE
 
 2019-02-21
 1. Extended side navigation on hover //DONE

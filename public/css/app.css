@@ -135,11 +135,6 @@ a.btn-icon-only {
   height: 2rem;
 }
 
-:root {
-  --white: #ffffff;
-  --main: #30323D;
-}
-
 /*!
  * Bootstrap v4.2.1 (https://getbootstrap.com/)
  * Copyright 2011-2018 The Bootstrap Authors
@@ -10885,6 +10880,8 @@ button {
 
 .viewHeader h1 {
   color: #ffffff;
+  font-weight: 400;
+  letter-spacing: 2px;
 }
 
 .viewHeader h3 {
@@ -10933,21 +10930,22 @@ button {
 #topNavigation {
   width: calc(100% - 70px);
   padding: 1.2rem 1.5rem;
+  padding-right: 2.5rem;
   color: #4D4F5C;
   margin-left: 70px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   position: absolute;
-  font-size: 0.813em;
+  font-size: 1em;
   background-color: transparent;
   z-index: 1000;
 }
 
 #topNavigation form {
   width: 60%;
-  margin-left: 0.25rem;
-  font-size: 13px;
+  margin-left: calc(70px - 1rem);
+  font-size: 1em;
   color: #ffffff;
   height: 80%;
 }
@@ -10957,18 +10955,30 @@ button {
 }
 
 #topNavigation input::-webkit-input-placeholder {
+  font-weight: lighter;
+  text-transform: uppercase;
+  letter-spacing: 5px;
   color: #ffffff;
 }
 
 #topNavigation input:-ms-input-placeholder {
+  font-weight: lighter;
+  text-transform: uppercase;
+  letter-spacing: 5px;
   color: #ffffff;
 }
 
 #topNavigation input::-ms-input-placeholder {
+  font-weight: lighter;
+  text-transform: uppercase;
+  letter-spacing: 5px;
   color: #ffffff;
 }
 
 #topNavigation input::placeholder {
+  font-weight: lighter;
+  text-transform: uppercase;
+  letter-spacing: 5px;
   color: #ffffff;
 }
 
@@ -10977,7 +10987,7 @@ button {
 }
 
 .icon {
-  color: #BCBCCB;
+  color: #8898aa;
   width: 15px;
   height: 15px;
   stroke: currentColor;
@@ -11052,18 +11062,25 @@ button {
 }
 
 .sideNavigation .items a {
-  color: white;
+  color: #8898aa;
   font-size: 0.775rem;
   text-decoration: none;
   width: 100%;
   padding: 0.75rem 1rem;
   padding-left: 1.5rem;
   margin-bottom: 0.5rem;
+  border-left: 9px solid transparent;
+  border-right: 9px solid transparent;
   /*	margin-left: 5%;*/
 }
 
 .sideNavigation .items a:hover {
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: #5e72e4 !important;
+  color: #ffffff;
+}
+
+.sideNavigation .items a:hover ~ .icon {
+  color: #ffffff !important;
 }
 
 .sideNavigation a svg {
@@ -11071,7 +11088,7 @@ button {
 }
 
 .sideNavigation .active {
-  border-left: 9px solid rgba(163, 160, 251, 0.8);
+  border-left: 9px solid rgba(163, 160, 251, 0.8) !important;
 }
 
 .ExpandableItem {
