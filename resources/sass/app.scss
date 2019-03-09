@@ -7,6 +7,12 @@
 @import '~bootstrap/scss/bootstrap';
 
 
+.euro:after {
+		content: '\20AC';
+		font-weight: bold;
+		margin-left: 0.5rem;
+}
+
 // Reset styles
 body{
 	font-family: 'Poppins', sans-serif;

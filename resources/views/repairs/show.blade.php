@@ -36,7 +36,7 @@
                     <td>{{$repair->repairCompany}}</td>
                     <td>{{$repair->repairDate}}</td>
                     <td>{{$repair->repairDateEnd}}</td>
-                  <td>{{$repair->repairsPrice}}</td>
+                  <td class="euro">{{$repair->repairsPrice}}</td>
                   <td>
                     @if($repair->deleted_at != NULL)
                       <label class="bg-label bg-label-success">Gedimas<br/>pašalintas</label>

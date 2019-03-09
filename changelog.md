@@ -11,7 +11,7 @@
 	25.1 Pagination
 	25.2 Filtering by select box in the table card header
 26. repairs.create
-	26.1 Let user enter service provider by him/her self.
+	26.1 Let user enter service provider by him/her self. //CHANGE DISCARDED
 	26.2 Add euro sign to price
 27. drivers.show
 	27.1 get status from his/her current route
@@ -67,4 +67,3 @@
 18. Leave side navigation hover on tablets and mobile devices
 19. Add icons to buttons
 20. DRIVERS
-

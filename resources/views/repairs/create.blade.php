@@ -72,7 +72,7 @@
                      </div>
                      <div class="row mb-3">
                        <div class="col">
-                         <label for="price">Kaina</label>
+                         <label for="price">Kaina, &euro;</label>
                          <input id="price" name="price" type="text" class="form-control form-control-classic mb-4 mr-3" placeholder="Kaina">
                       </div>
                      </div>
