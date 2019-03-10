@@ -58,7 +58,7 @@ class RoutesController extends Controller
           'TO' => 'required',
           'DRIVER'      => 'required',
           'TRUCK'      => 'required',
-      );
+        );
       $validator = Validator::make(Input::all(), $rules);
 
       // process the login
@@ -81,17 +81,21 @@ class RoutesController extends Controller
           foreach ($truckArray as $T) {
             $truck = $T->id;
           }
+          $DrivenOut = Input::get('DATE_START')." ".Input::get('TIME_START');
+          $DrivenIn = Input::get('DATE_END')." ".Input::get('TIME_END');
           // store
           $rep = new Routes;
           //$rep->idnoid = Input::get('idnoid');
           $rep->userCreated = Auth::user()->id;
           $rep->POINT_A = Input::get('FROM');
           $rep->POINT_B = Input::get('TO');
-          $rep->type = 1;
+          $rep->type = Input::get('TYPE');
           $rep->client = 'nenurodyta';
           $rep->driverID = $driver;
           $rep->TruckID = $truck;
           $rep->CargoID = $cargo;
+          $rep->DrivenOut = $DrivenOut;
+          $rep->DrivenIn = $DrivenIn;
           $rep->save();
 
           // redirect

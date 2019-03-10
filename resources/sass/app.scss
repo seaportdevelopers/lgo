@@ -157,7 +157,6 @@ button{
 .btn-table{
 	padding: 0.2rem 1.30rem;
 	font-size: 80%;
-	border-radius: 20px;
 	display: inline;
 }
 .btn-primary{
@@ -284,24 +283,26 @@ button{
     flex-direction: row;
     justify-content: space-between;
     position: absolute;
-    font-size: 1em;
+    font-size: .775rem;
     background-color: transparent;
     z-index: 1000;
 }
 #topNavigation form{
-	width: 60%;
+	border: 1px solid #ddd;
+	border-radius: 2rem;
+	padding: 8px 20px;
+	width: 25%;
 	margin-left: calc(70px - 1rem);
-	font-size: 1em;
+	font-size: .775rem;
 	color: $white;
 	height: 80%;
 }
 #topNavigation input{
-	width: 90%;
+	width: 70%;
 }
 #topNavigation input::placeholder{
 	font-weight: lighter;
-	text-transform: uppercase;
-	letter-spacing: 5px;
+	letter-spacing: 2px;
 	color: $white;
 }
 #mobileTopNavigation{
@@ -328,11 +329,11 @@ button{
 .sideNavigation{
 	height: 100vh;
 	width: 70px;
-	// background-color: #43425D;
-	background: $white;
-	// background: -webkit-linear-gradient(42deg, rgba(67,66,93,1) 43%, rgba(94,114,228,1) 100%);
-	// background: -o-linear-gradient(42deg, rgba(67,66,93,1) 43%, rgba(94,114,228,1) 100%);
-	// background: linear-gradient(132deg, rgba(67,66,93,1) 43%, rgba(94,114,228,1) 100%);
+	background-color: #43425D;
+	// background: $white;
+	background: -webkit-linear-gradient(42deg, rgba(67,66,93,1) 43%, rgba(94,114,228,1) 100%);
+	background: -o-linear-gradient(42deg, rgba(67,66,93,1) 43%, rgba(94,114,228,1) 100%);
+	background: linear-gradient(132deg, rgba(67,66,93,1) 43%, rgba(94,114,228,1) 100%);
 	position: fixed;
 	z-index: 1000;
 	transition: 0s;
@@ -378,7 +379,7 @@ button{
 	font-weight: 500;
 }
 .sideNavigation .items a{
-	color: $MutedColor;
+	color: $white;
 	font-size: .775rem;
 	text-decoration: none;
 	width: 100%;

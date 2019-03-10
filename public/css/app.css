@@ -10959,7 +10959,6 @@ button {
 .btn-table {
   padding: 0.2rem 1.3rem;
   font-size: 80%;
-  border-radius: 20px;
   display: inline;
 }
 
@@ -11096,48 +11095,47 @@ button {
   flex-direction: row;
   justify-content: space-between;
   position: absolute;
-  font-size: 1em;
+  font-size: 0.775rem;
   background-color: transparent;
   z-index: 1000;
 }
 
 #topNavigation form {
-  width: 60%;
+  border: 1px solid #ddd;
+  border-radius: 2rem;
+  padding: 8px 20px;
+  width: 25%;
   margin-left: calc(70px - 1rem);
-  font-size: 1em;
+  font-size: 0.775rem;
   color: #ffffff;
   height: 80%;
 }
 
 #topNavigation input {
-  width: 90%;
+  width: 70%;
 }
 
 #topNavigation input::-webkit-input-placeholder {
   font-weight: lighter;
-  text-transform: uppercase;
-  letter-spacing: 5px;
+  letter-spacing: 2px;
   color: #ffffff;
 }
 
 #topNavigation input:-ms-input-placeholder {
   font-weight: lighter;
-  text-transform: uppercase;
-  letter-spacing: 5px;
+  letter-spacing: 2px;
   color: #ffffff;
 }
 
 #topNavigation input::-ms-input-placeholder {
   font-weight: lighter;
-  text-transform: uppercase;
-  letter-spacing: 5px;
+  letter-spacing: 2px;
   color: #ffffff;
 }
 
 #topNavigation input::placeholder {
   font-weight: lighter;
-  text-transform: uppercase;
-  letter-spacing: 5px;
+  letter-spacing: 2px;
   color: #ffffff;
 }
 
@@ -11169,7 +11167,8 @@ button {
 .sideNavigation {
   height: 100vh;
   width: 70px;
-  background: #ffffff;
+  background-color: #43425D;
+  background: linear-gradient(132deg, #43425d 43%, #5e72e4 100%);
   position: fixed;
   z-index: 1000;
   transition: 0s;
@@ -11221,7 +11220,7 @@ button {
 }
 
 .sideNavigation .items a {
-  color: #8898aa;
+  color: #ffffff;
   font-size: 0.775rem;
   text-decoration: none;
   width: 100%;

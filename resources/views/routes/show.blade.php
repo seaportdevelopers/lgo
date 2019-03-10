@@ -25,7 +25,22 @@
             <tbody>
                @foreach($routes as $driver)
                 <tr>
-                    <td>{{$driver->type}}</td>
+                    <td>
+                        @switch($driver->type)
+                            @case(0)
+                            Paprastas krovinys
+                            @break
+                            @case(1)
+                            Maisto produktai
+                            @break
+                            @case(2)
+                            Maisto produktai
+                            @break
+                            @default
+                            Nenurodyta
+
+                        @endswitch
+                    </td>
                     <td>{{$driver->POINT_A}}</td>
                     <td>{{$driver->POINT_B}}</td>
                     <td>{{$driver->client}}</td>

@@ -50816,7 +50816,10 @@ var RouteConfiguratorApp = new Vue({
     selectedCargoError: false,
     selectedDriverError: false,
     errorsDetected: false,
-    CurrentTransportChoice: ''
+    CurrentTransportChoice: '',
+    DATE_START: '',
+    DATE_END: '',
+    TYPE: ''
   },
   methods: {
     createMap: function createMap() {
@@ -50829,7 +50832,7 @@ var RouteConfiguratorApp = new Vue({
       });
     },
     makeRoute: function makeRoute() {
-      if (this.selectedTruck === '' || this.selectedCargo === '' || this.selectedDriver === '') {
+      if (this.selectedTruck === '' || this.selectedCargo === '' || this.selectedDriver === '' || this.TYPE === '' || this.DATE_END === '' | this.DATE_START === '') {
         this.selectedTruckError = true;
         this.selectedCargoError = true;
         this.selectedDriverError = true;

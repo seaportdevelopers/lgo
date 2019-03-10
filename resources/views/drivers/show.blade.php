@@ -25,9 +25,26 @@
                 <tr>
                     <td>{{$driver->Fname}}</td>
                     <td>{{$driver->Lname}}</td>
-                    <td>{{$driver->truck}}</td>
-                    <td>{{$driver->cargo}}</td>
-                    <td>{{$driver->routeN}}</td>
+
+                        <td>
+                            @foreach($driver->route->take(1) as $CurrentRoute)
+                            @foreach($CurrentRoute->truck->take(1) as $Truck)
+                                {{$Truck->idno}}
+                            @endforeach
+                            @endforeach
+                        </td>
+                        <td>
+                            @foreach($driver->route->take(1) as $CurrentRoute)
+                            @foreach($CurrentRoute->cargo->take(1) as $Cargo)
+                                {{$Cargo->idno}}
+                            @endforeach
+                            @endforeach
+                        </td>
+                        <td>
+                            @foreach($driver->route->take(1) as $CurrentRoute)
+                            {{$CurrentRoute->POINT_A}} - {{$CurrentRoute->POINT_B}}
+                            @endforeach
+                        </td>
                     <td>
                         @if($driver->status == 0)
                         <label class="bg-label bg-label-primary">Neseniai sukurtas</label>

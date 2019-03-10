@@ -140,6 +140,9 @@ const RouteConfiguratorApp = new Vue({
 		selectedDriverError: false,
 		errorsDetected: false,
 		CurrentTransportChoice: '',
+		DATE_START: '',
+		DATE_END: '',
+		TYPE: '',
 	},
 	methods: {
 		createMap: function() {
@@ -149,7 +152,7 @@ const RouteConfiguratorApp = new Vue({
 			});
 		},
 		makeRoute: function() {
-			if (this.selectedTruck === '' || this.selectedCargo === '' || this.selectedDriver === ''){
+			if (this.selectedTruck === '' || this.selectedCargo === '' || this.selectedDriver === '' || this.TYPE === '' || this.DATE_END === '' | this.DATE_START === ''){
 				this.selectedTruckError = true;
 				this.selectedCargoError = true;
 				this.selectedDriverError = true;

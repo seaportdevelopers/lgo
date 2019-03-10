@@ -1,5 +1,5 @@
 2019-03-09
-21. Route type in string (not ID)
+21. Route type in string (not ID) //FIXED
 22. Status change
 23. Route edit view
 24. route.create

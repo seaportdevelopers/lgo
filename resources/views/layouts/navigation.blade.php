@@ -176,7 +176,7 @@
 <header id="topNavigation">
 		<form>
 			<i class="icon icon-white" data-feather="search"></i>
-			<input autocomplete="off" data-toggle="popover" data-placement="bottom" onkeyup="ajaxSearch()" class="search-input" type="text" name="searchQ" placeholder="Paieška">
+			<input autocomplete="off" data-toggle="popover" data-placement="bottom" onkeyup="ajaxSearch()" class="search-input ml-2" type="text" name="searchQ" placeholder="Paieška">
 		</form>
 		<span style="color: #fff;">
       <span class="icon icon-white mr-1" data-feather="user"></span>
