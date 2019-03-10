@@ -86,8 +86,8 @@ $(document).ready(function(){
 		placement: 'top',
 		html: true,
     content: function() {
-      var id = $(this).attr('id')
-      var cc = '<label class="bg-label bg-label-danger" onclick="checker('+id+', `SKUBU`)">SKUBU</label> <label class="bg-label bg-label-success" onclick="checker('+id+', `Sutvarkyta`)">Sutvarkyta</label> <label class="bg-label bg-label-warning" onclick="checker('+id+', `Tvarkoma`)">Tvarkoma</label> <label class="bg-label bg-label-main" onclick="checker('+id+', `Pranešta`)">Pranešta</label>'
+      var id = $(this).attr('id');
+      var cc = '<label class="bg-label bg-label-danger" onclick="checker('+id+', `SKUBU`)">SKUBU</label> <label class="bg-label bg-label-success" onclick="checker('+id+', `Sutvarkyta`)">Sutvarkyta</label> <label class="bg-label bg-label-warning" onclick="checker('+id+', `Tvarkoma`)">Tvarkoma</label> <label class="bg-label bg-label-main" onclick="checker('+id+', `Pranešta`)">Pranešta</label>';
       return cc;
     }
   });

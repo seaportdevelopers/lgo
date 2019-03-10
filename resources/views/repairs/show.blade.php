@@ -10,7 +10,7 @@
            <div class="control__indicator"></div>
         </label> --}}
         <div style="display:inline; float: right;">
-          <button id="hide2" type="button" class="btn btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
+          <button id="hide2" type="button" @if($_COOKIE['showFixed'] == "1") class="btn btn-toggle active" @else class="btn btn-toggle"@endif  data-toggle="button" aria-pressed="false" autocomplete="off">
           <div class="handle"></div>
           </button>
           <span class="toggleBtnText">Rodyti pašalintus gedimus</span>
@@ -31,12 +31,12 @@
             </thead>
             <tbody>
                @foreach($repairs as $repair)
-                <tr id={{$repair->id}} @if($repair->deleted_at != NULL) style="background-color: #cccccc;" @if(!Session::get('showFixed')) class="hidden" @endif @endif>
+                <tr id={{$repair->id}} @if($repair->deleted_at != NULL) style="background-color: #cccccc;" @if($_COOKIE['showFixed'] == "0") class="hidden" @endif @endif>
                     <td>{{$repair->idno}}</td>
                     <td>{{$repair->repairCompany}}</td>
                     <td>{{$repair->repairDate}}</td>
                     <td>{{$repair->repairDateEnd}}</td>
-                  <td>{{$repair->repairsPrice}}</td>
+                  <td class="euro">{{$repair->repairsPrice}}</td>
                   <td>
                     @if($repair->deleted_at != NULL)
                       <label class="bg-label bg-label-success">Gedimas<br/>pašalintas</label>
