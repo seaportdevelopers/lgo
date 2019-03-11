@@ -1,12 +1,12 @@
 2019-03-09
 21. Route type in string (not ID) //FIXED
-22. Status change
+22. Status change //Half fixed {Status popover is not active}
 23. Route edit view
 24. route.create
-	24.1 Route can't be confirmed if it's selected truck, cargo, driver is in another route which is in the same time period of currently selected route.
+		24.1 Route can't be confirmed if it's selected truck, cargo, driver is in another route which is in the same time period of currently selected route.
 	24.2 Add timeBegin, timeEnd to routes migration and add these fields to main routes table and create views
 	24.3 Add type selectbox in routes.create
-	24.3 Research, why it's needed to push creat button two and more times
+	24.3 Research, why it's needed to push create button two and more times
 25. Routes.show
 	25.1 Pagination
 	25.2 Filtering by select box in the table card header
@@ -15,11 +15,11 @@
 	26.2 Add euro sign to price //CHANGE COMPLETED
 27. drivers.show
 	27.1 get status from his/her current route
-	27.2 assign cuurent truck, cargo and route by his/her current route
+	27.2 assign current truck, cargo and route by his/her current route
 28. drivers.create
 29. insurance.create
 	29.1 select transport from selectbox
-	29.2 experation date (chnge input type to date)
+	29.2 expiration date (change input type to date)
 	29.3 fix input grid
 	29.4 make safety check (expiration date can't be lower than now())
 30. insurance.edit
@@ -30,11 +30,11 @@
 	32.1 status change
 <--->	FRONT-END ISSUES	</--->
 33. Side navigation
-	33.1 Hover isn' working properly and it's not stable //FIXED, but U.N.S.T.A.B.L.E
+	33.1 Hover isn't working properly and it's not stable //FIXED, but U.N.S.T.A.B.L.E
 	33.2 Change background into white and colorize the items //DONE
 	33.3 When extended - don't move the content //DONE
 	33.4 Make it responsive
-		33.4.1 When menu icon clicked show fullscreen navigation with labels
+		33.4.1 When menu icon clicked show full-screen navigation with labels
 		33.4.1 When search icon clicked redirect to search page
 34. SEARCH page
 35. Top navigation
