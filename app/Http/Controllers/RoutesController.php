@@ -118,9 +118,9 @@ class RoutesController extends Controller
      * @param  \App\Routes  $routes
      * @return \Illuminate\Http\Response
      */
-    public function edit(Routes $routes)
+    public function edit($hash)
     {
-        //
+        dd($hash);
     }
 
     /**
@@ -130,9 +130,9 @@ class RoutesController extends Controller
      * @param  \App\Routes  $routes
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Routes $routes)
+    public function update(Request $request, $hash)
     {
-        //
+        dd($hash);
     }
 
     /**

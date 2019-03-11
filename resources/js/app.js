@@ -21,7 +21,10 @@ feather.replace();
 
 window.Vue = require('vue');
 
-
+window.onload = () => {
+  if(document.body.contains(document.getElementById("RouteConfiguratorApp")))
+  RouteConfiguratorApp.createMap();
+}
 
 
 /**
@@ -98,9 +101,7 @@ $(document).ready(function(){
 });
 
 
-window.onload = () => {
-	RouteConfiguratorApp.createMap();
-}
+
 // // Initialize and add the map
 // function initMap() {
 //   // The location of Uluru
