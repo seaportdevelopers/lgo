@@ -1,3 +1,6 @@
+<?php
+  if(!isset($_COOKIE['showFixed'])) setcookie('showFixed', "0");
+ ?>
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>

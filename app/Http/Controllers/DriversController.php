@@ -85,9 +85,9 @@ class DriversController extends Controller
      * @param  \App\Drivers  $drivers
      * @return \Illuminate\Http\Response
      */
-    public function edit(Drivers $drivers)
+    public function edit($hash)
     {
-        //
+        dd($hash);
     }
 
     /**
@@ -97,9 +97,9 @@ class DriversController extends Controller
      * @param  \App\Drivers  $drivers
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Drivers $drivers)
+    public function update(Request $request, $hash)
     {
-        //
+        dd($hash);
     }
 
     /**

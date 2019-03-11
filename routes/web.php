@@ -18,28 +18,31 @@ Route::get('/home', 'HomeController@allTransport')->name('home');
 Route::get('/', 'HomeController@allTransport')->name('home');
 
 //TRANSPORT
-Route::get('/transport/{hash}/edit', 'TruckController@edit');
-Route::put('/transport/{hash}', 'TruckController@update');
-Route::delete('/transport/{hash}', 'TruckController@destroy');
+Route::get('/transport/{hash}/edit', 'TruckController@edit')->name("truck.edit");
+Route::put('/transport/{hash}', 'TruckController@update')->name("truck.update");
+Route::delete('/transport/{hash}', 'TruckController@destroy')->name("truck.destroy");
 Route::resource('/transport', 'TruckController');
 
 //REPAIRS
 Route::resource('repairs', 'RepairController', ['except' => ['edit', 'update']]);
-Route::get('repairs/{hash}/edit','RepairController@edit');
-Route::any('repair/delete', 'RepairController@delete');
-Route::put('repairs/{hash}', 'RepairController@update');
+Route::get('repairs/{hash}/edit','RepairController@edit')->name("repairs.edit");
+Route::any('repair/delete', 'RepairController@delete')->name("repairs.delete");
+Route::put('repairs/{hash}', 'RepairController@update')->name("repairs.update");
 
 //INSURANCE
-Route::resource('insurance', 'InsuranceController', ['except' => ['create']]);
-Route::any('insurance/create', 'InsuranceController@create');
+Route::resource('insurance', 'InsuranceController', ['except' => ['edit', 'update']]);
+Route::get('insurance/{hash}/edit', 'InsuranceController@edit')->name("insurance.edit");
+Route::post('insurance/{hash}', 'InsuranceController@update')->name("insurance.update");
 
 //DRIVERS
-Route::resource('drivers', 'DriversController', ['except' => ['create']]);
-Route::any('drivers/create', 'DriversController@create');
+Route::resource('drivers', 'DriversController', ['except' => ['edit', 'update']]);
+Route::get('drivers/{hash}/edit', 'DriversController@edit')->name("drivers.edit");
+Route::post('drivers/{hash}', 'DriversController@update')->name("drivers.update");
 
 //ROUTES
-Route::resource('routes', 'RoutesController', ['except' => ['store']]);
-Route::any('routes/store', 'RoutesController@store')->name('routes.store');
+Route::resource('routes', 'RoutesController', ['except' => ['edit', 'update']]);
+Route::get('routes/{hash}/edit', 'RoutesController@edit')->name("routes.edit");
+Route::post('routes/{hash}', 'RoutesController@update')->name("routes.update");
 
 //SEARCH
 Route::any('/search', "SearchController@searchAll")->middleware('ajax');

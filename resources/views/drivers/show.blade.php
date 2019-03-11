@@ -59,7 +59,7 @@
                         @endif
                     </td>
                     <td>
-                       <a href="{{route('drivers.edit', $driver->id)}}"><button class="btn btn-primary btn-table"><span class="icon icon-white" data-feather="edit"></span> Redaguoti</button>
+                       <a href="{{route('drivers.edit', ['hash' => encrypt($driver->id)])}}"><button class="btn btn-primary btn-table"><span class="icon icon-white" data-feather="edit"></span> Redaguoti</button>
                     </td>
                 </tr>
                @endforeach

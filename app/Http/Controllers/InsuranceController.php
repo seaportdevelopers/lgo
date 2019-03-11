@@ -92,9 +92,9 @@ class InsuranceController extends Controller
      * @param  \App\Insurance  $insurance
      * @return \Illuminate\Http\Response
      */
-    public function edit(Insurance $insurance)
+    public function edit($hash)
     {
-        //
+        dd($hash);
     }
 
     /**
@@ -104,9 +104,9 @@ class InsuranceController extends Controller
      * @param  \App\Insurance  $insurance
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Insurance $insurance)
+    public function update(Request $request, $hash)
     {
-        //
+        dd($hash);
     }
 
     /**
