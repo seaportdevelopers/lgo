@@ -7,13 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Routes extends Model
 {
 	public function driver(){
-		return $this->hasOne(Drivers::class, 'id', 'driverID');
+		return $this->belongsTo(Drivers::class, 'driverID');
 	}
 	public function truck(){
-		return $this->hasOne(Truck::class, 'id', 'TruckID');
+		return $this->belongsTo(Truck::class, 'TruckID');
 	}
 	public function cargo(){
-		return $this->hasOne(Truck::class, 'id', 'CargoID');
+		return $this->belongsTo(Cargo::class, 'CargoID');
 	}
     //
 }
