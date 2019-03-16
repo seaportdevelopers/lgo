@@ -1,6 +1,7 @@
 <?php
 
 namespace App;
+use \App\Routes;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -20,5 +21,9 @@ class Truck extends Model
 
     public function expenses() {
       return $this->hasMany(Expense::class);
+    }
+
+    public function route() {
+      return $this->hasMany(Routes::class);
     }
 }

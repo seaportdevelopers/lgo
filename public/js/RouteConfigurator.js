@@ -12547,7 +12547,11 @@ var RouteConfiguratorApp = new Vue({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+<<<<<<< HEAD
 module.exports = __webpack_require__(/*! C:\Users\SpruceBird\Documents\Projects\Seaport Developers\lgo\resources\js\RouteConfigurator.js */"./resources/js/RouteConfigurator.js");
+=======
+module.exports = __webpack_require__(/*! /home/idev/Documents/SeaportDevelopers/Logistics/lgo/resources/js/RouteConfigurator.js */"./resources/js/RouteConfigurator.js");
+>>>>>>> ee8e669d4d3d6cb655a4bad62ec761c9b6179565
 
 
 /***/ })

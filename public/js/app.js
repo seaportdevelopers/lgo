@@ -50716,6 +50716,10 @@ var feather = __webpack_require__(/*! feather-icons */ "./node_modules/feather-i
 
 feather.replace();
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+
+window.onload = function () {
+  if (document.body.contains(document.getElementById("RouteConfiguratorApp"))) RouteConfiguratorApp.createMap();
+};
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -50727,6 +50731,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 // Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 // Vue.component('verify-route-destination', require('./components/VerifyRouteDestination.vue').default);
+
 
 $(document).ready(function () {
   $("#btnForward1").click(function () {
@@ -50770,11 +50775,7 @@ $(document).ready(function () {
   //END OF STATUS POPOVER
 
   $('table').tablesort();
-});
-
-window.onload = function () {
-  RouteConfiguratorApp.createMap();
-}; // // Initialize and add the map
+}); // // Initialize and add the map
 // function initMap() {
 //   // The location of Uluru
 //   var uluru = {lat: -25.344, lng: 131.036};
@@ -50783,7 +50784,6 @@ window.onload = function () {
 //   // The marker, positioned at Uluru
 //   var marker = new google.maps.Marker({position: uluru, map: map});
 // }
-
 
 var map;
 var directionsService = new google.maps.DirectionsService();
