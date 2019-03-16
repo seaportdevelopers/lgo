@@ -1,9 +1,19 @@
 @extends('layouts.navigation', ['ViewHeaderTitle' => 'Maršrutai', 'ViewHeaderSubtitle' => '', 'viewName' => 'routes.index'])
 @section('content')
-<div class="card big">
+<div class="card card-big" id="RoutesShowApp">
     <div class="card-header">
         <h2>
             Naujausi maršrutai
+        </h2>
+    </div>
+    <div class="card-body">
+        <div id="map"></div>
+    </div>
+</div>
+<div class="card big">
+    <div class="card-header">
+        <h2>
+            Visi maršrutai
         </h2>
 
     </div>
@@ -45,23 +55,17 @@
                     <td>{{$driver->POINT_B}}</td>
                     <td>{{$driver->client}}</td>
                     <td>
+                         <span class="icon mr-1" data-feather="user"></span>
+                            {{$driver->Fname}} {{$driver->Lname}}
+                    </td>
+                    <td>
+                            <span class="icon mr-1" data-feather="truck"></span>
+                            {{ $driver->truck}}
+                    </td>
+                    <td>
 
-                        @foreach($driver->driver as $d)
-                            <span class="icon mr-1" data-feather="user"></span>
-                            {{$d->Fname}} {{$d->Lname}}
-                        @endforeach
-                    </td>
-                    <td>
-                        @foreach($driver->truck as $truck)
                             <span class="icon mr-1" data-feather="truck"></span>
-                            {{ $truck->idno}}
-                        @endforeach
-                    </td>
-                    <td>
-                        @foreach($driver->cargo as $truck)
-                            <span class="icon mr-1" data-feather="truck"></span>
-                            {{ $truck->idno}}
-                        @endforeach
+                            {{ $driver->cargo}}
                     </td>
                     <td>
                         @if($driver->statys == 0)

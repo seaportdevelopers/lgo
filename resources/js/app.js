@@ -111,6 +111,7 @@ var directionsService = new google.maps.DirectionsService();
 var directionsDisplay = new google.maps.DirectionsRenderer();
 var DistanceBetweenPoints;
 var MatrixResponse;
+var geocoder = new google.maps.Geocoder();
 const RouteConfiguratorApp = new Vue({
 	el: '#RouteConfiguratorApp',
 	data: {
@@ -160,7 +161,6 @@ const RouteConfiguratorApp = new Vue({
 				this.errorsDetected = false;
 			}
 			if (this.errorsDetected === false){
-				var geocoder = new google.maps.Geocoder();
 				var vm = this;
 				geocoder.geocode({ address: this.POINT_A_address }, function(results, status){
 					if (status === google.maps.GeocoderStatus.OK){
@@ -234,6 +234,103 @@ const RouteConfiguratorApp = new Vue({
 		makeTransportChoice: function() {
 
 		},
+	}
+});
+
+var RoutesShowMap;
+var allRoutes;
+const RoutesShowApp = new Vue({
+	el: '#RoutesShowApp',
+	data: {
+		Finalorigins: [], //POINT A
+		Finaldestinations: [], //POINT B
+	},
+	mounted() {
+		var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+		map = new google.maps.Map(document.querySelector("#map"), {
+					center: {lat: 35, lng: -85},
+					zoom: 12
+		});
+				$.ajax({
+					url: 'api/resources/routes/all',
+					type: 'POST',
+					data: {
+						_token: CSRF_TOKEN
+					},
+					dataType: 'JSON',
+					success: function(data) {
+						if(data.status != "success") return;
+						allRoutes = data.routes;
+						var i;
+						var currentAddressA;
+						var currentAddressB;
+						var currentAddressA_cords;
+						var currentAddressB_cords;
+						console.log(allRoutes[0].POINT_A);
+						for (i = 0; i < allRoutes.length; i++) {
+							console.log(allRoutes[i].POINT_A);
+							currentAddressA = allRoutes[i].POINT_A;
+							currentAddressB = allRoutes[i].POINT_B;
+							geocoder.geocode({ address: currentAddressA}, function(results, status){
+								if (status === google.maps.GeocoderStatus.OK){
+									map.setCenter(results[0].geometry.location);
+									// this.POINT_B_coords = results[0].geometry.location;
+									map.zoom = 12;
+									currentAddressA_cords = results[0].geometry.location;
+									//console.log(results[0].geometry.location);
+									//this.Finalorigins[i] = results[0].geometry.location;
+									var markerString = 'A' + i.toString();
+									var marker = new google.maps.Marker({position: results[0].geometry.location, label: markerString, map: map});
+
+
+									geocoder.geocode({ address: currentAddressB}, function(results, status){
+										if (status === google.maps.GeocoderStatus.OK){
+											map.setCenter(results[0].geometry.location);
+											// this.POINT_B_coords = results[0].geometry.location;
+											map.zoom = 12;
+											currentAddressB_cords = results[0].geometry.location;
+											//console.log(results[0].geometry.location);
+											//this.Finalorigins[i] = results[0].geometry.location;
+											var markerString = 'B' + i.toString();
+											var marker = new google.maps.Marker({position: results[0].geometry.location, label: markerString, map: map});
+
+											directionsService.route({
+									          origin: currentAddressA_cords,
+									          destination: results[0].geometry.location,
+									          travelMode: 'DRIVING'
+									       		 }, function(response, status) {
+											          if (status === 'OK') {
+											            directionsDisplay.setDirections(response);
+											            directionsDisplay.setMap(map);
+											            var onChangeHandler = function() {
+									          				calculateAndDisplayRoute(directionsService, directionsDisplay);
+									        			};
+											          } else {
+											            window.alert('Directions request failed due to ' + status);
+											          }
+	        								});
+										}
+									});
+								}
+							});
+
+
+							console.log(currentAddressB_cords);
+						}
+
+					}
+		});
+	},
+	methods: {
+			getAllRoutes: function() {
+
+			},
+			createMap: function() {
+				map = new google.maps.Map(document.querySelector("#map"), {
+					center: {lat: 35, lng: -85},
+					zoom: 12
+				});
+			},
 	}
 });
 //EXAMPLES of using google maps services

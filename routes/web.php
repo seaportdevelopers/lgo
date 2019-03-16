@@ -48,6 +48,10 @@ Route::post('routes/{hash}', 'RoutesController@update')->name("routes.update");
 Route::any('/search', "SearchController@searchAll")->middleware('ajax');
 Route::post('/search/status', "SearchController@changeStatus")->middleware('ajax');
 
+//API routes
+Route::post('/api/resources/routes/all', 'Api@giveAllRoutes')->name('api.allRoutes');
+
+
 //Example map route is here
 Route::get('/examples/map', function(){
 	$config = array();
