@@ -161,10 +161,9 @@
 
 </header>
 <header id="topNavigation">
-		<form>
-			<i class="icon icon-white" data-feather="search"></i>
-			<input autocomplete="off" data-toggle="popover" data-placement="bottom" onkeyup="ajaxSearch()" class="search-input ml-2" type="text" name="searchQ" placeholder="Paieška">
-		</form>
+		<a href="#" id="openSearchBtn">
+      <span class="icon icon-white mr-4" data-feather="search"></span>
+    </a>
 		<span style="color: #fff;">
       <span class="icon icon-white mr-1" data-feather="user"></span>
       {{ Auth::user()->name }}
@@ -172,28 +171,28 @@
 </header>
 	<div class="sideNavigation">
     <div id="NavExpandTriggerBox">
-      <h5 href="#" id="NavExpandTrigger" class="ExpandableItem">
-        MMB Seaport Developers
+      <h5 href="#" id="NavExpandTrigger" class="NavOpenItem">
+        <span class="icon icon-white hamburgerIcon" data-feather="menu"></span>
       </h5>
     </div>
 		<div class="items">
 			<a href="{{ route('home') }}" class=" @if (Route::currentRouteName() == "home") active @endif ">
-				<span class="icon" data-feather="home" id="navIcon"></span> <span class="ExpandableItem">Dokumentacija</span>
+				<span class="icon icon-white" data-feather="home" id="navIcon"></span> <span class="ExpandableItem">Dokumentacija</span>
 			</a>
       <a href="{{ route('drivers.index') }}" class=" @if (Route::currentRouteName() == "drivers.index") active @endif ">
-        <span class="icon" data-feather="users" id="navIcon"></span> <span class="ExpandableItem">Vairuotojai</span>
+        <span class="icon icon-white" data-feather="users" id="navIcon"></span> <span class="ExpandableItem">Vairuotojai</span>
       </a>
       <a href="{{ route('routes.index') }}" class=" @if (Route::currentRouteName() == "routes.index") active @endif ">
-        <span class="icon" data-feather="map" id="navIcon"></span> <span class="ExpandableItem">Maršrutai</span>
+        <span class="icon icon-white" data-feather="map" id="navIcon"></span> <span class="ExpandableItem">Maršrutai</span>
       </a>
 			<a href="{{ route('repairs.index') }}" class=" @if (Route::currentRouteName() == "repairs.index") active @endif ">
-				<span class="icon" data-feather="activity" id="navIcon"></span> <span class="ExpandableItem">Gedimai</span>
+				<span class="icon icon-white" data-feather="activity" id="navIcon"></span> <span class="ExpandableItem">Gedimai</span>
 			</a>
 			<a href="{{ route('insurance.index') }}">
-				<span class="icon" data-feather="briefcase" id="navIcon"></span> <span class="ExpandableItem">Draudimas</span>
+				<span class="icon icon-white" data-feather="briefcase" id="navIcon"></span> <span class="ExpandableItem">Draudimas</span>
 			</a>
 			<a href="{{ route('transport.index') }}" class=" @if (Route::currentRouteName() == "transport.index") active @endif ">
-				<span class="icon" data-feather="truck" id="navIcon"></span> <span class="ExpandableItem">Transportas</span>
+				<span class="icon icon-white" data-feather="truck" id="navIcon"></span> <span class="ExpandableItem">Transportas</span>
 			</a>
 		</div>
 	</div>

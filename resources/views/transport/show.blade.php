@@ -23,15 +23,23 @@
                     <td>{{$truck->idno}}</td>
                     <td class="AdvancedData">{{$truck->manufacturer}} {{$truck->model}}</td>
                     <td>
-                       @if($truck->status == 0)
-                       <label class="bg-label bg-label-success" onclick="changeTransportStatus({{$truck->id}})">Stovi parke</label>
-                       @elseif($truck->status == 1)
-                       <label class="bg-label bg-label-primary" onclick="changeTransportStatus({{$truck->id}})">Kelyje</label>
-                       @elseif($truck->status == 2)
-                       <label class="bg-label bg-label-warning" onclick="changeTransportStatus({{$truck->id}})">Vyksta išsikrovimas</label>
-                       @else
-                       <label class="bg-label bg-label-danger" onclick="changeTransportStatus({{$truck->id}})">Gedimas</label>
-                       @endif
+                        @switch($truck->status)
+                          @case(-1)
+                         <label id="status{{$truck->id}}" class="bg-label bg-label-primary StatusPopOver">Neseniai sukurta</label>
+                         @break
+                          @case(0)
+                         <label id="status{{$truck->id}}" class="bg-label bg-label-main StatusPopOver">Pranešta</label>
+                         @break
+                         @case(1)
+                        <label id="status{{$truck->id}}" class="bg-label bg-label-danger StatusPopOver">SKUBU</label>
+                        @break
+                        @case(2)
+                       <label id="status{{$truck->id}}" class="bg-label bg-label-warning StatusPopOver">Tvarkoma</label>
+                       @break
+                       @default
+                       <label class="bg-label bg-label-danger">SISTEMOS<br/>KLAIDA</label>
+                       @break
+                     @endswitch
                     </td>
                     <td>
                        <a href="/transport/{{encrypt($truck->id)}}/edit"><button class="btn btn-primary btn-table"><span class="icon icon-white" data-feather="edit"></span> <span class="AdvancedData">Redaguoti</span></button>
