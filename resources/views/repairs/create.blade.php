@@ -63,11 +63,12 @@
                      <div class="row mb-3">
                         <div class="col">
                            <label for="exampleFormControlSelect1">Remonto vieta</label>
-                           <select style="width: 100%;" name="repComp" class="form-control" id="exampleFormControlSelect1">
+                           {{-- <select style="width: 100%;" name="repComp" class="form-control" id="exampleFormControlSelect1">
                              @foreach($providers as $provider)
                                <option>{{$provider->name}}</option>
                              @endforeach
-                           </select>
+                           </select> --}}
+                           <input type="text" name="repComp" class="form-control" placeholder="Imones pavadinimas">
                         </div>
                      </div>
                      <div class="row mb-3">
