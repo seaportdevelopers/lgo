@@ -45,26 +45,19 @@
                     <td>{{$driver->POINT_B}}</td>
                     <td>{{$driver->client}}</td>
                     <td>
-
-                        @foreach($driver->driver as $d)
                             <span class="icon mr-1" data-feather="user"></span>
-                            {{$d->Fname}} {{$d->Lname}}
-                        @endforeach
+                            {{$driver->driver->Fname}} {{$driver->driver->Lname}}
                     </td>
                     <td>
-                        @foreach($driver->truck as $truck)
                             <span class="icon mr-1" data-feather="truck"></span>
-                            {{ $truck->idno}}
-                        @endforeach
+                            {{ $driver->truck->idno}}
                     </td>
                     <td>
-                        @foreach($driver->cargo as $truck)
                             <span class="icon mr-1" data-feather="truck"></span>
-                            {{ $truck->idno}}
-                        @endforeach
+                            {{ $driver->cargo->idno}}
                     </td>
                     <td>
-                        @if($driver->statys == 0)
+                        @if($driver->status == 0)
                         <label class="bg-label bg-label-primary">Neseniai sukurtas</label>
                         @elseif($driver->status == 4)
                         <label class="bg-label bg-label-success">
