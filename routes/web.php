@@ -44,6 +44,9 @@ Route::resource('routes', 'RoutesController', ['except' => ['edit', 'update']]);
 Route::get('routes/{hash}/edit', 'RoutesController@edit')->name("routes.edit");
 Route::post('routes/{hash}', 'RoutesController@update')->name("routes.update");
 
+//CARGOS
+Route::post('/transport/cargo', 'CargoController@store')->name("cargo.store");
+
 //SEARCH
 Route::any('/search', "SearchController@searchAll")->middleware('ajax');
 Route::post('/search/status', "SearchController@changeStatus")->middleware('ajax');

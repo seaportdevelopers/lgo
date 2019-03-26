@@ -35,7 +35,38 @@ class CargoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $rules = array(
+          'idno'       => 'required',
+          'status'      => 'numeric',
+          'manufacturer' => 'required',
+          'model'      => 'required',
+          'rlYear'      => 'required|numeric'
+          // 'tchExpirationDate'      => 'date',
+      );
+      $validator = Validator::make(Input::all(), $rules);
+
+      // process the login
+      if ($validator->fails()) {
+        Session::flash('message', 'Error!');
+          return Redirect::to('transport')
+              ->withErrors($validator)
+              ->withInput(Input::except('password'));
+      } else {
+          // store
+          $rep = new Cargo;
+          $rep->idno = Input::get('idno');
+          $rep->manufacturer = Input::get('manufacturer');
+          $rep->model = Input::get('model');
+          $rep->rlYear = Input::get('rlYear');
+          // $rep->VIN = Input::get('VIN');
+          // $rep->tchExpirationDate = Input::get('tchExpirationDate');
+          $rep->status = 0;
+          $rep->save();
+
+          // redirect
+          Session::flash('suc', '1');
+          return Redirect::to('transport');
+      }
     }
 
     /**

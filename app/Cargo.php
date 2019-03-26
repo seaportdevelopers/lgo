@@ -12,7 +12,7 @@ class Cargo extends Model
     }
 
     public function route() {
-      return $this->hasMany(Routes::class);
+      return $this->hasMany(Routes::class, "CargoID");
     }
 
     public function driver() {

@@ -24,6 +24,6 @@ class Truck extends Model
     }
 
     public function route() {
-      return $this->hasMany(Routes::class);
+      return $this->hasMany(Routes::class, "TruckID");
     }
 }

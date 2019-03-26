@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Truck;
+use App\Cargo;
 use Illuminate\Http\Request;
 use Validator;
 use Illuminate\Support\Facades\Input;
@@ -21,7 +22,8 @@ class TruckController extends Controller
     public function index()
     {
         $trucks = Truck::all();
-        return view('transport.show', compact('trucks'));
+        $cargo = Cargo::all();
+        return view('transport.show', compact('trucks', 'cargo'));
     }
 
     /**
@@ -61,15 +63,14 @@ class TruckController extends Controller
               ->withInput(Input::except('password'));
       } else {
           // store
-          $rep = new Truck;
+          $rep = (Input::get('category') > 1 ? new Cargo : new Truck);
           $rep->idno = Input::get('idno');
-          $rep->category = Input::get('category');
           $rep->manufacturer = Input::get('manufacturer');
           $rep->model = Input::get('model');
           $rep->rlYear = Input::get('rlYear');
           // $rep->VIN = Input::get('VIN');
           // $rep->tchExpirationDate = Input::get('tchExpirationDate');
-          $rep->status = -1;
+          $rep->status = 0;
           $rep->save();
 
           // redirect

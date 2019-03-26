@@ -22,28 +22,27 @@
             </thead>
             <tbody>
                @foreach($drivers as $driver)
-                <tr>
+                 <?php $CurrentRoute = $driver->route->first();?>
+                 <tr>
                     <td>{{$driver->Fname}}</td>
                     <td>{{$driver->Lname}}</td>
-
                         <td>
-                            @foreach($driver->route->take(1) as $CurrentRoute)
-                            @foreach($CurrentRoute->truck->take(1) as $Truck)
-                                {{$Truck->idno}}
-                            @endforeach
-                            @endforeach
+                          @if($CurrentRoute != null)
+                                {{$CurrentRoute->truck->idno}}
+                          @else ---
+                          @endif
                         </td>
                         <td>
-                            @foreach($driver->route->take(1) as $CurrentRoute)
-                            @foreach($CurrentRoute->cargo->take(1) as $Cargo)
-                                {{$Cargo->idno}}
-                            @endforeach
-                            @endforeach
+                          @if($CurrentRoute != null)
+                                {{$CurrentRoute->cargo->idno}}
+                          @else ---
+                          @endif
                         </td>
                         <td>
-                            @foreach($driver->route->take(1) as $CurrentRoute)
+                          @if($CurrentRoute != null)
                             {{$CurrentRoute->POINT_A}} - {{$CurrentRoute->POINT_B}}
-                            @endforeach
+                          @else ---
+                          @endif
                         </td>
                     <td>
                         @if($driver->status == 0)
