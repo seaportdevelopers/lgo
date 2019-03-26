@@ -12,6 +12,7 @@
             <thead>
                 <tr>
                     <th>Valstybinis numeris</th>
+                    <th>Tipas </th>
                     <th class="AdvancedData">Gamintojas ir modelis</th>
                     <th>Būsena</th>
                     <th>Veiksmai</th>
@@ -21,6 +22,36 @@
                @foreach($trucks as $truck)
                 <tr>
                     <td>{{$truck->idno}}</td>
+                    <td >Vilkikas</td>
+                    <td class="AdvancedData">{{$truck->manufacturer}} {{$truck->model}}</td>
+                    <td>
+                        @switch($truck->status)
+                          @case(-1)
+                         <label id="status{{$truck->id}}" class="bg-label bg-label-primary StatusPopOver">Neseniai sukurta</label>
+                         @break
+                          @case(0)
+                         <label id="status{{$truck->id}}" class="bg-label bg-label-main StatusPopOver">Pranešta</label>
+                         @break
+                         @case(1)
+                        <label id="status{{$truck->id}}" class="bg-label bg-label-danger StatusPopOver">SKUBU</label>
+                        @break
+                        @case(2)
+                       <label id="status{{$truck->id}}" class="bg-label bg-label-warning StatusPopOver">Tvarkoma</label>
+                       @break
+                       @default
+                       <label class="bg-label bg-label-danger">SISTEMOS<br/>KLAIDA</label>
+                       @break
+                     @endswitch
+                    </td>
+                    <td>
+                       <a href="/transport/{{encrypt($truck->id)}}/edit"><button class="btn btn-primary btn-table"><span class="icon icon-white" data-feather="edit"></span> <span class="AdvancedData">Redaguoti</span></button>
+                    </td>
+                </tr>
+               @endforeach
+               @foreach($cargo as $truck)
+                <tr>
+                    <td>{{$truck->idno}}</td>
+                    <td >Krovinys</td>
                     <td class="AdvancedData">{{$truck->manufacturer}} {{$truck->model}}</td>
                     <td>
                         @switch($truck->status)

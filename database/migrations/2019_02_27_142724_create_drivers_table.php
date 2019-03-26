@@ -21,7 +21,6 @@ class CreateDriversTable extends Migration
             $table->integer('status')->default(0);
             $table->integer('TruckID')->default(0);
             $table->integer('CargoID')->default(0);
-            $table->integer('RouteID')->default(0);
             $table->timestamps();
         });
     }

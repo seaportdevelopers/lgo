@@ -33,10 +33,10 @@
                 </tr>
             </thead>
             <tbody>
-               @foreach($routes as $driver)
+               @foreach($routes as $route)
                 <tr>
                     <td>
-                        @switch($driver->type)
+                        @switch($route->type)
                             @case(0)
                             Paprastas krovinys
                             @break
@@ -51,40 +51,39 @@
 
                         @endswitch
                     </td>
-                    <td>{{$driver->POINT_A}}</td>
-                    <td>{{$driver->POINT_B}}</td>
-                    <td>{{$driver->client}}</td>
+                    <td>{{$route->POINT_A}}</td>
+                    <td>{{$route->POINT_B}}</td>
+                    <td>{{$route->client}}</td>
                     <td>
-                         <span class="icon mr-1" data-feather="user"></span>
-                            {{$driver->Fname}} {{$driver->Lname}}
+                            <span class="icon mr-1" data-feather="user"></span>
+                            {{$route->driver->Fname}} {{$route->driver->Lname}}
                     </td>
                     <td>
                             <span class="icon mr-1" data-feather="truck"></span>
-                            {{ $driver->truck}}
+                            {{ $route->truck->idno}}
                     </td>
                     <td>
-
                             <span class="icon mr-1" data-feather="truck"></span>
-                            {{ $driver->cargo}}
+                            {{ $route->cargo->idno}}
                     </td>
                     <td>
-                        @if($driver->statys == 0)
+                        @if($route->status == 0)
                         <label class="bg-label bg-label-primary">Neseniai sukurtas</label>
-                        @elseif($driver->status == 4)
+                        @elseif($route->status == 4)
                         <label class="bg-label bg-label-success">
-                        <span class="icon-white mr-1" data-feather="check"></span>  SĖKMINGAI IŠKRAUTAS {{$driver->DriverOut}}</label>
-                        @elseif($driver->status == 1)
+                        <span class="icon-white mr-1" data-feather="check"></span>  SĖKMINGAI IŠKRAUTAS {{$route->DriverOut}}</label>
+                        @elseif($route->status == 1)
                         <label class="bg-label bg-label-main">Kelyje</label>
-                        @elseif($driver->status == 2)
+                        @elseif($route->status == 2)
                         <label class="bg-label bg-label-danger">Laukiantis eileje</label>
-                        @elseif($driver->status == 3)
+                        @elseif($route->status == 3)
                         <label class="bg-label bg-label-error">NESKALNDUMAI</label>
                         @else
                         <label class="bg-label bg-label-error">KLAIDA</label>
                         @endif
                     </td>
                     <td>
-                       <a href="{{route('routes.edit', encrypt($driver->id))}}"><button class="btn btn-primary btn-table"><span class="icon icon-white" data-feather="edit"></span> Redaguoti</button>
+                       <a href="{{route('routes.edit', encrypt($route->id))}}"><button class="btn btn-primary btn-table"><span class="icon icon-white" data-feather="edit"></span> Redaguoti</button>
                     </td>
                 </tr>
                @endforeach

@@ -58,6 +58,10 @@ class RoutesController extends Controller
           'TO' => 'required',
           'DRIVER'      => 'required',
           'TRUCK'      => 'required',
+          'DATE_START' => 'required',
+          'DATE_END' => 'required',
+          'TIME_START' => 'required',
+          'TIME_END' => 'required',
         );
       $validator = Validator::make(Input::all(), $rules);
 
@@ -69,18 +73,18 @@ class RoutesController extends Controller
               ->withInput(Input::except('password'));
       } else {
           $FullDriversName = explode(' ', Input::get('DRIVER'));
-          $driverArray = Drivers::where('Fname', $FullDriversName[0])->where('Lname', $FullDriversName[1])->get();
-          foreach ($driverArray as $D) {
-            $driver = $D->id;
-          }
-          $cargoArray = Truck::select('id')->where('category', '2')->where('idno', Input::get('CARGO'))->get();
-          foreach ($cargoArray as $C) {
-            $cargo = $C->id;
-          }
-          $truckArray = Truck::select('id')->where('category', '1')->where('idno', Input::get('TRUCK'))->get();
-          foreach ($truckArray as $T) {
-            $truck = $T->id;
-          }
+          $driver = Drivers::where('Fname', $FullDriversName[0])->where('Lname', $FullDriversName[1])->get()->first()->id;
+          // foreach ($driverArray as $D) {
+          //   $driver = $D->id;
+          // }
+          $cargo = Truck::select('id')->where('category', '2')->where('idno', Input::get('CARGO'))->get()->first()->id;
+          // foreach ($cargoArray as $C) {
+          //   $cargo = $C->id;
+          // }
+          $truck = Truck::select('id')->where('category', '1')->where('idno', Input::get('TRUCK'))->get()->first()->id;
+          // foreach ($truckArray as $T) {
+          //   $truck = $T->id;
+          // }
           $DrivenOut = Input::get('DATE_START')." ".Input::get('TIME_START');
           $DrivenIn = Input::get('DATE_END')." ".Input::get('TIME_END');
           // store
